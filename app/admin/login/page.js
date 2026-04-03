@@ -36,6 +36,7 @@ export default function AdminLogin() {
 
       console.log("Login success:", data)
 
+      router.refresh()
       router.push("/admin")
 
     } catch (err) {
