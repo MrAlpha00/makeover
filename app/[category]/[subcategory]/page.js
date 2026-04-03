@@ -1,4 +1,4 @@
-import { createServerSupabaseClient } from '../../../lib/supabase';
+import { createServerSupabaseClient } from '@/lib/supabase';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import WhatsAppButton from '../../../components/WhatsAppButton';

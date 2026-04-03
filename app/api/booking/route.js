@@ -78,7 +78,7 @@ export async function POST(req) {
     }
 
     // Insert into Supabase bookings table
-    const { supabaseAdmin } = await import('../../lib/supabase-admin');
+    const { supabaseAdmin } = await import('@/lib/supabase-admin');
     const { error: dbError } = await supabaseAdmin.from('bookings').insert({
       name,
       phone,

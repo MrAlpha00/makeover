@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '../lib/supabase-admin';
+import { supabaseAdmin } from '@/lib/supabase-admin';
 
 export default async function sitemap() {
   const baseUrl = 'https://slvevents.in';

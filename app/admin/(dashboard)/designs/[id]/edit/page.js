@@ -1,4 +1,4 @@
-import { createServerSupabaseClient } from '../../../../../../../lib/supabase';
+import { createServerSupabaseClient } from '@/lib/supabase';
 import DesignForm from '../../DesignForm';
 import { notFound } from 'next/navigation';
 

@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { LayoutDashboard, FolderTree, Tag, Image, CalendarCheck, Settings, LogOut } from 'lucide-react';
-import { createClient } from '../../../../lib/supabase';
+import { createClient } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 
 export default function Sidebar() {

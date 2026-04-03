@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { createClient } from '../../../../lib/supabase';
+import { createClient } from '@/lib/supabase';
 import { Trash2, Plus, Image as ImageIcon, X, Loader2, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';

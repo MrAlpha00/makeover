@@ -3,7 +3,7 @@ import Footer from '../../components/Footer';
 import WhatsAppButton from '../../components/WhatsAppButton';
 import BookingForm from './BookingForm';
 import { Suspense } from 'react';
-import { createServerSupabaseClient } from '../../lib/supabase';
+import { createServerSupabaseClient } from '@/lib/supabase';
 
 export const metadata = {
   title: 'Book a Decoration | SLV Events Bangalore',

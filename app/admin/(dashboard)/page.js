@@ -1,4 +1,4 @@
-import { createServerSupabaseClient } from '../../../../lib/supabase';
+import { createServerSupabaseClient } from '@/lib/supabase';
 import Link from 'next/link';
 import { Plus, ArrowRight, TrendingUp, FolderTree, Image as ImageIcon, CalendarCheck } from 'lucide-react';
 
