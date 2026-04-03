@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabaseClient"
 import { Loader2 } from 'lucide-react';
@@ -10,6 +10,18 @@ export default function AdminLogin() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false)
   const router = useRouter()
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const { data } = await supabase.auth.getSession()
+
+      if (data?.session) {
+        router.push("/admin")
+      }
+    }
+
+    checkUser()
+  }, [])
 
   const handleLogin = async (email, password) => {
     try {
