@@ -9,8 +9,8 @@ export async function POST(req) {
 
     // Send email to the client (SLV Events owner)
     const { error } = await resend.emails.send({
-      from: 'bookings@slvevents.in', // Must be verified domain in Resend
-      to: process.env.OWNER_EMAIL || 'hello@slvevents.in', // Client's email
+      from: 'onboarding@resend.dev', // Must be verified domain in Resend
+      to: process.env.OWNER_EMAIL || 'sm4686771@gmail.com', // Client's email
       subject: `🎉 New Booking Enquiry — ${name} | SLV Events`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background: #f9f9f9; padding: 32px; border-radius: 12px;">
