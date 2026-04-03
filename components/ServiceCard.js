@@ -14,7 +14,7 @@ export default function ServiceCard({ service, index = 0 }) {
       {/* Image */}
       <div className="relative h-52 overflow-hidden">
         <Image
-          src={service.image}
+          src={service.images?.[0] || service.image || '/assets/placeholder.jpg'}
           alt={service.title}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -28,7 +28,7 @@ export default function ServiceCard({ service, index = 0 }) {
         )}
         {/* Category badge */}
         <div className="absolute top-3 right-3 bg-dark-900/70 backdrop-blur-sm text-white/80 text-xs px-2.5 py-1 rounded-full border border-white/10">
-          {service.category}
+          {service.categories?.name || service.category}
         </div>
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 via-transparent to-transparent" />
@@ -40,7 +40,7 @@ export default function ServiceCard({ service, index = 0 }) {
           {service.title}
         </h3>
         <p className="text-white/40 text-sm leading-relaxed mb-3 line-clamp-2">
-          {service.shortDesc}
+          {service.short_desc || service.shortDesc}
         </p>
 
         {/* Rating */}
@@ -54,8 +54,8 @@ export default function ServiceCard({ service, index = 0 }) {
         <div className="flex items-center justify-between">
           <div>
             <span className="text-coral-400 font-semibold text-lg">₹{service.price.toLocaleString('en-IN')}</span>
-            {service.originalPrice && (
-              <span className="text-white/25 text-sm line-through ml-2">₹{service.originalPrice.toLocaleString('en-IN')}</span>
+            {(service.original_price || service.originalPrice) && (
+              <span className="text-white/25 text-sm line-through ml-2">₹{(service.original_price || service.originalPrice).toLocaleString('en-IN')}</span>
             )}
           </div>
           <span className="w-8 h-8 rounded-full bg-coral-500/10 border border-coral-500/20 flex items-center justify-center text-coral-400 group-hover:bg-coral-500 group-hover:text-white transition-all">
