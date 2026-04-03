@@ -1,0 +1,9 @@
+﻿C:\Users\sm468\OneDrive\Desktop\m projects\makeover\app\admin\(dashboard)\page.js
+C:\Users\sm468\OneDrive\Desktop\m projects\makeover\app\admin\(dashboard)\bookings\page.js
+C:\Users\sm468\OneDrive\Desktop\m projects\makeover\app\admin\(dashboard)\categories\page.js
+C:\Users\sm468\OneDrive\Desktop\m projects\makeover\app\admin\(dashboard)\designs\page.js
+C:\Users\sm468\OneDrive\Desktop\m projects\makeover\app\admin\(dashboard)\designs\new\page.js
+C:\Users\sm468\OneDrive\Desktop\m projects\makeover\app\admin\(dashboard)\designs\[id]\edit\page.js
+C:\Users\sm468\OneDrive\Desktop\m projects\makeover\app\admin\(dashboard)\settings\page.js
+C:\Users\sm468\OneDrive\Desktop\m projects\makeover\app\admin\(dashboard)\subcategories\page.js
+C:\Users\sm468\OneDrive\Desktop\m projects\makeover\app\admin\login\page.js
