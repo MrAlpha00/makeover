@@ -1,6 +1,6 @@
-import services from '../data/services';
+import { supabaseAdmin } from '../lib/supabase-admin';
 
-export default function sitemap() {
+export default async function sitemap() {
   const baseUrl = 'https://slvevents.in';
 
   const staticPages = [
@@ -11,7 +11,9 @@ export default function sitemap() {
     { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
   ];
 
-  const servicePages = services.map((s) => ({
+  const { data: designs } = await supabaseAdmin.from('designs').select('slug');
+
+  const servicePages = (designs || []).map((s) => ({
     url: `${baseUrl}/services/${s.slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly',
