@@ -5,8 +5,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import WhatsAppButton from '../components/WhatsAppButton';
 import ServiceCard from '../components/ServiceCard';
-import services from '../data/services';
-import categories from '../data/categories';
+import { createServerSupabaseClient } from '../lib/supabase';
 
 const stats = [
   { value: '5,000+', label: 'Events Decorated' },
@@ -62,8 +61,21 @@ const whyUs = [
   },
 ];
 
-export default function HomePage() {
-  const featured = services.filter((s) => s.featured).slice(0, 4);
+export default async function HomePage() {
+  const supabase = createServerSupabaseClient();
+  
+  // Fetch featured designs
+  const { data: featured } = await supabase
+    .from('designs')
+    .select('*, categories(name)')
+    .eq('featured', true)
+    .limit(4);
+
+  // Fetch categories
+  const { data: categories } = await supabase
+    .from('categories')
+    .select('*')
+    .order('sort_order', { ascending: true });
 
   return (
     <div className="min-h-screen bg-dark-900">
@@ -198,7 +210,7 @@ export default function HomePage() {
               
               {/* Background Image */}
               <Image 
-                src={cat.image} 
+                src={cat.image_url || cat.image} 
                 alt={cat.name} 
                 fill 
                 className="object-cover group-hover:scale-105 transition-transform duration-500" 
@@ -227,7 +239,7 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {featured.map((service, i) => (
+            {featured?.map((service, i) => (
               <ServiceCard key={service.id} service={service} index={i} />
             ))}
           </div>

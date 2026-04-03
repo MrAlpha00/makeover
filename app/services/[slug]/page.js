@@ -1,225 +1,60 @@
-'use client';
-import { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowLeft, Star, Check, Plus, Minus, ArrowRight, Phone } from 'lucide-react';
+import { createServerSupabaseClient } from '../../../lib/supabase';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import WhatsAppButton from '../../../components/WhatsAppButton';
-import ServiceCard from '../../../components/ServiceCard';
-import services from '../../../data/services';
+import ServiceDetailClient from './ServiceDetailClient';
+import { notFound } from 'next/navigation';
 
-export default function ServiceDetailPage({ params }) {
-  const service = services.find((s) => s.slug === params.slug);
-  const related = services.filter((s) => s.id !== service?.id && s.category === service?.category).slice(0, 4);
-  const alsoBooked = services.filter((s) => s.id !== service?.id && s.category !== service?.category).slice(0, 4);
+export async function generateMetadata({ params }) {
+  const supabase = createServerSupabaseClient();
+  const { data: service } = await supabase.from('designs').select('title, short_desc').eq('slug', params.slug).single();
+  
+  if (!service) return { title: 'Not Found | SLV Events' };
+  
+  return {
+    title: `${service.title} | SLV Events Bangalore`,
+    description: service.short_desc,
+  };
+}
 
-  const [activeImage, setActiveImage] = useState(0);
-  const [selectedAddOns, setSelectedAddOns] = useState({});
+export default async function ServiceDetailPage({ params }) {
+  const supabase = createServerSupabaseClient();
+  
+  // Fetch service
+  const { data: service, error } = await supabase
+    .from('designs')
+    .select('*, categories(name)')
+    .eq('slug', params.slug)
+    .single();
 
-  if (!service) {
-    return (
-      <div className="min-h-screen bg-dark-900 flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-white/40 text-lg mb-4">Service not found</p>
-          <Link href="/services" className="btn-coral">Back to Services</Link>
-        </div>
-      </div>
-    );
+  if (error || !service) {
+    notFound();
   }
 
-  const gallery = service.gallery?.length ? service.gallery : [service.image];
-
-  const toggleAddOn = (id) => {
-    setSelectedAddOns((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
-
-  const totalPrice = service.price + service.addOns
-    .filter((a) => selectedAddOns[a.id])
-    .reduce((acc, a) => acc + a.price, 0);
-
-  const whatsappMsg = encodeURIComponent(
-    `Hi SLV Events! I'd like to book "${service.title}" (₹${service.price.toLocaleString('en-IN')}) for my event in Bangalore. Can you confirm availability?`
-  );
+  // Fetch related and also booked
+  const [relatedRes, alsoBookedRes] = await Promise.all([
+    supabase
+      .from('designs')
+      .select('*, categories(name)')
+      .eq('category_id', service.category_id)
+      .neq('id', service.id)
+      .limit(4),
+    supabase
+      .from('designs')
+      .select('*, categories(name)')
+      .neq('category_id', service.category_id)
+      .limit(4)
+  ]);
 
   return (
     <div className="min-h-screen bg-dark-900">
       <Navbar />
       <WhatsAppButton />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-28 pb-20">
-        {/* Breadcrumb */}
-        <Link href="/services" className="inline-flex items-center gap-2 text-white/40 hover:text-white text-sm mb-8 transition-colors group">
-          <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-          Back to Services
-        </Link>
-
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* ── LEFT: Gallery ── */}
-          <div className="sticky top-24">
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-              <Image
-                src={gallery[activeImage]}
-                alt={service.title}
-                fill
-                className="object-cover"
-                priority
-              />
-              {service.discount > 0 && (
-                <div className="absolute top-4 left-4 bg-coral-500 text-white text-sm font-semibold px-3 py-1 rounded-full">
-                  {service.discount}% OFF
-                </div>
-              )}
-            </div>
-            {/* Thumbnails */}
-            {gallery.length > 1 && (
-              <div className="flex gap-3 mt-3">
-                {gallery.map((img, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActiveImage(i)}
-                    className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 transition-all ${
-                      activeImage === i ? 'border-coral-500' : 'border-white/5 opacity-50 hover:opacity-100'
-                    }`}
-                  >
-                    <Image src={img} alt="" fill className="object-cover" />
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* ── RIGHT: Details ── */}
-          <div>
-            <span className="badge mb-3">{service.category}</span>
-            <h1 className="font-display text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
-              {service.title}
-            </h1>
-
-            {/* Rating */}
-            <div className="flex items-center gap-2 mb-4">
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={14} fill={i < Math.round(service.rating) ? '#f95738' : 'none'} stroke={i < Math.round(service.rating) ? 'none' : '#ffffff30'} />
-                ))}
-              </div>
-              <span className="text-white font-medium text-sm">{service.rating}</span>
-              <span className="text-white/30 text-sm">({service.reviews} reviews)</span>
-            </div>
-
-            <p className="text-white/60 leading-relaxed mb-6">{service.description}</p>
-
-            {/* Price */}
-            <div className="flex items-baseline gap-3 mb-6 p-4 rounded-xl bg-dark-800 border border-white/5">
-              <span className="font-display text-4xl font-bold text-coral-400">
-                ₹{totalPrice.toLocaleString('en-IN')}
-              </span>
-              {service.originalPrice && (
-                <span className="text-white/30 line-through text-lg">
-                  ₹{service.originalPrice.toLocaleString('en-IN')}
-                </span>
-              )}
-              {selectedAddOns && Object.values(selectedAddOns).some(Boolean) && (
-                <span className="text-white/40 text-sm">incl. add-ons</span>
-              )}
-            </div>
-
-            {/* Inclusions */}
-            <div className="mb-6">
-              <h3 className="font-display text-white font-semibold text-lg mb-3">What's included</h3>
-              <ul className="space-y-2">
-                {service.inclusions.map((item, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-white/60 text-sm">
-                    <Check size={15} className="text-coral-400 mt-0.5 flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Add-ons */}
-            {service.addOns?.length > 0 && (
-              <div className="mb-8">
-                <h3 className="font-display text-white font-semibold text-lg mb-3">Add-ons</h3>
-                <div className="space-y-2">
-                  {service.addOns.map((addon) => (
-                    <button
-                      key={addon.id}
-                      onClick={() => toggleAddOn(addon.id)}
-                      className={`w-full flex items-center justify-between p-3 rounded-xl border transition-all ${
-                        selectedAddOns[addon.id]
-                          ? 'bg-coral-500/10 border-coral-500/40 text-white'
-                          : 'bg-dark-800 border-white/5 text-white/60 hover:border-white/20'
-                      }`}
-                    >
-                      <div className="flex items-center gap-2">
-                        <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-all ${
-                          selectedAddOns[addon.id] ? 'bg-coral-500 border-coral-500' : 'border-white/20'
-                        }`}>
-                          {selectedAddOns[addon.id] && <Check size={11} className="text-white" />}
-                        </div>
-                        <span className="text-sm font-medium">{addon.name}</span>
-                      </div>
-                      <span className={`text-sm font-semibold ${selectedAddOns[addon.id] ? 'text-coral-400' : 'text-white/40'}`}>
-                        +₹{addon.price.toLocaleString('en-IN')}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Link href={`/booking?service=${service.slug}`} className="btn-coral flex-1 justify-center py-4 text-base">
-                Book Now — ₹{totalPrice.toLocaleString('en-IN')}
-              </Link>
-              <a
-                href={`https://wa.me/XXXXXXXXXXX?text=${whatsappMsg}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 bg-green-500/10 border border-green-500/30 text-green-400 hover:bg-green-500/20 transition-all px-6 py-4 rounded-full font-medium text-sm"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                WhatsApp Enquiry
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* ── Customers Also Booked ── */}
-        {alsoBooked.length > 0 && (
-          <div className="mt-20 pt-16 border-t border-white/5">
-            <div className="flex items-end justify-between mb-8">
-              <div>
-                <p className="text-coral-400 text-sm font-medium tracking-wider uppercase mb-2">You might also love</p>
-                <h2 className="section-title">Customers <span className="italic">also booked</span></h2>
-              </div>
-              <Link href="/services" className="btn-outline hidden sm:inline-flex">
-                View all <ArrowRight size={14} />
-              </Link>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {alsoBooked.map((s, i) => (
-                <ServiceCard key={s.id} service={s} index={i} />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* ── Related Services ── */}
-        {related.length > 0 && (
-          <div className="mt-16">
-            <h2 className="section-title mb-8">More <span className="italic">{service.category}</span> setups</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {related.map((s, i) => (
-                <ServiceCard key={s.id} service={s} index={i} />
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-
+      <ServiceDetailClient 
+        service={service} 
+        related={relatedRes.data || []} 
+        alsoBooked={alsoBookedRes.data || []} 
+      />
       <Footer />
     </div>
   );
