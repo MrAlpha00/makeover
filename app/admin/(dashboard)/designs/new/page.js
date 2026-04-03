@@ -1,4 +1,4 @@
-import { createServerSupabaseClient } from '@/lib/supabase';
+import { createClient as createServerSupabaseClient } from '@/lib/supabaseServer';
 import DesignForm from '../DesignForm';
 
 export const metadata = {

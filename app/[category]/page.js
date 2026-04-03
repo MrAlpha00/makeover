@@ -3,7 +3,7 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import WhatsAppButton from '../../components/WhatsAppButton';
 import { ArrowRight } from 'lucide-react';
-import { createServerSupabaseClient } from '@/lib/supabase';
+import { createClient as createServerSupabaseClient } from '@/lib/supabaseServer';
 import { notFound } from 'next/navigation';
 
 export async function generateMetadata({ params }) {

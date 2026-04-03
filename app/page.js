@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import WhatsAppButton from '../components/WhatsAppButton';
 import ServiceCard from '../components/ServiceCard';
-import { createServerSupabaseClient } from '@/lib/supabase';
+import { createClient as createServerSupabaseClient } from '@/lib/supabaseServer';
 
 const stats = [
   { value: '5,000+', label: 'Events Decorated' },

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase';
+import { createClient } from '@/lib/supabaseClient';
 import { Loader2 } from 'lucide-react';
 
 export default function AdminLogin() {
