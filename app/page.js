@@ -6,15 +6,7 @@ import Footer from '../components/Footer';
 import WhatsAppButton from '../components/WhatsAppButton';
 import ServiceCard from '../components/ServiceCard';
 import services from '../data/services';
-
-const categories = [
-  { name: 'Birthday', icon: '🎂', href: '/services?cat=Birthday', count: 32 },
-  { name: 'Theme Setups', icon: '✨', href: '/services?cat=Theme+Decoration', count: 18 },
-  { name: 'Anniversary', icon: '💍', href: '/services?cat=Anniversary', count: 12 },
-  { name: 'Baby Shower', icon: '🍼', href: '/services?cat=Occasions', count: 8 },
-  { name: 'Corporate', icon: '🏢', href: '/services?cat=Corporate', count: 15 },
-  { name: 'Balloon Decor', icon: '🎈', href: '/services', count: 24 },
-];
+import categories from '../data/categories';
 
 const stats = [
   { value: '5,000+', label: 'Events Decorated' },
@@ -197,13 +189,26 @@ export default function HomePage() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {categories.map((cat, i) => (
             <Link
-              key={cat.name}
-              href={cat.href}
-              className="card-dark p-5 text-center group hover:border-coral-500/40 hover:-translate-y-1 transition-all duration-200"
+              key={cat.id}
+              href={`/${cat.slug}`}
+              className="group relative overflow-hidden rounded-2xl h-[180px] border border-white/5 hover:border-coral-500 transition-all block"
             >
-              <div className="text-3xl mb-3">{cat.icon}</div>
-              <p className="text-white font-medium text-sm group-hover:text-coral-400 transition-colors">{cat.name}</p>
-              <p className="text-white/30 text-xs mt-1">{cat.count} services</p>
+              {/* Dark Overlay */}
+              <div className="absolute inset-0 bg-dark-900/50 group-hover:bg-dark-900/30 transition-colors z-10" />
+              
+              {/* Background Image */}
+              <Image 
+                src={cat.image} 
+                alt={cat.name} 
+                fill 
+                className="object-cover group-hover:scale-105 transition-transform duration-500" 
+              />
+              
+              {/* Bottom Gradient & Text */}
+              <div className="absolute inset-x-0 bottom-0 p-4 z-20 bg-gradient-to-t from-dark-900 via-dark-900/80 to-transparent pt-12">
+                <p className="text-white font-bold text-lg leading-tight group-hover:text-coral-400 transition-colors">{cat.name}</p>
+                <p className="text-white/60 text-xs mt-1 line-clamp-1">{cat.description}</p>
+              </div>
             </Link>
           ))}
         </div>
