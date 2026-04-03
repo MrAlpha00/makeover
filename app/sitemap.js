@@ -1,4 +1,4 @@
-import services from '../../data/services';
+import services from '../data/services';
 
 export default function sitemap() {
   const baseUrl = 'https://slvevents.in';
