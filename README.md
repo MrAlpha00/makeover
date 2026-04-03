@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# makeover
-=======
 # SLV Events — Party Decoration Website
 
 Built with Next.js 14 · Deployed on Vercel · Emails via Resend
@@ -134,4 +131,3 @@ When a user submits the booking form → `app/api/booking/route.js` fires → se
 ---
 
 Built for SLV Events, Bangalore · 2025
->>>>>>> 31ea4e3 (Initial commit)
