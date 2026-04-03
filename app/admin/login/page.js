@@ -1,36 +1,38 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabaseClient';
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { supabase } from "@/lib/supabaseClient"
 import { Loader2 } from 'lucide-react';
 
 export default function AdminLogin() {
-  const router = useRouter();
-  const supabase = createClient();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const router = useRouter()
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
+  const handleLogin = async (email, password) => {
+    try {
+      setLoading(true)
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
 
-    if (error) {
-      setError(error.message);
-      setLoading(false);
-    } else {
-      router.push('/admin');
-      router.refresh();
+      if (error) throw error
+
+      console.log("Login success:", data)
+
+      router.push("/admin")
+
+    } catch (err) {
+      console.error(err)
+      alert(err.message)
+    } finally {
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
@@ -43,13 +45,7 @@ export default function AdminLogin() {
         </div>
         
         <div className="p-8">
-          {error && (
-            <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-100 text-red-600 text-sm">
-              {error}
-            </div>
-          )}
-
-          <form onSubmit={handleLogin} className="space-y-5">
+          <div className="space-y-5">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">Email Address</label>
               <input 
@@ -75,7 +71,8 @@ export default function AdminLogin() {
             </div>
 
             <button 
-              type="submit" 
+              type="button" 
+              onClick={() => handleLogin(email, password)}
               disabled={loading}
               className="w-full mt-2 bg-coral-500 hover:bg-coral-600 text-white font-medium py-3 rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-70"
             >
@@ -85,7 +82,7 @@ export default function AdminLogin() {
                 'Sign In'
               )}
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
