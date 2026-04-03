@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --coral: #f95738;
+    --coral-light: #ff7a65;
+    --coral-dark: #e03e20;
+    --dark: #0f0f0f;
+    --dark-2: #1a1a1a;
+    --dark-3: #242424;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: #0f0f0f;
+    color: #f5f5f5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+}
+
+@layer components {
+  .btn-coral {
+    @apply bg-coral-500 hover:bg-coral-600 text-white font-medium px-6 py-3 rounded-full transition-all duration-200 inline-flex items-center gap-2 text-sm;
+  }
+
+  .btn-outline {
+    @apply border border-white/20 hover:border-coral-400 text-white hover:text-coral-400 font-medium px-6 py-3 rounded-full transition-all duration-200 inline-flex items-center gap-2 text-sm;
+  }
+
+  .card-dark {
+    @apply bg-dark-800 border border-white/5 rounded-2xl overflow-hidden hover:border-coral-500/30 transition-all duration-300;
+  }
+
+  .section-title {
+    @apply font-display text-3xl md:text-4xl font-semibold text-white;
+  }
+
+  .section-sub {
+    @apply text-white/50 text-base mt-3 max-w-xl;
+  }
+
+  .badge {
+    @apply inline-block bg-coral-500/10 text-coral-400 border border-coral-500/20 text-xs font-medium px-3 py-1 rounded-full;
+  }
+
+  .input-dark {
+    @apply bg-dark-700 border border-white/10 text-white placeholder-white/30 rounded-xl px-4 py-3 w-full focus:outline-none focus:border-coral-500 transition-colors text-sm;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #1a1a1a; }
+::-webkit-scrollbar-thumb { background: #f95738; border-radius: 3px; }
+
+/* Staggered fade-up animation for cards */
+.stagger-1 { animation-delay: 0.1s; opacity: 0; }
+.stagger-2 { animation-delay: 0.2s; opacity: 0; }
+.stagger-3 { animation-delay: 0.3s; opacity: 0; }
+.stagger-4 { animation-delay: 0.4s; opacity: 0; }
+
+/* Noise texture overlay */
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Gradient orb */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.15;
+}
