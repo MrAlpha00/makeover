@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { createClient } from '../../../../../lib/supabase';
 import { Plus, Edit2, Trash2, ArrowUp, ArrowDown, Image as ImageIcon, Loader2 } from 'lucide-react';
 import Image from 'next/image';
+import imageCompression from 'browser-image-compression';
 
 export default function SubcategoryClient({ initialSubcategories, categories }) {
   const supabase = createClient();
@@ -70,11 +71,23 @@ export default function SubcategoryClient({ initialSubcategories, categories }) 
       let finalImageUrl = formData.image_url;
 
       if (file) {
-        const fileExt = file.name.split('.').pop();
+        let fileToUpload = file;
+        try {
+          const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 1200,
+            useWebWorker: true,
+          };
+          fileToUpload = await imageCompression(file, options);
+        } catch (compressionError) {
+          console.error("Image compression error:", compressionError);
+        }
+
+        const fileExt = fileToUpload.name.split('.').pop() || 'jpg';
         const fileName = `subcategories/${formData.slug}-${Date.now()}.${fileExt}`;
         const { error: uploadError } = await supabase.storage
           .from('designs')
-          .upload(fileName, file, { upsert: true });
+          .upload(fileName, fileToUpload, { upsert: true });
 
         if (uploadError) throw uploadError;
 

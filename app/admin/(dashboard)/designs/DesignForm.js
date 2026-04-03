@@ -6,6 +6,7 @@ import { createClient } from '../../../../lib/supabase';
 import { Trash2, Plus, Image as ImageIcon, X, Loader2, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import imageCompression from 'browser-image-compression';
 
 export default function DesignForm({ initialData = null, categories = [], subcategories = [] }) {
   const router = useRouter();
@@ -124,9 +125,21 @@ export default function DesignForm({ initialData = null, categories = [], subcat
       // 1. Upload new files if any
       const uploadedUrls = [];
       for (const file of newFiles) {
-        const fileExt = file.name.split('.').pop();
+        let fileToUpload = file;
+        try {
+          const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 1500,
+            useWebWorker: true,
+          };
+          fileToUpload = await imageCompression(file, options);
+        } catch (compressionError) {
+          console.error("Image compression error:", compressionError);
+        }
+
+        const fileExt = fileToUpload.name.split('.').pop() || 'jpg';
         const fileName = `${formData.slug}/${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
-        const { error: uploadError } = await supabase.storage.from('designs').upload(fileName, file);
+        const { error: uploadError } = await supabase.storage.from('designs').upload(fileName, fileToUpload);
         if (uploadError) throw uploadError;
 
         const { data: { publicUrl } } = supabase.storage.from('designs').getPublicUrl(fileName);
