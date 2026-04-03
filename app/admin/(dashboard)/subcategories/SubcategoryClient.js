@@ -1,13 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { createClient } from '@/lib/supabaseClient';
+import { supabase } from '@/lib/supabaseClient';
 import { Plus, Edit2, Trash2, ArrowUp, ArrowDown, Image as ImageIcon, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import imageCompression from 'browser-image-compression';
 
 export default function SubcategoryClient({ initialSubcategories, categories }) {
-  const supabase = createClient();
+
   const [subcategories, setSubcategories] = useState(initialSubcategories);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingSub, setEditingSub] = useState(null);

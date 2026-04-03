@@ -1,11 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { createClient } from '@/lib/supabaseClient';
+import { supabase } from '@/lib/supabaseClient';
 import { Search, Download, Trash2 } from 'lucide-react';
 
 export default function BookingsClient({ initialBookings }) {
-  const supabase = createClient();
+
   const [bookings, setBookings] = useState(initialBookings);
   const [toast, setToast] = useState(null);
   const [search, setSearch] = useState('');

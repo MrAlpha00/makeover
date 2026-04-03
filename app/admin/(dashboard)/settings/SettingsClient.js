@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { createClient } from '@/lib/supabaseClient';
+import { supabase } from '@/lib/supabaseClient';
 import { Loader2, Save, Phone, MapPin, Clock, Share2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export default function SettingsClient({ initialSettings }) {
-  const supabase = createClient();
+
   const router = useRouter();
   
   const [formData, setFormData] = useState({

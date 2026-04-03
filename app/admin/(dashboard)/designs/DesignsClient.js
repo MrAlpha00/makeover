@@ -2,12 +2,12 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { createClient } from '@/lib/supabaseClient';
+import { supabase } from '@/lib/supabaseClient';
 import { Plus, Edit2, Trash2, Search, Image as ImageIcon, Star } from 'lucide-react';
 import Image from 'next/image';
 
 export default function DesignsClient({ initialDesigns, categories, subcategories }) {
-  const supabase = createClient();
+
   const [designs, setDesigns] = useState(initialDesigns);
   const [toast, setToast] = useState(null);
 

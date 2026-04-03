@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabaseClient';
+import { supabase } from '@/lib/supabaseClient';
 import { Trash2, Plus, Image as ImageIcon, X, Loader2, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -10,7 +10,7 @@ import imageCompression from 'browser-image-compression';
 
 export default function DesignForm({ initialData = null, categories = [], subcategories = [] }) {
   const router = useRouter();
-  const supabase = createClient();
+
   const fileInputRef = useRef(null);
 
   const isEdit = !!initialData;
