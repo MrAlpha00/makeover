@@ -77,6 +77,26 @@ export async function POST(req) {
       return new Response(JSON.stringify({ error }), { status: 500 });
     }
 
+    // Insert into Supabase bookings table
+    const { supabaseAdmin } = await import('../../lib/supabase-admin');
+    const { error: dbError } = await supabaseAdmin.from('bookings').insert({
+      name,
+      phone,
+      email,
+      service,
+      occasion,
+      event_date: date,
+      venue,
+      guests: String(guests),
+      message,
+      status: 'new'
+    });
+
+    if (dbError) {
+      console.error('Supabase DB error:', dbError);
+      // Even if DB insert fails, we return success since the email was sent
+    }
+
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (err) {
     console.error('Booking API error:', err);
