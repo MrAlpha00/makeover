@@ -47,13 +47,19 @@ export default function ServiceDetailClient({ service, related, alsoBooked }) {
         {/* ── LEFT: Gallery ── */}
         <div className="sticky top-24">
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-            <Image
-              src={gallery[activeImage]}
-              alt={service.title}
-              fill
-              className="object-cover"
-              priority
-            />
+            {gallery.length > 0 ? (
+              <Image
+                src={gallery[activeImage]}
+                alt={service.title}
+                fill
+                className="object-cover"
+                priority
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center bg-dark-800">
+                <span className="text-white/20 text-6xl">🎨</span>
+              </div>
+            )}
             {service.discount > 0 && (
               <div className="absolute top-4 left-4 bg-coral-500 text-white text-sm font-semibold px-3 py-1 rounded-full">
                 {service.discount}% OFF
