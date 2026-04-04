@@ -172,7 +172,7 @@ export default function ServiceDetailClient({ service, related, alsoBooked }) {
               Book Now — ₹{totalPrice.toLocaleString('en-IN')}
             </Link>
             <a
-              href={`https://wa.me/XXXXXXXXXXX?text=${whatsappMsg}`}
+              href={`https://wa.me/9663866778?text=${whatsappMsg}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 flex items-center justify-center gap-2 bg-green-500/10 border border-green-500/30 text-green-400 hover:bg-green-500/20 transition-all px-6 py-4 rounded-full font-medium text-sm"

@@ -54,7 +54,7 @@ export default function BookingForm({ designs }) {
           Thank you, {form.name}! We'll call you within 2 hours to confirm your booking.
         </p>
         <a
-          href={`https://wa.me/XXXXXXXXXXX?text=Hi%20SLV%20Events!%20I%20just%20filled%20the%20booking%20form%20for%20${encodeURIComponent(form.service || 'your services')}.%20Looking%20forward%20to%20hearing%20from%20you!`}
+          href={`https://wa.me/9663866778?text=Hi%20SLV%20Events!%20I%20just%20filled%20the%20booking%20form%20for%20${encodeURIComponent(form.service || 'your services')}.%20Looking%20forward%20to%20hearing%20from%20you!`}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-coral"

@@ -347,7 +347,7 @@ export default async function HomePage() {
                 Book Now <ArrowRight size={16} />
               </Link>
               <a
-                href="https://wa.me/XXXXXXXXXXX?text=Hi%20SLV%20Events!%20I%20want%20to%20book%20a%20decoration."
+                href="https://wa.me/9663866778?text=Hi%20SLV%20Events!%20I%20want%20to%20book%20a%20decoration."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white/10 border border-white/30 text-white font-medium px-8 py-3.5 rounded-full hover:bg-white/20 transition-colors inline-flex items-center gap-2"
