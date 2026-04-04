@@ -1,7 +1,5 @@
-'use client';
-
-import { useState } from 'react';
-import Sidebar, { MobileMenuButton } from './Sidebar';
+import Sidebar from './Sidebar';
+import AdminShell from './AdminShell';
 import AuthGuard from './AuthGuard';
 
 export const metadata = {
@@ -9,24 +7,11 @@ export const metadata = {
 };
 
 export default function AdminLayout({ children }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
   return (
     <AuthGuard>
-      <div className="flex min-h-screen bg-gray-100 text-gray-900 font-sans">
-        <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
-        
-        <main className="flex-1 min-h-screen lg:ml-0 transition-all duration-300">
-          {/* Mobile Header */}
-          <div className="lg:hidden">
-            <MobileMenuButton isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
-          </div>
-          
-          <div className="p-4 sm:p-6 lg:p-8 pt-20 lg:pt-8">
-            {children}
-          </div>
-        </main>
-      </div>
+      <AdminShell>
+        {children}
+      </AdminShell>
     </AuthGuard>
   );
 }
