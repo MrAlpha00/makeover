@@ -69,8 +69,15 @@ export default function CategoryClient({ initialCategories }) {
     try {
       let finalImageUrl = formData.image_url;
 
-      // Handle file upload
       if (file) {
+        const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+        if (!validTypes.includes(file.type)) {
+          throw new Error('Please upload a valid image file (JPEG, PNG, GIF, or WebP)');
+        }
+        if (file.size > 5 * 1024 * 1024) {
+          throw new Error('Image size must be less than 5MB');
+        }
+
         let fileToUpload = file;
         try {
           const options = {
@@ -93,6 +100,13 @@ export default function CategoryClient({ initialCategories }) {
 
         const { data: { publicUrl } } = supabase.storage.from('designs').getPublicUrl(fileName);
         finalImageUrl = publicUrl;
+
+        if (editingCategory?.image_url && editingCategory.image_url !== finalImageUrl) {
+          const oldFileName = editingCategory.image_url.split('/storage/v1/object/public/designs/')[1];
+          if (oldFileName) {
+            await supabase.storage.from('designs').remove([oldFileName]);
+          }
+        }
       }
 
       const payload = {
