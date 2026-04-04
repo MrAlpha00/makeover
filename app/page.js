@@ -118,7 +118,10 @@ export default async function HomePage() {
               <Link href="/services" className="btn-coral text-base px-7 py-3.5">
                 Explore Services <ArrowRight size={16} />
               </Link>
-              <a href="tel:+91XXXXXXXXXX" className="btn-outline text-base px-7 py-3.5">
+              <Link href="/designs" className="btn-outline text-base px-7 py-3.5">
+                Explore Designs <ArrowRight size={16} />
+              </Link>
+              <a href="tel:+919663866778" className="btn-outline text-base px-7 py-3.5">
                 <Phone size={15} /> Call Us
               </a>
             </div>
