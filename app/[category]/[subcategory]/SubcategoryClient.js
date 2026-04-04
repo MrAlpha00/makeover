@@ -117,11 +117,19 @@ export default function SubcategoryClient({ category, subcategory, designs }) {
                       </div>
                     )}
                     
-                    <img 
-                      src={coverImage} 
-                      alt={service.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                    />
+                    {service.images?.[0] ? (
+                      <Image 
+                        src={service.images[0]} 
+                        alt={service.title} 
+                        fill 
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center bg-dark-800">
+                        <span className="text-white/30 text-4xl">🎨</span>
+                      </div>
+                    )}
                   </div>
                   
                   {/* Content */}
