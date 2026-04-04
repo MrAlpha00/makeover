@@ -1,14 +1,14 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, FolderTree, Tag, Image, CalendarCheck, Settings, LogOut } from 'lucide-react';
+import { useState } from 'react';
+import { LayoutDashboard, FolderTree, Tag, Image, CalendarCheck, Settings, LogOut, Menu, X, ChevronRight } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, setIsOpen }) {
   const pathname = usePathname();
   const router = useRouter();
-
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -25,47 +25,98 @@ export default function Sidebar() {
     { name: 'Settings', href: '/admin/settings', icon: Settings },
   ];
 
+  const NavLink = ({ link }) => {
+    const isActive = pathname === link.href || (link.href !== '/admin' && pathname.startsWith(link.href));
+    return (
+      <Link
+        key={link.name}
+        href={link.href}
+        onClick={() => setIsOpen(false)}
+        className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200 font-medium text-sm group ${
+          isActive
+            ? 'bg-gradient-to-r from-coral-500 to-coral-600 text-white shadow-lg shadow-coral-500/25'
+            : 'text-white/60 hover:bg-white/10 hover:text-white'
+        }`}
+      >
+        <div className="flex items-center gap-3">
+          <link.icon size={20} className={isActive ? 'text-white' : 'text-white/50 group-hover:text-white/80'} />
+          <span>{link.name}</span>
+        </div>
+        {isActive && <ChevronRight size={16} className="text-white/60" />}
+      </Link>
+    );
+  };
+
   return (
-    <div className="w-64 bg-[#1a1a1a] text-white min-h-screen flex flex-col fixed left-0 top-0 bottom-0 z-50">
-      {/* Logo */}
-      <div className="p-6 border-b border-white/10">
-        <h1 className="font-display text-2xl font-bold tracking-wide">
-          SLV <span className="italic text-coral-400">Events</span>
-        </h1>
-        <p className="text-white/40 text-xs mt-1 uppercase tracking-widest font-semibold">Admin Panel</p>
-      </div>
+    <>
+      {/* Mobile Overlay */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden animate-fade-in"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
 
-      {/* Nav */}
-      <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
-        {navLinks.map((link) => {
-          const isActive = pathname === link.href || (link.href !== '/admin' && pathname.startsWith(link.href));
-          return (
-            <Link
-              key={link.name}
-              href={link.href}
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-medium text-sm ${
-                isActive
-                  ? 'bg-coral-500 text-white'
-                  : 'text-white/60 hover:bg-white/5 hover:text-white'
-              }`}
-            >
-              <link.icon size={18} className={isActive ? 'text-white' : 'text-white/50'} />
-              {link.name}
-            </Link>
-          );
-        })}
-      </nav>
+      {/* Sidebar */}
+      <div className={`
+        fixed top-0 left-0 h-full w-72 bg-[#1a1a1a] text-white flex flex-col z-50
+        transition-transform duration-300 ease-out
+        lg:translate-x-0 lg:static lg:z-auto
+        ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}>
+        {/* Mobile Header */}
+        <div className="lg:hidden flex items-center justify-between p-4 border-b border-white/10">
+          <div>
+            <h1 className="font-display text-xl font-bold tracking-wide">
+              SLV <span className="italic text-coral-400">Events</span>
+            </h1>
+            <p className="text-white/40 text-xs uppercase tracking-widest font-semibold">Admin Panel</p>
+          </div>
+          <button
+            onClick={() => setIsOpen(false)}
+            className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+          >
+            <X size={20} />
+          </button>
+        </div>
 
-      {/* Logout */}
-      <div className="p-4 border-t border-white/10">
-        <button
-          onClick={handleLogout}
-          className="flex flex-row items-center gap-3 px-4 py-3 w-full text-left text-sm font-medium text-red-400 hover:bg-red-500/10 rounded-xl transition-colors"
-        >
-          <LogOut size={18} />
-          Sign Out
-        </button>
+        {/* Desktop Logo */}
+        <div className="hidden lg:block p-6 border-b border-white/10">
+          <h1 className="font-display text-2xl font-bold tracking-wide">
+            SLV <span className="italic text-coral-400">Events</span>
+          </h1>
+          <p className="text-white/40 text-xs mt-1 uppercase tracking-widest font-semibold">Admin Panel</p>
+        </div>
+
+        {/* Navigation */}
+        <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
+          {navLinks.map((link) => (
+            <NavLink key={link.name} link={link} />
+          ))}
+        </nav>
+
+        {/* Logout */}
+        <div className="p-4 border-t border-white/10">
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-3 px-4 py-3 w-full text-left text-sm font-medium text-red-400 hover:bg-red-500/10 rounded-xl transition-colors"
+          >
+            <LogOut size={20} />
+            <span>Sign Out</span>
+          </button>
+        </div>
       </div>
-    </div>
+    </>
+  );
+}
+
+export function MobileMenuButton({ isOpen, setIsOpen }) {
+  return (
+    <button
+      onClick={() => setIsOpen(true)}
+      className="lg:hidden fixed top-4 left-4 z-30 w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+    >
+      <Menu size={22} className="text-white" />
+    </button>
   );
 }
