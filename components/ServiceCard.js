@@ -5,6 +5,7 @@ import { Star, ArrowRight } from 'lucide-react';
 export default function ServiceCard({ service, index = 0 }) {
   const delays = ['stagger-1', 'stagger-2', 'stagger-3', 'stagger-4'];
   const delay = delays[index % 4];
+  const hasImage = service.images?.[0] || service.image;
 
   return (
     <Link
@@ -13,13 +14,19 @@ export default function ServiceCard({ service, index = 0 }) {
     >
       {/* Image */}
       <div className="relative h-52 overflow-hidden">
-        <Image
-          src={service.images?.[0] || service.image || '/assets/placeholder.jpg'}
-          alt={service.title}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
+        {hasImage ? (
+          <Image
+            src={service.images?.[0] || service.image}
+            alt={service.title}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center bg-dark-800">
+            <span className="text-white/20 text-5xl">🎨</span>
+          </div>
+        )}
         {/* Discount badge */}
         {service.discount > 0 && (
           <div className="absolute top-3 left-3 bg-coral-500 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
