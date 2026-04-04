@@ -83,10 +83,10 @@ export default async function HomePage() {
       <WhatsAppButton />
 
       {/* ── HERO ── */}
-      <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+      <section className="relative min-h-[90vh] sm:min-h-screen flex items-center pt-20 sm:pt-0 overflow-hidden">
         {/* Background orbs */}
-        <div className="orb w-96 h-96 bg-coral-500 top-20 -left-32" />
-        <div className="orb w-72 h-72 bg-coral-600 bottom-20 right-10" />
+        <div className="orb w-96 h-96 bg-coral-500 top-20 -left-32 opacity-50 sm:opacity-100" />
+        <div className="orb w-72 h-72 bg-coral-600 bottom-20 right-10 opacity-50 sm:opacity-100" />
 
         {/* Grid pattern overlay */}
         <div
@@ -97,87 +97,103 @@ export default async function HomePage() {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-12 items-center py-20">
-          {/* Left */}
-          <div>
-            <div className="badge mb-5 animate-fade-up stagger-1">
-              🎉 Bangalore's #1 Party Decorators
-            </div>
-
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.05] mb-6 animate-fade-up stagger-2">
-              Create the{' '}
-              <span className="text-coral-400 italic">perfect</span>{' '}
-              celebration
-            </h1>
-
-            <p className="text-white/50 text-lg leading-relaxed mb-8 max-w-lg animate-fade-up stagger-3">
-              From intimate balloon surprises to grand themed setups — SLV Events turns every occasion into a memory worth keeping, right here in Bangalore.
-            </p>
-
-            <div className="flex flex-wrap gap-3 animate-fade-up stagger-4">
-              <Link href="/services" className="btn-coral text-base px-7 py-3.5">
-                Explore Services <ArrowRight size={16} />
-              </Link>
-              <Link href="/designs" className="btn-outline text-base px-7 py-3.5">
-                Explore Designs <ArrowRight size={16} />
-              </Link>
-              <a href="tel:+919663866778" className="btn-outline text-base px-7 py-3.5">
-                <Phone size={15} /> Call Us
-              </a>
-            </div>
-
-            {/* Social proof */}
-            <div className="flex items-center gap-4 mt-10 animate-fade-up stagger-4">
-              <div className="flex -space-x-2">
-                {['P', 'R', 'A', 'M'].map((l, i) => (
-                  <div
-                    key={i}
-                    className="w-8 h-8 rounded-full bg-coral-500/20 border-2 border-dark-900 flex items-center justify-center text-coral-400 text-xs font-semibold"
-                  >
-                    {l}
-                  </div>
-                ))}
-              </div>
-              <div>
-                <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={12} fill="#f95738" stroke="none" />
-                  ))}
-                </div>
-                <p className="text-white/40 text-xs mt-0.5">Trusted by 850+ families in Bangalore</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Right — hero image collage */}
-          <div className="relative h-[500px] hidden md:block animate-fade-in stagger-2">
-            <div className="absolute top-0 right-0 w-72 h-80 rounded-2xl overflow-hidden border border-white/10">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+          {/* Mobile Hero Image */}
+          <div className="sm:hidden mb-8 -mx-4 sm:mx-0">
+            <div className="relative h-56 sm:h-0 overflow-hidden rounded-b-3xl">
               <Image
-                src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80"
-                alt="Birthday balloon decoration Bangalore"
+                src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80"
+                alt="Birthday decoration"
                 fill
                 className="object-cover"
                 priority
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/50 to-transparent" />
             </div>
-            <div className="absolute bottom-0 left-0 w-60 h-64 rounded-2xl overflow-hidden border border-white/10">
-              <Image
-                src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=600&q=80"
-                alt="Anniversary rose decoration Bangalore"
-                fill
-                className="object-cover"
-              />
-            </div>
-            {/* Floating card */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-dark-800/90 backdrop-blur-md border border-white/10 rounded-xl p-4 w-44 animate-float shadow-2xl">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center">
-                  <CheckCircle size={12} className="text-green-400" />
-                </div>
-                <span className="text-white text-xs font-medium">Just Booked!</span>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Left */}
+            <div>
+              <div className="badge mb-5 animate-fade-up stagger-1 inline-flex items-center gap-2">
+                <span>🎉</span> Bangalore's #1 Party Decorators
               </div>
-              <p className="text-white/40 text-xs">Balloon Surprise · Bangalore</p>
-              <p className="text-coral-400 font-semibold text-sm mt-1">₹1,499</p>
+
+              <h1 className="font-display text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.05] mb-6 animate-fade-up stagger-2">
+                Create the{' '}
+                <span className="text-coral-400 italic">perfect</span>{' '}
+                celebration
+              </h1>
+
+              <p className="text-white/50 text-base sm:text-lg leading-relaxed mb-8 max-w-lg animate-fade-up stagger-3">
+                From intimate balloon surprises to grand themed setups — SLV Events turns every occasion into a memory worth keeping.
+              </p>
+
+              <div className="flex flex-col xs:flex-row flex-wrap gap-3 animate-fade-up stagger-4">
+                <Link href="/booking" className="btn-coral text-base px-6 sm:px-7 py-3.5 text-center">
+                  Book Now <ArrowRight size={16} className="inline ml-1" />
+                </Link>
+                <Link href="/designs" className="btn-outline text-base px-6 sm:px-7 py-3.5 text-center">
+                  Explore Designs
+                </Link>
+                <a href="tel:+919663866778" className="btn-outline text-base px-6 sm:px-7 py-3.5 text-center">
+                  <Phone size={15} className="inline mr-1" /> Call
+                </a>
+              </div>
+
+              {/* Social proof */}
+              <div className="flex items-center gap-4 mt-8 animate-fade-up stagger-4">
+                <div className="flex -space-x-2">
+                  {['P', 'R', 'A', 'M'].map((l, i) => (
+                    <div
+                      key={i}
+                      className="w-8 h-8 rounded-full bg-coral-500/20 border-2 border-dark-900 flex items-center justify-center text-coral-400 text-xs font-semibold"
+                    >
+                      {l}
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={12} fill="#f95738" stroke="none" />
+                    ))}
+                  </div>
+                  <p className="text-white/40 text-xs mt-0.5">850+ happy families</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right — hero image collage */}
+            <div className="relative h-[400px] lg:h-[500px] hidden sm:block animate-fade-in stagger-2">
+              <div className="absolute top-0 right-0 w-64 lg:w-72 h-[280px] lg:h-80 rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                <Image
+                  src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80"
+                  alt="Birthday balloon decoration Bangalore"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <div className="absolute bottom-0 left-0 w-52 lg:w-60 h-[220px] lg:h-64 rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                <Image
+                  src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=600&q=80"
+                  alt="Anniversary rose decoration Bangalore"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              {/* Floating card */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-dark-800/90 backdrop-blur-md border border-white/10 rounded-xl p-4 w-40 lg:w-44 animate-float shadow-2xl">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center">
+                    <CheckCircle size={12} className="text-green-400" />
+                  </div>
+                  <span className="text-white text-xs font-medium">Just Booked!</span>
+                </div>
+                <p className="text-white/40 text-xs">Balloon Surprise · Bangalore</p>
+                <p className="text-coral-400 font-semibold text-sm mt-1">₹1,499</p>
+              </div>
             </div>
           </div>
         </div>
@@ -185,28 +201,28 @@ export default async function HomePage() {
 
       {/* ── STATS ── */}
       <section className="border-y border-white/5 bg-dark-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {stats.map((s) => (
-            <div key={s.label} className="text-center">
-              <div className="font-display text-3xl font-bold text-coral-400">{s.value}</div>
-              <div className="text-white/40 text-sm mt-1">{s.label}</div>
+            <div key={s.label} className="text-center animate-fade-in-up">
+              <div className="font-display text-2xl sm:text-3xl font-bold text-coral-400">{s.value}</div>
+              <div className="text-white/40 text-xs sm:text-sm mt-1">{s.label}</div>
             </div>
           ))}
         </div>
       </section>
 
       {/* ── CATEGORIES ── */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="mb-10">
+      <section className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="mb-8 sm:mb-10">
           <p className="text-coral-400 text-sm font-medium tracking-wider uppercase mb-2">Browse by occasion</p>
           <h2 className="section-title">Explore our <span className="italic">categories</span></h2>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          {categories.map((cat, i) => (
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+          {categories.map((cat) => (
             <Link
               key={cat.id}
               href={`/${cat.slug}`}
-              className="group relative overflow-hidden rounded-2xl h-[180px] border border-white/5 hover:border-coral-500 transition-all block"
+              className="group relative overflow-hidden rounded-2xl h-[140px] sm:h-[180px] border border-white/5 hover:border-coral-500 transition-all block"
             >
               {/* Dark Overlay */}
               <div className="absolute inset-0 bg-dark-900/50 group-hover:bg-dark-900/30 transition-colors z-10" />
@@ -220,9 +236,9 @@ export default async function HomePage() {
               />
               
               {/* Bottom Gradient & Text */}
-              <div className="absolute inset-x-0 bottom-0 p-4 z-20 bg-gradient-to-t from-dark-900 via-dark-900/80 to-transparent pt-12">
-                <p className="text-white font-bold text-lg leading-tight group-hover:text-coral-400 transition-colors">{cat.name}</p>
-                <p className="text-white/60 text-xs mt-1 line-clamp-1">{cat.description}</p>
+              <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4 z-20 bg-gradient-to-t from-dark-900 via-dark-900/80 to-transparent pt-8 sm:pt-12">
+                <p className="text-white font-bold text-sm sm:text-lg leading-tight group-hover:text-coral-400 transition-colors">{cat.name}</p>
+                <p className="text-white/60 text-xs mt-1 line-clamp-1 hidden sm:block">{cat.description}</p>
               </div>
             </Link>
           ))}
