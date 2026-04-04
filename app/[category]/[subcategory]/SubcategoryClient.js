@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Star, ChevronRight, ChevronDown } from 'lucide-react';
 
 export default function SubcategoryClient({ category, subcategory, designs }) {
