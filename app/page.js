@@ -313,21 +313,21 @@ export default async function HomePage() {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section className="py-20 bg-dark-800/30">
+      <section className="py-12 sm:py-20 bg-dark-800/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 sm:mb-12">
             <p className="text-coral-400 text-sm font-medium tracking-wider uppercase mb-2">What clients say</p>
             <h2 className="section-title">Real stories, <span className="italic">real smiles</span></h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {testimonials.map((t, i) => (
-              <div key={i} className="card-dark p-6">
-                <div className="flex items-center gap-1 mb-4">
+              <div key={i} className="card-dark p-5 sm:p-6 hover:border-coral-500/30 transition-all">
+                <div className="flex items-center gap-1 mb-3 sm:mb-4">
                   {[...Array(t.rating)].map((_, j) => (
                     <Star key={j} size={13} fill="#f95738" stroke="none" />
                   ))}
                 </div>
-                <p className="text-white/70 text-sm leading-relaxed mb-5">"{t.text}"</p>
+                <p className="text-white/70 text-sm leading-relaxed mb-4 sm:mb-5 line-clamp-4">"{t.text}"</p>
                 <div className="flex items-center gap-3 border-t border-white/5 pt-4">
                   <div className="w-9 h-9 rounded-full bg-coral-500/20 flex items-center justify-center text-coral-400 font-semibold text-sm">
                     {t.avatar}
@@ -339,6 +339,41 @@ export default async function HomePage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA BANNER ── */}
+      <section className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="relative rounded-2xl sm:rounded-3xl bg-coral-500 overflow-hidden p-6 sm:p-10 md:p-16 text-center">
+          {/* bg pattern */}
+          <div
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage: 'radial-gradient(circle at 20% 50%, #fff 1px, transparent 1px), radial-gradient(circle at 80% 50%, #fff 1px, transparent 1px)',
+              backgroundSize: '30px 30px',
+            }}
+          />
+          <div className="relative z-10">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
+              Ready to create magic?
+            </h2>
+            <p className="text-white/70 text-sm sm:text-base md:text-lg mb-6 sm:mb-8 max-w-lg mx-auto">
+              Tell us your occasion and we'll handle everything.
+            </p>
+            <div className="flex flex-col xs:flex-row flex-wrap justify-center gap-3">
+              <Link href="/booking" className="bg-white text-coral-600 font-semibold px-6 sm:px-8 py-3 sm:py-3.5 rounded-full hover:bg-coral-50 transition-colors inline-flex items-center justify-center gap-2 text-sm sm:text-base">
+                Book Now <ArrowRight size={16} />
+              </Link>
+              <a
+                href="https://wa.me/9663866778?text=Hi%20SLV%20Events!%20I%20want%20to%20book%20a%20decoration."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white/10 border border-white/30 text-white font-medium px-6 sm:px-8 py-3 sm:py-3.5 rounded-full hover:bg-white/20 transition-colors inline-flex items-center justify-center gap-2 text-sm sm:text-base"
+              >
+                WhatsApp Us
+              </a>
+            </div>
           </div>
         </div>
       </section>
