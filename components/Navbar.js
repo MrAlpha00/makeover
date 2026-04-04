@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Menu, X, Phone } from 'lucide-react';
 
 const navLinks = [
+  { href: '/designs', label: 'Designs' },
   { href: '/services', label: 'Services' },
   { href: '/services?cat=Birthday', label: 'Birthday' },
   { href: '/services?cat=Theme+Decoration', label: 'Themes' },
@@ -55,7 +56,7 @@ export default function Navbar() {
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="tel:+91XXXXXXXXXX"
+            href="tel:+919663866778"
             className="text-white/60 hover:text-coral-400 transition-colors flex items-center gap-1.5 text-sm"
           >
             <Phone size={14} />
