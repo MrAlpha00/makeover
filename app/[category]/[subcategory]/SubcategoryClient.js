@@ -99,7 +99,6 @@ export default function SubcategoryClient({ category, subcategory, designs }) {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {sortedAndFilteredServices.map((service) => {
-                const coverImage = service.images?.[0] || '/assets/placeholder.jpg';
                 const originalPrice = service.original_price || service.originalPrice;
                 return (
                 <Link 
