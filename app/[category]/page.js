@@ -74,7 +74,13 @@ export default async function CategoryPage({ params }) {
                   {/* Image */}
                   <div className="relative h-64 w-full overflow-hidden">
                     <div className="absolute inset-0 bg-dark-900/20 group-hover:bg-transparent transition-colors z-10"></div>
-                    <img src={sub.image_url || '/assets/placeholder.jpg'} alt={sub.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    {sub.image_url ? (
+                      <Image src={sub.image_url} alt={sub.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center bg-dark-800">
+                        <span className="text-white/30 text-4xl">{category.icon || '📁'}</span>
+                      </div>
+                    )}
                   </div>
                   
                   {/* Content */}
