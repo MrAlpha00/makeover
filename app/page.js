@@ -269,29 +269,29 @@ export default async function HomePage() {
       </section>
 
       {/* ── WHY US ── */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div>
+      <section className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+          <div className="order-2 md:order-1">
             <p className="text-coral-400 text-sm font-medium tracking-wider uppercase mb-2">Why SLV Events</p>
             <h2 className="section-title mb-4">We go the <span className="italic text-coral-400">extra mile</span></h2>
-            <p className="section-sub mb-10">
+            <p className="section-sub mb-8 sm:mb-10">
               We've decorated over 5,000 events in Bangalore. Every booking comes with our promise of quality, punctuality, and a setup that makes you go "wow."
             </p>
-            <div className="grid sm:grid-cols-2 gap-5">
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
               {whyUs.map((item) => (
-                <div key={item.title} className="flex gap-3">
+                <div key={item.title} className="flex gap-3 p-3 sm:p-0 bg-dark-800/50 sm:bg-transparent rounded-xl sm:rounded-none">
                   <div className="w-10 h-10 rounded-xl bg-coral-500/10 border border-coral-500/20 flex items-center justify-center flex-shrink-0">
                     {item.icon}
                   </div>
                   <div>
                     <p className="text-white font-medium text-sm">{item.title}</p>
-                    <p className="text-white/40 text-sm mt-0.5 leading-relaxed">{item.desc}</p>
+                    <p className="text-white/40 text-sm mt-0.5 leading-relaxed hidden sm:block">{item.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="relative h-80 md:h-full min-h-[400px] rounded-2xl overflow-hidden">
+          <div className="relative h-64 sm:h-80 md:h-full min-h-[300px] md:min-h-[400px] rounded-2xl overflow-hidden order-1 md:order-2">
             <Image
               src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80"
               alt="SLV Events team decorating in Bangalore"
