@@ -36,16 +36,17 @@ export default function ServiceDetailClient({ service, related, alsoBooked }) {
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-28 pb-20">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-20 sm:pt-28 pb-20">
       {/* Breadcrumb */}
-      <Link href="/services" className="inline-flex items-center gap-2 text-white/40 hover:text-white text-sm mb-8 transition-colors group">
+      <Link href="/services" className="inline-flex items-center gap-2 text-white/40 hover:text-white text-sm mb-6 sm:mb-8 transition-colors group">
         <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-        Back to Services
+        <span className="hidden xs:inline">Back to Services</span>
+        <span className="xs:hidden">Back</span>
       </Link>
 
-      <div className="grid lg:grid-cols-2 gap-12 items-start">
+      <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
         {/* ── LEFT: Gallery ── */}
-        <div className="sticky top-24">
+        <div className="lg:sticky lg:top-24">
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
             {gallery.length > 0 ? (
               <Image
@@ -57,23 +58,23 @@ export default function ServiceDetailClient({ service, related, alsoBooked }) {
               />
             ) : (
               <div className="absolute inset-0 flex items-center justify-center bg-dark-800">
-                <span className="text-white/20 text-6xl">🎨</span>
+                <span className="text-white/20 text-5xl sm:text-6xl">🎨</span>
               </div>
             )}
             {service.discount > 0 && (
-              <div className="absolute top-4 left-4 bg-coral-500 text-white text-sm font-semibold px-3 py-1 rounded-full">
+              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-coral-500 text-white text-xs sm:text-sm font-semibold px-2.5 sm:px-3 py-1 sm:py-1 rounded-full">
                 {service.discount}% OFF
               </div>
             )}
           </div>
           {/* Thumbnails */}
           {gallery.length > 1 && (
-            <div className="flex gap-3 mt-3 overflow-x-auto pb-2 scrollbar-hide">
+            <div className="flex gap-2 sm:gap-3 mt-2 sm:mt-3 overflow-x-auto pb-2 scrollbar-hide">
               {gallery.map((img, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveImage(i)}
-                  className={`relative w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden border-2 transition-all ${
+                  className={`relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-lg sm:rounded-xl overflow-hidden border-2 transition-all ${
                     activeImage === i ? 'border-coral-500' : 'border-white/5 opacity-50 hover:opacity-100'
                   }`}
                 >
@@ -85,14 +86,14 @@ export default function ServiceDetailClient({ service, related, alsoBooked }) {
         </div>
 
         {/* ── RIGHT: Details ── */}
-        <div>
-          <span className="badge mb-3">{service.categories?.name || service.category || 'Service'}</span>
-          <h1 className="font-display text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
+        <div className="mt-6 lg:mt-0">
+          <span className="badge mb-2 sm:mb-3">{service.categories?.name || service.category || 'Service'}</span>
+          <h1 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2 sm:mb-3 leading-tight">
             {service.title}
           </h1>
 
           {/* Rating */}
-          <div className="flex items-center gap-2 mb-4">
+          <div className="flex items-center gap-2 mb-3 sm:mb-4">
             <div className="flex items-center gap-1">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} size={14} fill={i < Math.round(service.rating) ? '#f95738' : 'none'} stroke={i < Math.round(service.rating) ? 'none' : '#ffffff30'} />
