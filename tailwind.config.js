@@ -26,6 +26,12 @@ module.exports = {
           600: '#2e2e2e',
           500: '#3a3a3a',
         },
+        light: {
+          primary: '#faf9f7',
+          surface: '#ffffff',
+          bg: '#f5f5f3',
+          border: '#e5e7eb',
+        },
       },
       fontFamily: {
         display: ['Playfair Display', 'Georgia', 'serif'],
