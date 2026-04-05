@@ -18,7 +18,7 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-dark-900">
+    <div className="min-h-screen bg-light-primary dark:bg-dark-900">
       <Navbar />
       <WhatsAppButton />
 
@@ -26,13 +26,13 @@ export default function AboutPage() {
         <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
           <div>
             <span className="badge mb-4">Our story</span>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-5 leading-tight">
+            <h1 className="font-display text-4xl md:text-5xl font-bold text-light-text-primary dark:text-white mb-5 leading-tight">
               Turning moments into <span className="italic text-coral-400">lifelong memories</span>
             </h1>
-            <p className="text-white/50 leading-relaxed mb-4">
+            <p className="text-light-text-secondary dark:text-white/50 leading-relaxed mb-4">
               SLV Events was born from a simple belief — every celebration deserves to look extraordinary, regardless of budget. Founded in Bangalore, we've grown from a small balloon decoration venture to one of the city's most trusted event decoration companies.
             </p>
-            <p className="text-white/50 leading-relaxed mb-8">
+            <p className="text-light-text-secondary dark:text-white/50 leading-relaxed mb-8">
               Today, our team of passionate decorators has set up over 5,000 events across Bangalore — from intimate birthday surprises to large-scale corporate functions. Every event gets our full attention, creativity, and heart.
             </p>
             <Link href="/booking" className="btn-coral">
@@ -47,9 +47,9 @@ export default function AboutPage() {
               { value: '850+', label: 'Happy clients' },
               { value: '5 yrs', label: 'In business' },
             ].map((stat) => (
-              <div key={stat.label} className="card-dark p-6 text-center">
+              <div key={stat.label} className="card-light dark:card-dark p-6 text-center">
                 <div className="font-display text-3xl font-bold text-coral-400 mb-1">{stat.value}</div>
-                <div className="text-white/40 text-sm">{stat.label}</div>
+                <div className="text-light-text-secondary dark:text-white/40 text-sm">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -60,21 +60,21 @@ export default function AboutPage() {
           <h2 className="section-title mb-10 text-center">What we <span className="italic">stand for</span></h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {values.map((v) => (
-              <div key={v.title} className="card-dark p-6">
+              <div key={v.title} className="card-light dark:card-dark p-6">
                 <div className="w-10 h-10 rounded-xl bg-coral-500/10 border border-coral-500/20 flex items-center justify-center text-coral-400 mb-4">
                   {v.icon}
                 </div>
-                <h3 className="text-white font-semibold text-base mb-2">{v.title}</h3>
-                <p className="text-white/40 text-sm leading-relaxed">{v.desc}</p>
+                <h3 className="text-light-text-primary dark:text-white font-semibold text-base mb-2">{v.title}</h3>
+                <p className="text-light-text-secondary dark:text-white/40 text-sm leading-relaxed">{v.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* CTA */}
-        <div className="text-center bg-dark-800 border border-white/5 rounded-3xl p-12">
-          <h2 className="font-display text-3xl font-bold text-white mb-3">Ready to celebrate?</h2>
-          <p className="text-white/40 mb-6">Let's create something beautiful together.</p>
+        <div className="text-center bg-light-surface dark:bg-dark-800 border border-light-border dark:border-white/5 rounded-3xl p-12">
+          <h2 className="font-display text-3xl font-bold text-light-text-primary dark:text-white mb-3">Ready to celebrate?</h2>
+          <p className="text-light-text-secondary dark:text-white/40 mb-6">Let's create something beautiful together.</p>
           <Link href="/services" className="btn-coral">Browse our services <ArrowRight size={15} /></Link>
         </div>
       </section>
