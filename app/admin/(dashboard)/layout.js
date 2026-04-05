@@ -1,5 +1,4 @@
 import Sidebar from './Sidebar';
-import AdminShell from './AdminShell';
 import AuthGuard from './AuthGuard';
 
 export const metadata = {
@@ -9,9 +8,12 @@ export const metadata = {
 export default function AdminLayout({ children }) {
   return (
     <AuthGuard>
-      <AdminShell>
-        {children}
-      </AdminShell>
+      <div className="min-h-screen bg-dark-900">
+        <Sidebar />
+        <main className="lg:ml-64 p-6">
+          {children}
+        </main>
+      </div>
     </AuthGuard>
   );
 }
