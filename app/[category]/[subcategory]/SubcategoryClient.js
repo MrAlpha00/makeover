@@ -39,34 +39,34 @@ export default function SubcategoryClient({ category, subcategory, designs }) {
   return (
     <>
       {/* Sticky Top Bar (Breadcrumbs & Sort) */}
-      <div className="sticky top-[60px] sm:top-[72px] z-30 bg-dark-900/95 backdrop-blur-md border-b border-white/5 py-4">
+      <div className="sticky top-[60px] sm:top-[72px] z-30 bg-light-primary/95 dark:bg-dark-900/95 backdrop-blur-md border-b border-light-border dark:border-white/5 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           
           {/* Breadcrumb */}
-          <div className="flex items-center text-sm font-medium text-white/50 space-x-2">
+          <div className="flex items-center text-sm font-medium text-light-text-secondary dark:text-white/50 space-x-2">
             <Link href="/" className="hover:text-coral-400 transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3" />
             <Link href={`/${category.slug}`} className="hover:text-coral-400 transition-colors">{category.name}</Link>
             <ChevronRight className="w-3 h-3" />
-            <span className="text-white/90">{subcategory.name}</span>
+            <span className="text-light-text-primary dark:text-white/90">{subcategory.name}</span>
           </div>
           
           {/* Controls */}
           <div className="flex flex-row items-center justify-between w-full sm:w-auto gap-4">
-            <span className="text-white/40 text-sm">{sortedAndFilteredServices.length} {sortedAndFilteredServices.length === 1 ? 'design' : 'designs'}</span>
+            <span className="text-light-text-secondary dark:text-white/40 text-sm">{sortedAndFilteredServices.length} {sortedAndFilteredServices.length === 1 ? 'design' : 'designs'}</span>
             
             {/* Sort Dropdown */}
             <div className="relative">
               <button 
                 onClick={() => setIsSortOpen(!isSortOpen)}
-                className="flex items-center gap-2 text-sm bg-dark-800 border border-white/10 text-white px-4 py-2 rounded-full hover:border-coral-500/50 transition-colors relative z-40"
+                className="flex items-center gap-2 text-sm bg-light-surface dark:bg-dark-800 border border-light-border dark:border-white/10 text-light-text-primary dark:text-white px-4 py-2 rounded-full hover:border-coral-500/50 transition-colors relative z-40"
               >
                 <span>{currentSortLabel}</span>
-                <ChevronDown className="w-4 h-4 text-white/50" />
+                <ChevronDown className="w-4 h-4 text-light-text-secondary dark:text-white/50" />
               </button>
               
               {isSortOpen && (
-                <div className="absolute right-0 top-full mt-2 w-48 bg-dark-800 border border-white/10 rounded-xl shadow-xl overflow-hidden z-50">
+                <div className="absolute right-0 top-full mt-2 w-48 bg-light-surface dark:bg-dark-800 border border-light-border dark:border-white/10 rounded-xl shadow-xl overflow-hidden z-50">
                   {sortOptions.map(option => (
                     <button
                       key={option.id}
@@ -74,7 +74,7 @@ export default function SubcategoryClient({ category, subcategory, designs }) {
                         setSortOrder(option.id);
                         setIsSortOpen(false);
                       }}
-                      className={`w-full text-left px-4 py-3 text-sm transition-colors hover:bg-dark-700 ${sortOrder === option.id ? 'text-coral-400 font-medium' : 'text-white/70'}`}
+                      className={`w-full text-left px-4 py-3 text-sm transition-colors hover:bg-light-bg dark:hover:bg-dark-700 ${sortOrder === option.id ? 'text-coral-400 font-medium' : 'text-light-text-secondary dark:text-white/70'}`}
                     >
                       {option.label}
                     </button>
@@ -90,8 +90,8 @@ export default function SubcategoryClient({ category, subcategory, designs }) {
       <section className="py-8 px-4 sm:px-6 min-h-[50vh]">
         <div className="max-w-7xl mx-auto">
           {sortedAndFilteredServices.length === 0 ? (
-            <div className="text-center py-20 bg-dark-800/20 rounded-3xl border border-white/5">
-              <p className="text-white/40 text-lg">No designs found for this subcategory yet.</p>
+            <div className="text-center py-20 bg-light-surface/20 dark:bg-dark-800/20 rounded-3xl border border-light-border dark:border-white/5">
+              <p className="text-light-text-secondary dark:text-white/40 text-lg">No designs found for this subcategory yet.</p>
               <Link href={`/${category.slug}`} className="mt-4 inline-block text-coral-400 hover:text-coral-300">
                 &larr; View other subcategories
               </Link>
@@ -104,11 +104,11 @@ export default function SubcategoryClient({ category, subcategory, designs }) {
                 <Link 
                   href={`/services/${service.slug}`} 
                   key={service.id} 
-                  className="group flex flex-col bg-dark-800/40 border border-white/5 rounded-2xl overflow-hidden hover:border-coral-500/30 hover:bg-dark-800/80 transition-all duration-300"
+                  className="group flex flex-col bg-light-surface/40 dark:bg-dark-800/40 border border-light-border dark:border-white/5 rounded-2xl overflow-hidden hover:border-coral-500/30 hover:bg-light-surface/80 dark:hover:bg-dark-800/80 transition-all duration-300"
                 >
                   {/* Image */}
                   <div className="relative aspect-[4/3] w-full overflow-hidden">
-                    <div className="absolute inset-0 bg-dark-900/20 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
+                    <div className="absolute inset-0 bg-light-primary/20 dark:bg-dark-900/20 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
                     
                     {service.discount > 0 && (
                       <div className="absolute top-3 left-3 z-20 bg-coral-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
@@ -125,8 +125,8 @@ export default function SubcategoryClient({ category, subcategory, designs }) {
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       />
                     ) : (
-                      <div className="absolute inset-0 flex items-center justify-center bg-dark-800">
-                        <span className="text-white/30 text-4xl">🎨</span>
+                      <div className="absolute inset-0 flex items-center justify-center bg-light-surface dark:bg-dark-800">
+                        <span className="text-light-text-secondary dark:text-white/30 text-4xl">🎨</span>
                       </div>
                     )}
                   </div>
@@ -134,21 +134,21 @@ export default function SubcategoryClient({ category, subcategory, designs }) {
                   {/* Content */}
                   <div className="p-5 flex-1 flex flex-col">
                     <div className="flex justify-between items-start mb-2 gap-2">
-                      <h3 className="text-lg font-display font-semibold text-white leading-tight line-clamp-1">{service.title}</h3>
+                      <h3 className="text-lg font-display font-semibold text-light-text-primary dark:text-white leading-tight line-clamp-1">{service.title}</h3>
                       {service.rating && (
-                        <div className="flex items-center gap-1 bg-dark-900/50 px-1.5 py-0.5 rounded-md text-xs font-medium border border-white/5 shrink-0">
+                        <div className="flex items-center gap-1 bg-light-bg/50 dark:bg-dark-900/50 px-1.5 py-0.5 rounded-md text-xs font-medium border border-light-border dark:border-white/5 shrink-0">
                           <Star className="w-3 h-3 text-yellow-400 fill-yellow-400" />
-                          <span className="text-white/90">{service.rating}</span>
+                          <span className="text-light-text-primary dark:text-white/90">{service.rating}</span>
                         </div>
                       )}
                     </div>
                     
-                    <p className="text-white/50 text-sm mb-4 line-clamp-1 flex-1">{service.short_desc || service.shortDesc}</p>
+                    <p className="text-light-text-secondary dark:text-white/50 text-sm mb-4 line-clamp-1 flex-1">{service.short_desc || service.shortDesc}</p>
                     
                     <div className="flex items-end justify-between mt-auto">
                       <div>
                         {originalPrice > service.price && (
-                          <div className="text-white/40 text-xs line-through mb-0.5">
+                          <div className="text-light-text-secondary dark:text-white/40 text-xs line-through mb-0.5">
                             ₹{originalPrice.toLocaleString()}
                           </div>
                         )}
@@ -157,7 +157,7 @@ export default function SubcategoryClient({ category, subcategory, designs }) {
                         </div>
                       </div>
                       
-                      <div className="bg-white/5 group-hover:bg-coral-500/10 text-white group-hover:text-coral-400 text-sm font-medium px-4 py-2 rounded-lg transition-colors border border-white/5 group-hover:border-coral-500/30">
+                      <div className="bg-light-bg/5 dark:bg-white/5 group-hover:bg-coral-500/10 text-light-text-primary dark:text-white group-hover:text-coral-400 text-sm font-medium px-4 py-2 rounded-lg transition-colors border border-light-border dark:border-white/5 group-hover:border-coral-500/30">
                         Book Now
                       </div>
                     </div>
