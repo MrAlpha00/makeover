@@ -10,7 +10,7 @@ export default function ServiceCard({ service, index = 0 }) {
   return (
     <Link
       href={`/services/${service.slug}`}
-      className={`card-dark group block animate-fade-up ${delay}`}
+      className={`card group block animate-fade-up ${delay}`}
     >
       {/* Image */}
       <div className="relative h-52 overflow-hidden">
@@ -23,49 +23,78 @@ export default function ServiceCard({ service, index = 0 }) {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center bg-dark-800">
-            <span className="text-white/20 text-5xl">🎨</span>
+          <div className="absolute inset-0 flex items-center justify-center" style={{ background: 'var(--bg-tertiary)' }}>
+            <span className="text-5xl opacity-20">🎨</span>
           </div>
         )}
         {/* Discount badge */}
         {service.discount > 0 && (
-          <div className="absolute top-3 left-3 bg-coral-500 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+          <div 
+            className="absolute top-3 left-3 text-white text-xs font-semibold px-2.5 py-1 rounded-full"
+            style={{ background: 'var(--coral)' }}
+          >
             {service.discount}% OFF
           </div>
         )}
         {/* Category badge */}
-        <div className="absolute top-3 right-3 bg-dark-900/70 backdrop-blur-sm text-white/80 text-xs px-2.5 py-1 rounded-full border border-white/10">
+        <div 
+          className="absolute top-3 right-3 text-xs px-2.5 py-1 rounded-full backdrop-blur-sm border"
+          style={{ 
+            background: 'rgba(0,0,0,0.5)',
+            color: 'rgba(255,255,255,0.8)',
+            borderColor: 'rgba(255,255,255,0.1)',
+          }}
+        >
           {service.categories?.name || service.category}
         </div>
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 via-transparent to-transparent" />
+        <div 
+          className="absolute inset-0" 
+          style={{ 
+            background: 'linear-gradient(to top, var(--bg-primary) 0%, transparent 50%, transparent 100%)',
+            opacity: 0.6,
+          }} 
+        />
       </div>
 
       {/* Content */}
       <div className="p-4">
-        <h3 className="font-display text-white font-semibold text-lg leading-tight mb-1 group-hover:text-coral-400 transition-colors">
+        <h3 
+          className="font-display font-semibold text-lg leading-tight mb-1 group-hover:text-coral-400 transition-colors"
+          style={{ color: 'var(--text-primary)' }}
+        >
           {service.title}
         </h3>
-        <p className="text-white/40 text-sm leading-relaxed mb-3 line-clamp-2">
+        <p 
+          className="text-sm leading-relaxed mb-3 line-clamp-2"
+          style={{ color: 'var(--text-muted)' }}
+        >
           {service.short_desc || service.shortDesc}
         </p>
 
         {/* Rating */}
         <div className="flex items-center gap-1.5 mb-3">
           <Star size={12} fill="#f95738" stroke="none" />
-          <span className="text-white/70 text-xs font-medium">{service.rating}</span>
-          <span className="text-white/30 text-xs">({service.reviews} reviews)</span>
+          <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>{service.rating}</span>
+          <span className="text-sm" style={{ color: 'var(--text-muted)' }}>({service.reviews} reviews)</span>
         </div>
 
         {/* Price + CTA */}
         <div className="flex items-center justify-between">
           <div>
-            <span className="text-coral-400 font-semibold text-lg">₹{service.price.toLocaleString('en-IN')}</span>
+            <span className="text-lg font-semibold" style={{ color: 'var(--coral)' }}>₹{service.price.toLocaleString('en-IN')}</span>
             {(service.original_price || service.originalPrice) && (
-              <span className="text-white/25 text-sm line-through ml-2">₹{(service.original_price || service.originalPrice).toLocaleString('en-IN')}</span>
+              <span className="text-sm line-through ml-2" style={{ color: 'var(--text-muted)', opacity: 0.5 }}>₹{(service.original_price || service.originalPrice).toLocaleString('en-IN')}</span>
             )}
           </div>
-          <span className="w-8 h-8 rounded-full bg-coral-500/10 border border-coral-500/20 flex items-center justify-center text-coral-400 group-hover:bg-coral-500 group-hover:text-white transition-all">
+          <span 
+            className="w-8 h-8 rounded-full flex items-center justify-center transition-all group-hover:scale-110"
+            style={{ 
+              background: 'var(--coral-10)',
+              border: '1px solid var(--coral-20)',
+              color: 'var(--coral)',
+            }}
+          >
             <ArrowRight size={14} />
           </span>
         </div>
