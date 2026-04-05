@@ -31,6 +31,10 @@ module.exports = {
           surface: '#ffffff',
           bg: '#f5f5f3',
           border: '#e5e7eb',
+          text: {
+            primary: '#1f2937',
+            secondary: '#4b5563',
+          },
         },
       },
       fontFamily: {
