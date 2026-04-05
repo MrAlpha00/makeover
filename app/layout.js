@@ -1,5 +1,4 @@
 import './globals.css';
-import { ThemeProvider } from '../components/ThemeProvider';
 
 export const metadata = {
   metadataBase: new URL('https://slvevents.in'),
@@ -60,20 +59,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="dark" suppressHydrationWarning>
+    <html lang="en" data-theme="dark">
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var theme = localStorage.getItem('slv-theme') || 'dark';
-                  document.documentElement.setAttribute('data-theme', theme);
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
         {/* Local Business Schema — critical for Google ranking */}
         <script
           type="application/ld+json"
@@ -116,9 +103,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );
