@@ -26,20 +26,20 @@ export default async function ServicesPage() {
     .order('sort_order', { ascending: true });
 
   return (
-    <div className="min-h-screen bg-light-primary dark:bg-dark-900">
+    <div className="min-h-screen bg-dark-900">
       <Navbar />
       <WhatsAppButton />
       
       {/* Header */}
       <section className="pt-28 pb-12 max-w-7xl mx-auto px-4 sm:px-6">
         <p className="text-coral-400 text-sm font-medium tracking-wider uppercase mb-2">SLV Events, Bangalore</p>
-        <h1 className="font-display text-4xl md:text-5xl font-bold text-light-text-primary dark:text-white mb-3">
+        <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-3">
           Our <span className="italic text-coral-400">Services</span>
         </h1>
-        <p className="text-light-text-secondary dark:text-white/40 text-lg">Handcrafted decorations for every occasion in Bangalore.</p>
+        <p className="text-white/40 text-lg">Handcrafted decorations for every occasion in Bangalore.</p>
       </section>
 
-      <Suspense fallback={<div className="pt-40 text-center text-light-text-secondary dark:text-white/30">Loading services...</div>}>
+      <Suspense fallback={<div className="pt-40 text-center text-white/30">Loading services...</div>}>
         <ServicesClient initialDesigns={designs || []} parentCategories={categories || []} />
       </Suspense>
 

@@ -40,7 +40,7 @@ export default async function CategoryPage({ params }) {
     .order('sort_order', { ascending: true });
 
   return (
-    <div className="min-h-screen bg-light-primary dark:bg-dark-900">
+    <div className="min-h-screen bg-dark-900">
       <Navbar />
       <WhatsAppButton />
       
@@ -49,14 +49,14 @@ export default async function CategoryPage({ params }) {
         <div className="absolute inset-0 bg-coral-500/5 blur-[100px] rounded-full w-[500px] h-[500px] top-0 left-1/2 -translate-x-1/2"></div>
         <div className="max-w-7xl mx-auto text-center relative z-10">
           {category.icon && (
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-light-surface dark:bg-dark-800 border border-light-border dark:border-white/10 text-3xl mb-6">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-dark-800 border border-white/10 text-3xl mb-6">
               {category.icon}
             </div>
           )}
-          <h1 className="font-display text-4xl md:text-6xl font-bold text-light-text-primary dark:text-white mb-4">
+          <h1 className="font-display text-4xl md:text-6xl font-bold text-white mb-4">
             {category.name} <span className="italic text-coral-400">Decorations</span>
           </h1>
-          <p className="text-light-text-secondary dark:text-white/60 text-lg md:text-xl max-w-2xl mx-auto">
+          <p className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto">
             {category.description}
           </p>
         </div>
@@ -66,27 +66,27 @@ export default async function CategoryPage({ params }) {
       <section className="py-12 px-4 mb-16">
         <div className="max-w-7xl mx-auto">
           {(!subcategories || subcategories.length === 0) ? (
-            <div className="text-center py-20 text-light-text-secondary dark:text-white/50">No subcategories found.</div>
+            <div className="text-center py-20 text-white/50">No subcategories found.</div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {subcategories.map((sub) => (
-                <Link href={`/${category.slug}/${sub.slug}`} key={sub.id} className="group flex flex-col bg-light-surface/50 dark:bg-dark-800/50 border border-light-border dark:border-white/5 rounded-2xl overflow-hidden hover:border-coral-500/30 transition-all hover:bg-light-surface/80 dark:hover:bg-dark-800/80 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl hover:z-10">
+                <Link href={`/${category.slug}/${sub.slug}`} key={sub.id} className="group flex flex-col bg-dark-800/50 border border-white/5 rounded-2xl overflow-hidden hover:border-coral-500/30 transition-all hover:bg-dark-800/80">
                   {/* Image */}
                   <div className="relative h-64 w-full overflow-hidden">
-                    <div className="absolute inset-0 bg-light-primary/20 dark:bg-dark-900/20 group-hover:bg-transparent transition-colors z-10"></div>
+                    <div className="absolute inset-0 bg-dark-900/20 group-hover:bg-transparent transition-colors z-10"></div>
                     {sub.image_url ? (
-                      <Image src={sub.image_url} alt={sub.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                      <Image src={sub.image_url} alt={sub.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                     ) : (
-                      <div className="absolute inset-0 flex items-center justify-center bg-light-surface dark:bg-dark-800">
-                        <span className="text-light-text-secondary dark:text-white/30 text-4xl">{category.icon || '📁'}</span>
+                      <div className="absolute inset-0 flex items-center justify-center bg-dark-800">
+                        <span className="text-white/30 text-4xl">{category.icon || '📁'}</span>
                       </div>
                     )}
                   </div>
                   
                   {/* Content */}
                   <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-2xl font-display font-semibold text-light-text-primary dark:text-white mb-2">{sub.name}</h3>
-                    <p className="text-light-text-secondary dark:text-white/50 mb-6 flex-1">{sub.description}</p>
+                    <h3 className="text-2xl font-display font-semibold text-white mb-2">{sub.name}</h3>
+                    <p className="text-white/50 mb-6 flex-1">{sub.description}</p>
                     
                     <div className="flex items-center text-coral-400 font-medium group-hover:text-coral-300 transition-colors">
                       <span>View Designs</span>
