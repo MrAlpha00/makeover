@@ -104,7 +104,7 @@ export default function SubcategoryClient({ category, subcategory, designs }) {
                 <Link 
                   href={`/services/${service.slug}`} 
                   key={service.id} 
-                  className="group flex flex-col bg-light-surface/40 dark:bg-dark-800/40 border border-light-border dark:border-white/5 rounded-2xl overflow-hidden hover:border-coral-500/30 hover:bg-light-surface/80 dark:hover:bg-dark-800/80 transition-all duration-300"
+                  className="group flex flex-col bg-light-surface/40 dark:bg-dark-800/40 border border-light-border dark:border-white/5 rounded-2xl overflow-hidden hover:border-coral-500/30 hover:bg-light-surface/80 dark:hover:bg-dark-800/80 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl hover:z-10 transition-all duration-300"
                 >
                   {/* Image */}
                   <div className="relative aspect-[4/3] w-full overflow-hidden">

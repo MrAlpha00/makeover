@@ -10,7 +10,7 @@ export default function ServiceCard({ service, index = 0 }) {
   return (
     <Link
       href={`/services/${service.slug}`}
-      className={`card group block animate-fade-up ${delay}`}
+      className={`card group block animate-fade-up ${delay} hover:scale-105 hover:-translate-y-2 hover:shadow-2xl hover:z-10 transition-all duration-300`}
     >
       {/* Image */}
       <div className="relative h-52 overflow-hidden">
@@ -19,7 +19,7 @@ export default function ServiceCard({ service, index = 0 }) {
             src={service.images?.[0] || service.image}
             alt={service.title}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            className="object-cover group-hover:scale-110 transition-transform duration-500"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         ) : (
