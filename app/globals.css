@@ -121,6 +121,15 @@
     border-color: var(--border-accent);
   }
 
+  .card-light {
+    @apply rounded-2xl overflow-hidden transition-all duration-300;
+    background: var(--bg-card);
+    border: 1px solid var(--border-secondary);
+  }
+  .card-light:hover {
+    border-color: var(--border-accent);
+  }
+
   .section-title {
     @apply font-display font-semibold;
     font-size: 1.875rem;
@@ -150,7 +159,33 @@
     @apply rounded-xl px-4 py-3 w-full focus:outline-none transition-colors text-sm;
     background: var(--bg-input);
     border: 1px solid var(--border-primary);
+  }
+  .input-dark::placeholder, .input::placeholder {
+    color: var(--text-muted);
+  }
+  .input-dark:focus, .input:focus {
+    border-color: var(--coral);
+  }
+
+  .input-light {
+    @apply rounded-xl px-4 py-3 w-full focus:outline-none transition-colors text-sm;
+    background: var(--bg-input);
+    border: 1px solid var(--border-primary);
     color: var(--text-primary);
+  }
+  .input-light::placeholder {
+    color: var(--text-muted);
+  }
+  .input-light:focus {
+    border-color: var(--coral);
+  }
+
+  /* Light mode input adjustments */
+  [data-theme="light"] .input-dark,
+  [data-theme="light"] .input,
+  [data-theme="light"] .input-light {
+    background: #f5f5f3;
+    border-color: #e5e7eb;
   }
   .input-dark::placeholder, .input::placeholder {
     color: var(--text-muted);
