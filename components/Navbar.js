@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X, Phone } from 'lucide-react';
-import ThemeToggle from './ThemeToggle';
 
 const navLinks = [
   { href: '/designs', label: 'Designs' },
@@ -29,27 +28,19 @@ export default function Navbar() {
       className={`
         fixed top-0 left-0 right-0 z-50 transition-all duration-300
         ${scrolled 
-          ? 'py-2 sm:py-3' 
-          : 'py-4 sm:py-5'
+          ? 'py-2 sm:py-3 bg-dark-900/95 backdrop-blur-md border-b border-white/5' 
+          : 'py-4 sm:py-5 bg-transparent'
         }
       `}
-      style={{ 
-        background: scrolled ? 'var(--bg-primary)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(12px)' : 'none',
-        borderBottom: scrolled ? '1px solid var(--border-secondary)' : 'none',
-      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <div 
-            className="w-8 h-8 rounded-lg flex items-center justify-center"
-            style={{ background: 'var(--coral)' }}
-          >
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-coral-500">
             <span className="text-white font-display font-bold text-sm">S</span>
           </div>
-          <span className="font-display font-semibold text-lg tracking-tight" style={{ color: 'var(--text-primary)' }}>
-            SLV <span style={{ color: 'var(--coral)' }}>Events</span>
+          <span className="font-display font-semibold text-lg tracking-tight text-white">
+            SLV <span className="text-coral-400">Events</span>
           </span>
         </Link>
 
@@ -59,21 +50,18 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm font-medium transition-colors hover:text-coral-400"
-              style={{ color: 'var(--text-secondary)' }}
+              className="text-sm font-medium transition-colors hover:text-coral-400 text-white/70"
             >
               {l.label}
             </Link>
           ))}
         </nav>
 
-        {/* CTA + Theme Toggle */}
+        {/* CTA */}
         <div className="hidden lg:flex items-center gap-4">
-          <ThemeToggle />
           <a
             href="tel:+919663866778"
-            className="text-sm font-medium transition-colors hover:text-coral-400 flex items-center gap-1.5"
-            style={{ color: 'var(--text-secondary)' }}
+            className="text-sm font-medium transition-colors hover:text-coral-400 flex items-center gap-1.5 text-white/70"
           >
             <Phone size={14} />
             Call Now
@@ -83,22 +71,17 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile: Theme Toggle + Hamburger */}
+        {/* Mobile: Hamburger */}
         <div className="flex items-center gap-2 lg:hidden">
-          <ThemeToggle />
           <button
-            className="w-10 h-10 rounded-xl flex items-center justify-center transition-colors"
-            style={{ 
-              background: 'var(--bg-secondary)',
-              border: '1px solid var(--border-primary)',
-            }}
+            className="w-10 h-10 rounded-xl flex items-center justify-center transition-colors bg-dark-800 border border-white/10"
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
           >
             {open ? (
-              <X size={20} style={{ color: 'var(--text-primary)' }} />
+              <X size={20} className="text-white" />
             ) : (
-              <Menu size={20} style={{ color: 'var(--text-primary)' }} />
+              <Menu size={20} className="text-white" />
             )}
           </button>
         </div>
@@ -106,22 +89,12 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div 
-          className="lg:hidden px-4 py-4 border-t"
-          style={{ 
-            background: 'var(--bg-secondary)',
-            borderColor: 'var(--border-primary)',
-          }}
-        >
+        <div className="lg:hidden px-4 py-4 bg-dark-800 border-t border-white/5">
           {navLinks.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="block py-3 text-sm font-medium border-b transition-colors"
-              style={{ 
-                color: 'var(--text-secondary)',
-                borderColor: 'var(--border-secondary)',
-              }}
+              className="block py-3 text-sm font-medium border-b border-white/5 text-white/70"
               onClick={() => setOpen(false)}
             >
               {l.label}
@@ -130,8 +103,7 @@ export default function Navbar() {
           <div className="flex flex-col gap-3 mt-4">
             <a
               href="tel:+919663866778"
-              className="btn-outline w-full justify-center py-3"
-              style={{ borderColor: 'var(--border-primary)' }}
+              className="btn-outline w-full justify-center py-3 border-white/10 text-white"
             >
               <Phone size={15} /> Call Now
             </a>
