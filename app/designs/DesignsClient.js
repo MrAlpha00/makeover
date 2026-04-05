@@ -223,7 +223,7 @@ function DesignListCard({ design }) {
   return (
     <Link
       href={`/services/${design.slug}`}
-      className="group card-light dark:card-dark p-4 flex gap-5 items-center block hover:scale-[1.02] hover:-translate-y-1 hover:shadow-xl hover:z-10 transition-all duration-300"
+      className="group card-dark p-4 flex gap-5 items-center block hover:scale-[1.02] hover:-translate-y-1 hover:shadow-xl hover:z-10 transition-all duration-300"
     >
       {/* Image */}
       <div className="relative w-32 h-24 sm:w-40 sm:h-28 flex-shrink-0 overflow-hidden rounded-xl">
@@ -236,8 +236,8 @@ function DesignListCard({ design }) {
             sizes="160px"
           />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center bg-light-surface dark:bg-dark-800 rounded-xl">
-            <span className="text-light-text-secondary dark:text-white/20 text-3xl">🎨</span>
+          <div className="absolute inset-0 flex items-center justify-center bg-dark-800 rounded-xl">
+            <span className="text-white/20 text-3xl">🎨</span>
           </div>
         )}
         
@@ -255,16 +255,16 @@ function DesignListCard({ design }) {
             <span className="text-coral-400 text-xs font-medium uppercase tracking-wider">
               {design.categories?.name}
             </span>
-            <h3 className="font-semibold text-light-text-primary dark:text-white text-lg mb-1 line-clamp-1 group-hover:text-coral-400 transition-colors">
+            <h3 className="font-semibold text-white text-lg mb-1 line-clamp-1 group-hover:text-coral-400 transition-colors">
               {design.title}
             </h3>
             
             {design.short_desc || design.shortDesc ? (
-              <p className="text-light-text-secondary dark:text-white/40 text-sm line-clamp-2">
+              <p className="text-white/40 text-sm line-clamp-2">
                 {design.short_desc || design.shortDesc}
               </p>
             ) : (
-              <p className="text-light-text-secondary dark:text-white/40 text-sm line-clamp-2">
+              <p className="text-white/40 text-sm line-clamp-2">
                 {design.description?.slice(0, 100)}...
               </p>
             )}
@@ -273,8 +273,8 @@ function DesignListCard({ design }) {
             {design.rating && (
               <div className="flex items-center gap-1.5 mt-2">
                 <Star size={11} fill="#f95738" stroke="none" />
-                <span className="text-light-text-secondary dark:text-white/70 text-xs font-medium">{design.rating}</span>
-                <span className="text-light-text-secondary dark:text-white/30 text-xs">({design.reviews} reviews)</span>
+                <span className="text-white/70 text-xs font-medium">{design.rating}</span>
+                <span className="text-white/30 text-xs">({design.reviews} reviews)</span>
               </div>
             )}
           </div>
@@ -284,7 +284,7 @@ function DesignListCard({ design }) {
             <span className="text-coral-400 font-bold text-xl">₹{design.price?.toLocaleString('en-IN')}</span>
             {(design.original_price || design.originalPrice) && (
               <div>
-                <span className="text-light-text-secondary dark:text-white/30 text-sm line-through">
+                <span className="text-white/30 text-sm line-through">
                   ₹{(design.original_price || design.originalPrice)?.toLocaleString('en-IN')}
                 </span>
               </div>
