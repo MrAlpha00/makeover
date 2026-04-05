@@ -70,12 +70,12 @@ export default async function CategoryPage({ params }) {
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {subcategories.map((sub) => (
-                <Link href={`/${category.slug}/${sub.slug}`} key={sub.id} className="group flex flex-col bg-light-surface/50 dark:bg-dark-800/50 border border-light-border dark:border-white/5 rounded-2xl overflow-hidden hover:border-coral-500/30 transition-all hover:bg-light-surface/80 dark:hover:bg-dark-800/80">
+                <Link href={`/${category.slug}/${sub.slug}`} key={sub.id} className="group flex flex-col bg-light-surface/50 dark:bg-dark-800/50 border border-light-border dark:border-white/5 rounded-2xl overflow-hidden hover:border-coral-500/30 transition-all hover:bg-light-surface/80 dark:hover:bg-dark-800/80 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl hover:z-10">
                   {/* Image */}
                   <div className="relative h-64 w-full overflow-hidden">
                     <div className="absolute inset-0 bg-light-primary/20 dark:bg-dark-900/20 group-hover:bg-transparent transition-colors z-10"></div>
                     {sub.image_url ? (
-                      <Image src={sub.image_url} alt={sub.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                      <Image src={sub.image_url} alt={sub.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center bg-light-surface dark:bg-dark-800">
                         <span className="text-light-text-secondary dark:text-white/30 text-4xl">{category.icon || '📁'}</span>
