@@ -10,14 +10,14 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-light-primary dark:bg-dark-900">
+    <div className="min-h-screen bg-dark-900">
       <Navbar />
       <WhatsAppButton />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-28 pb-20">
         <div className="text-center mb-12">
           <span className="badge mb-4">Get in touch</span>
-          <h1 className="font-display text-4xl font-bold text-light-text-primary dark:text-white mb-3">We'd love to <span className="italic text-coral-400">hear from you</span></h1>
-          <p className="text-light-text-secondary dark:text-white/40">Questions? Custom requests? Just want to say hi? We're here.</p>
+          <h1 className="font-display text-4xl font-bold text-white mb-3">We'd love to <span className="italic text-coral-400">hear from you</span></h1>
+          <p className="text-white/40">Questions? Custom requests? Just want to say hi? We're here.</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
@@ -29,18 +29,18 @@ export default function ContactPage() {
               { icon: <Mail size={18} />, title: 'Email', info: 'hello@slvevents.in', sub: 'We reply within 4 hrs', href: 'mailto:hello@slvevents.in' },
               { icon: <MapPin size={18} />, title: 'Location', info: 'Bangalore, Karnataka', sub: 'Serving all areas of Bangalore', href: null },
             ].map((item) => (
-              <div key={item.title} className="card-light dark:card-dark p-5 flex items-start gap-4">
+              <div key={item.title} className="card-dark p-5 flex items-start gap-4">
                 <div className="w-10 h-10 rounded-xl bg-coral-500/10 border border-coral-500/20 flex items-center justify-center text-coral-400 flex-shrink-0">
                   {item.icon}
                 </div>
                 <div>
-                  <p className="text-light-text-secondary dark:text-white/40 text-xs font-medium uppercase tracking-wider mb-0.5">{item.title}</p>
+                  <p className="text-white/40 text-xs font-medium uppercase tracking-wider mb-0.5">{item.title}</p>
                   {item.href ? (
-                    <a href={item.href} className="text-light-text-primary dark:text-white font-semibold hover:text-coral-400 transition-colors">{item.info}</a>
+                    <a href={item.href} className="text-white font-semibold hover:text-coral-400 transition-colors">{item.info}</a>
                   ) : (
-                    <p className="text-light-text-primary dark:text-white font-semibold">{item.info}</p>
+                    <p className="text-white font-semibold">{item.info}</p>
                   )}
-                  <p className="text-light-text-secondary dark:text-white/30 text-xs mt-0.5">{item.sub}</p>
+                  <p className="text-white/30 text-xs mt-0.5">{item.sub}</p>
                 </div>
               </div>
             ))}
@@ -48,26 +48,26 @@ export default function ContactPage() {
 
           {/* Hours + CTA */}
           <div className="space-y-5">
-            <div className="card-light dark:card-dark p-6">
+            <div className="card-dark p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Clock size={16} className="text-coral-400" />
-                <h3 className="text-light-text-primary dark:text-white font-semibold">Business hours</h3>
+                <h3 className="text-white font-semibold">Business hours</h3>
               </div>
               {[
                 ['Monday – Friday', '9:00 AM – 9:00 PM'],
                 ['Saturday', '9:00 AM – 9:00 PM'],
                 ['Sunday', '10:00 AM – 8:00 PM'],
               ].map(([day, time]) => (
-                <div key={day} className="flex justify-between py-2.5 border-b border-light-border dark:border-white/5 last:border-0">
-                  <span className="text-light-text-secondary dark:text-white/50 text-sm">{day}</span>
-                  <span className="text-light-text-primary dark:text-white text-sm font-medium">{time}</span>
+                <div key={day} className="flex justify-between py-2.5 border-b border-white/5 last:border-0">
+                  <span className="text-white/50 text-sm">{day}</span>
+                  <span className="text-white text-sm font-medium">{time}</span>
                 </div>
               ))}
             </div>
 
-            <div className="card-light dark:card-dark p-6 bg-coral-500/5 dark:bg-coral-500/5 border-coral-500/20 dark:border-coral-500/20">
-              <p className="text-light-text-primary dark:text-white font-semibold mb-2">Need a quick quote?</p>
-              <p className="text-light-text-secondary dark:text-white/50 text-sm mb-4">
+            <div className="card-dark p-6 bg-coral-500/5 border-coral-500/20">
+              <p className="text-white font-semibold mb-2">Need a quick quote?</p>
+              <p className="text-white/50 text-sm mb-4">
                 Send us your event details on WhatsApp and we'll get back with a quote in under 30 minutes.
               </p>
               <a
