@@ -1,4 +1,5 @@
 import './globals.css';
+import { ThemeProvider } from '../components/ThemeProvider';
 
 export const metadata = {
   metadataBase: new URL('https://slvevents.in'),
@@ -59,8 +60,20 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('slv-theme') || 'dark';
+                  document.documentElement.setAttribute('data-theme', theme);
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
         {/* Local Business Schema — critical for Google ranking */}
         <script
           type="application/ld+json"
@@ -71,7 +84,7 @@ export default function RootLayout({ children }) {
               name: 'SLV Events',
               description: 'Top-rated party and event decorators in Bangalore.',
               url: 'https://slvevents.in',
-              telephone: '+91-XXXXXXXXXX',
+              telephone: '+91-9663866778',
               address: {
                 '@type': 'PostalAddress',
                 addressLocality: 'Bangalore',
@@ -103,7 +116,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        {children}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
