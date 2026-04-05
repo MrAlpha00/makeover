@@ -135,7 +135,7 @@ function DesignCard({ design }) {
   return (
     <Link
       href={`/services/${design.slug}`}
-      className="group card-light dark:card-dark overflow-hidden block hover:scale-105 hover:-translate-y-2 hover:shadow-2xl hover:z-10 transition-all duration-300"
+      className="group card-dark overflow-hidden block hover:scale-105 hover:-translate-y-2 hover:shadow-2xl hover:z-10 transition-all duration-300"
     >
       {/* Image */}
       <div className="relative h-56 overflow-hidden">
@@ -148,8 +148,8 @@ function DesignCard({ design }) {
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center bg-light-surface dark:bg-dark-800">
-            <span className="text-light-text-secondary dark:text-white/20 text-5xl">🎨</span>
+          <div className="absolute inset-0 flex items-center justify-center bg-dark-800">
+            <span className="text-white/20 text-5xl">🎨</span>
           </div>
         )}
         
@@ -161,12 +161,12 @@ function DesignCard({ design }) {
         )}
         
         {/* Category badge */}
-        <div className="absolute top-3 right-3 bg-light-bg/70 dark:bg-dark-900/70 backdrop-blur-sm text-light-text-primary dark:text-white/80 text-xs px-2 py-1 rounded-full border border-light-border dark:border-white/10">
+        <div className="absolute top-3 right-3 bg-dark-900/70 backdrop-blur-sm text-white/80 text-xs px-2 py-1 rounded-full border border-white/10">
           {design.categories?.name}
         </div>
         
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-light-bg/80 dark:from-dark-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div className="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
         
         {/* Quick view */}
         <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform">
@@ -178,16 +178,16 @@ function DesignCard({ design }) {
       
       {/* Content */}
       <div className="p-4">
-        <h3 className="font-semibold text-light-text-primary dark:text-white text-lg mb-1 line-clamp-1 group-hover:text-coral-400 transition-colors">
+        <h3 className="font-semibold text-white text-lg mb-1 line-clamp-1 group-hover:text-coral-400 transition-colors">
           {design.title}
         </h3>
         
         {design.short_desc || design.shortDesc ? (
-          <p className="text-light-text-secondary dark:text-white/40 text-sm mb-3 line-clamp-2">
+          <p className="text-white/40 text-sm mb-3 line-clamp-2">
             {design.short_desc || design.shortDesc}
           </p>
         ) : (
-          <p className="text-light-text-secondary dark:text-white/40 text-sm mb-3 line-clamp-2">
+          <p className="text-white/40 text-sm mb-3 line-clamp-2">
             {design.categories?.name} decoration
           </p>
         )}
@@ -196,8 +196,8 @@ function DesignCard({ design }) {
         {design.rating && (
           <div className="flex items-center gap-1.5 mb-3">
             <Star size={12} fill="#f95738" stroke="none" />
-            <span className="text-light-text-secondary dark:text-white/70 text-xs font-medium">{design.rating}</span>
-            <span className="text-light-text-secondary dark:text-white/30 text-xs">({design.reviews} reviews)</span>
+            <span className="text-white/70 text-xs font-medium">{design.rating}</span>
+            <span className="text-white/30 text-xs">({design.reviews} reviews)</span>
           </div>
         )}
         
@@ -206,7 +206,7 @@ function DesignCard({ design }) {
           <div>
             <span className="text-coral-400 font-bold text-xl">₹{design.price?.toLocaleString('en-IN')}</span>
             {(design.original_price || design.originalPrice) && (
-              <span className="text-light-text-secondary dark:text-white/30 text-sm line-through ml-2">
+              <span className="text-white/30 text-sm line-through ml-2">
                 ₹{(design.original_price || design.originalPrice)?.toLocaleString('en-IN')}
               </span>
             )}
