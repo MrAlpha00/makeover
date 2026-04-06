@@ -6,12 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "seed": "node --env-file=.env.local scripts/seed.js"
+    "seed": "node --env-file=.env.local scripts/seed.js",
+    "re-watermark": "node --env-file=.env.local scripts/re-watermark-designs.js"
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.0",
     "@supabase/supabase-js": "^2.101.1",
     "browser-image-compression": "^2.0.2",
+    "canvas": "^3.2.3",
     "lucide-react": "^0.383.0",
     "next": "14.2.5",
     "react": "^18",

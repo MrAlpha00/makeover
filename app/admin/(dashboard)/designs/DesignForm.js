@@ -244,26 +244,26 @@ export default function DesignForm({ initialData = null, categories = [], subcat
     <form onSubmit={handleSubmit} className="max-w-5xl mx-auto pb-20">
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
-          <Link href="/admin/designs" className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-500 hover:text-gray-900 shadow-sm border border-gray-100 transition-colors">
+          <Link href="/admin/designs" className="w-10 h-10 bg-dark-700 rounded-full flex items-center justify-center text-white/70 hover:text-white border border-white/10 transition-colors">
             <ArrowLeft size={20} />
           </Link>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{isEdit ? 'Edit Design' : 'New Design'}</h1>
-            <p className="text-gray-500 text-sm mt-1">Fill in the details below.</p>
+            <h1 className="text-2xl font-bold text-white">{isEdit ? 'Edit Design' : 'New Design'}</h1>
+            <p className="text-white/50 text-sm mt-1">Fill in the details below.</p>
           </div>
         </div>
         <div className="flex gap-3">
-          <Link href="/admin/designs" className="btn bg-white hover:bg-gray-50 text-gray-700 font-medium py-2.5 px-6 rounded-xl shadow-sm border border-gray-200 transition-all flex items-center gap-2">
+          <Link href="/admin/designs" className="bg-dark-700 hover:bg-dark-600 text-white font-medium py-2.5 px-6 rounded-xl border border-white/10 transition-all flex items-center gap-2">
             Cancel
           </Link>
-          <button type="submit" disabled={isSubmitting} className="btn bg-coral-500 hover:bg-coral-600 text-white font-medium py-2.5 px-6 rounded-xl shadow-sm transition-all flex items-center gap-2 disabled:opacity-70">
+          <button type="submit" disabled={isSubmitting} className="bg-coral-500 hover:bg-coral-600 text-white font-medium py-2.5 px-6 rounded-xl transition-all flex items-center gap-2 disabled:opacity-70">
             {isSubmitting ? <><Loader2 size={18} className="animate-spin" /> Saving...</> : 'Save Design'}
           </button>
         </div>
       </div>
 
       {errorText && (
-        <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-100 text-red-600 font-medium">
+        <div className="mb-6 p-4 rounded-xl bg-red-500/20 border border-red-500/30 text-red-400 font-medium">
           {errorText}
         </div>
       )}
@@ -274,98 +274,98 @@ export default function DesignForm({ initialData = null, categories = [], subcat
         <div className="lg:col-span-2 space-y-6">
           
           {/* Basic Info */}
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-            <h2 className="text-lg font-bold text-gray-900 mb-4 border-b border-gray-100 pb-3">Basic Information</h2>
+          <div className="bg-dark-700 p-6 rounded-2xl border border-white/5">
+            <h2 className="text-lg font-bold text-white mb-4 border-b border-white/10 pb-3">Basic Information</h2>
             
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Title *</label>
-                <input required type="text" value={formData.title} onChange={handleTitle} className="input-admin" placeholder="Premium Jungle Theme Decor" />
+                <label className="block text-sm font-medium text-white/70 mb-1">Title *</label>
+                <input required type="text" value={formData.title} onChange={handleTitle} className="w-full px-4 py-3 rounded-xl bg-dark-800 border border-white/10 text-white placeholder-white/30 outline-none focus:border-coral-500 transition-colors" placeholder="Premium Jungle Theme Decor" />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Slug *</label>
-                <input required type="text" value={formData.slug} onChange={(e) => setFormData({...formData, slug: e.target.value})} className="input-admin font-mono text-sm bg-gray-50" />
-                <p className="text-xs text-gray-400 mt-1">Unique URL identifier. e.g. /services/premium-jungle</p>
+                <label className="block text-sm font-medium text-white/70 mb-1">Slug *</label>
+                <input required type="text" value={formData.slug} onChange={(e) => setFormData({...formData, slug: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-dark-800 border border-white/10 text-white placeholder-white/30 outline-none focus:border-coral-500 transition-colors font-mono text-sm" />
+                <p className="text-xs text-white/40 mt-1">Unique URL identifier. e.g. /services/premium-jungle</p>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Category *</label>
-                  <select required value={formData.category_id} onChange={(e) => setFormData({...formData, category_id: e.target.value, subcategory_id: ''})} className="input-admin">
-                    <option value="" disabled>Select Category</option>
-                    {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+                  <label className="block text-sm font-medium text-white/70 mb-1">Category *</label>
+                  <select required value={formData.category_id} onChange={(e) => setFormData({...formData, category_id: e.target.value, subcategory_id: ''})} className="w-full px-4 py-3 rounded-xl bg-dark-800 border border-white/10 text-white outline-none focus:border-coral-500 transition-colors appearance-none cursor-pointer">
+                    <option value="" disabled className="bg-dark-800">Select Category</option>
+                    {categories.map(c => <option key={c.id} value={c.id} className="bg-dark-800">{c.name}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Subcategory *</label>
-                  <select required value={formData.subcategory_id} onChange={(e) => setFormData({...formData, subcategory_id: e.target.value})} className="input-admin" disabled={!formData.category_id}>
-                    <option value="" disabled>Select Subcategory</option>
-                    {filteredSubs.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
+                  <label className="block text-sm font-medium text-white/70 mb-1">Subcategory *</label>
+                  <select required value={formData.subcategory_id} onChange={(e) => setFormData({...formData, subcategory_id: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-dark-800 border border-white/10 text-white outline-none focus:border-coral-500 transition-colors appearance-none cursor-pointer" disabled={!formData.category_id}>
+                    <option value="" disabled className="bg-dark-800">Select Subcategory</option>
+                    {filteredSubs.map(s => <option key={s.id} value={s.id} className="bg-dark-800">{s.name}</option>)}
                   </select>
                 </div>
               </div>
 
               <div>
                 <div className="flex justify-between items-center mb-1">
-                  <label className="block text-sm font-medium text-gray-700">Short Description</label>
-                  <span className={`text-xs ${formData.short_desc.length > 120 ? 'text-red-500 font-bold' : 'text-gray-400'}`}>{formData.short_desc.length}/120</span>
+                  <label className="block text-sm font-medium text-white/70">Short Description</label>
+                  <span className={`text-xs ${formData.short_desc.length > 120 ? 'text-red-400 font-bold' : 'text-white/40'}`}>{formData.short_desc.length}/120</span>
                 </div>
-                <input type="text" maxLength={120} value={formData.short_desc} onChange={(e) => setFormData({...formData, short_desc: e.target.value})} className="input-admin" placeholder="Used in grid cards. E.g. A vibrant jungle theme with customized backdrop." />
+                <input type="text" maxLength={120} value={formData.short_desc} onChange={(e) => setFormData({...formData, short_desc: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-dark-800 border border-white/10 text-white placeholder-white/30 outline-none focus:border-coral-500 transition-colors" placeholder="Used in grid cards..." />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Full Description</label>
-                <textarea rows={5} value={formData.description} onChange={(e) => setFormData({...formData, description: e.target.value})} className="input-admin resize-y" placeholder="Full details visible on the service detail page..."></textarea>
+                <label className="block text-sm font-medium text-white/70 mb-1">Full Description</label>
+                <textarea rows={5} value={formData.description} onChange={(e) => setFormData({...formData, description: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-dark-800 border border-white/10 text-white placeholder-white/30 outline-none focus:border-coral-500 transition-colors resize-y" placeholder="Full details visible on the service detail page..."></textarea>
               </div>
             </div>
           </div>
 
           {/* Pricing Config */}
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-            <h2 className="text-lg font-bold text-gray-900 mb-4 border-b border-gray-100 pb-3">Pricing Details</h2>
+          <div className="bg-dark-700 p-6 rounded-2xl border border-white/5">
+            <h2 className="text-lg font-bold text-white mb-4 border-b border-white/10 pb-3">Pricing Details</h2>
             
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Selling Price (₹) *</label>
-                <input required type="number" value={formData.price} onChange={(e) => setFormData({...formData, price: e.target.value})} className="input-admin font-bold text-coral-500" placeholder="5000" />
+                <label className="block text-sm font-medium text-white/70 mb-1">Selling Price (₹) *</label>
+                <input required type="number" value={formData.price} onChange={(e) => setFormData({...formData, price: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-dark-800 border border-white/10 text-white placeholder-white/30 outline-none focus:border-coral-500 transition-colors font-bold text-coral-400" placeholder="5000" />
               </div>
               <div>
                 <div className="flex justify-between items-center mb-1">
-                  <label className="block text-sm font-medium text-gray-700">Original Price (₹)</label>
-                  {discount > 0 && <span className="text-xs bg-green-100 text-green-700 font-bold px-2 py-0.5 rounded">{discount}% OFF</span>}
+                  <label className="block text-sm font-medium text-white/70">Original Price (₹)</label>
+                  {discount > 0 && <span className="text-xs bg-green-500/20 text-green-400 font-bold px-2 py-0.5 rounded">{discount}% OFF</span>}
                 </div>
-                <input type="number" value={formData.original_price} onChange={(e) => setFormData({...formData, original_price: e.target.value})} className="input-admin" placeholder="6500" />
+                <input type="number" value={formData.original_price} onChange={(e) => setFormData({...formData, original_price: e.target.value})} className="w-full px-4 py-3 rounded-xl bg-dark-800 border border-white/10 text-white placeholder-white/30 outline-none focus:border-coral-500 transition-colors" placeholder="6500" />
               </div>
             </div>
           </div>
 
           {/* Galleries */}
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-            <h2 className="text-lg font-bold text-gray-900 mb-4 border-b border-gray-100 pb-3">Image Gallery</h2>
+          <div className="bg-dark-700 p-6 rounded-2xl border border-white/5">
+            <h2 className="text-lg font-bold text-white mb-4 border-b border-white/10 pb-3">Image Gallery</h2>
             
             <div 
-              className="border-2 border-dashed border-gray-200 rounded-xl p-8 text-center cursor-pointer hover:bg-gray-50 transition-colors"
+              className="border-2 border-dashed border-white/20 rounded-xl p-8 text-center cursor-pointer hover:border-coral-500/50 hover:bg-white/5 transition-colors"
               onClick={() => fileInputRef.current?.click()}
             >
               <input type="file" multiple accept="image/*" className="hidden" ref={fileInputRef} onChange={handleFileChange} />
-              <div className="w-12 h-12 rounded-full bg-coral-50 text-coral-500 flex items-center justify-center mx-auto mb-3">
+              <div className="w-12 h-12 rounded-full bg-coral-500/10 text-coral-400 flex items-center justify-center mx-auto mb-3">
                 <ImageIcon size={24} />
               </div>
-              <p className="font-medium text-gray-900">Click or drag images to upload</p>
-              <p className="text-sm text-gray-400 mt-1">JPEG, PNG, WEBP up to 5MB</p>
+              <p className="font-medium text-white">Click or drag images to upload</p>
+              <p className="text-sm text-white/40 mt-1">JPEG, PNG, WEBP up to 5MB</p>
             </div>
 
             {/* Gallery Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
               {/* Existing Images */}
               {formData.images.map((url, i) => (
-                <div key={i} className="relative aspect-[4/3] rounded-lg overflow-hidden border border-gray-200 group">
+                <div key={i} className="relative aspect-[4/3] rounded-lg overflow-hidden border border-white/10 group">
                   <Image src={url} alt={`img-${i}`} fill className="object-cover" />
                   <button type="button" onClick={() => removeExistingImage(i)} className="absolute top-2 right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
                     <X size={12} />
                   </button>
-                  {i === 0 && <span className="absolute bottom-2 left-2 bg-gray-900/80 text-white text-[10px] uppercase tracking-wider px-2 py-0.5 rounded backdrop-blur">Cover</span>}
+                  {i === 0 && <span className="absolute bottom-2 left-2 bg-coral-500 text-white text-[10px] uppercase tracking-wider px-2 py-0.5 rounded font-bold">Cover</span>}
                 </div>
               ))}
               
@@ -373,7 +373,7 @@ export default function DesignForm({ initialData = null, categories = [], subcat
               {newFiles.map((f, i) => {
                 const objectUrl = URL.createObjectURL(f);
                 return (
-                  <div key={`new-${i}`} className="relative aspect-[4/3] rounded-lg overflow-hidden border border-coral-200 ring-2 ring-coral-500/20 group">
+                  <div key={`new-${i}`} className="relative aspect-[4/3] rounded-lg overflow-hidden border border-coral-500/30 group">
                     <Image src={objectUrl} alt={`new-img-${i}`} fill className="object-cover" />
                     <button type="button" onClick={() => removeNewFile(i)} className="absolute top-2 right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
                       <X size={12} />
@@ -391,19 +391,19 @@ export default function DesignForm({ initialData = null, categories = [], subcat
         <div className="space-y-6">
 
           {/* Inclusions */}
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-            <h2 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wider">Inclusions</h2>
+          <div className="bg-dark-700 p-6 rounded-2xl border border-white/5">
+            <h2 className="text-sm font-bold text-white mb-3 uppercase tracking-wider">Inclusions</h2>
             <div className="flex gap-2 mb-4">
-              <input type="text" value={incInput} onChange={(e) => setIncInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addInclusion())} className="input-admin text-sm flex-1" placeholder="Add an item..." />
-              <button type="button" onClick={addInclusion} className="w-10 h-10 shrink-0 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-colors">
+              <input type="text" value={incInput} onChange={(e) => setIncInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addInclusion())} className="flex-1 px-3 py-2 rounded-lg bg-dark-800 border border-white/10 text-white text-sm placeholder-white/30 outline-none focus:border-coral-500 transition-colors" placeholder="Add an item..." />
+              <button type="button" onClick={addInclusion} className="w-10 h-10 shrink-0 bg-dark-600 hover:bg-dark-500 rounded-lg flex items-center justify-center transition-colors text-white/70">
                 <Plus size={18} />
               </button>
             </div>
             <ul className="space-y-2">
               {formData.inclusions.map((inc, i) => (
-                <li key={i} className="flex items-center justify-between text-sm bg-gray-50 border border-gray-100 rounded-lg p-2.5">
-                  <span className="text-gray-700">{inc}</span>
-                  <button type="button" onClick={() => removeInclusion(i)} className="text-gray-400 hover:text-red-500">
+                <li key={i} className="flex items-center justify-between text-sm bg-dark-800 border border-white/10 rounded-lg p-2.5">
+                  <span className="text-white/80">{inc}</span>
+                  <button type="button" onClick={() => removeInclusion(i)} className="text-white/40 hover:text-red-400 transition-colors">
                     <X size={14} />
                   </button>
                 </li>
@@ -412,60 +412,60 @@ export default function DesignForm({ initialData = null, categories = [], subcat
           </div>
 
           {/* Add-ons */}
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-            <h2 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wider">Add-ons</h2>
+          <div className="bg-dark-700 p-6 rounded-2xl border border-white/5">
+            <h2 className="text-sm font-bold text-white mb-3 uppercase tracking-wider">Add-ons</h2>
             
             <div className="space-y-3 mb-4">
               {formData.addons.map((addon, index) => (
-                <div key={addon.id || index} className="flex items-center gap-2 bg-gray-50 p-2 border border-gray-100 rounded-lg">
-                  <input type="text" value={addon.name} onChange={(e) => updateAddon(index, 'name', e.target.value)} className="w-full bg-transparent border-0 outline-none text-sm px-1 placeholder-gray-400" placeholder="Add Name" />
-                  <input type="number" value={addon.price} onChange={(e) => updateAddon(index, 'price', e.target.value)} className="w-20 shrink-0 bg-white border border-gray-200 rounded px-2 py-1 text-sm outline-none font-medium text-coral-500 placeholder-gray-300" placeholder="₹ Price" />
-                  <button type="button" onClick={() => removeAddon(index)} className="p-1 text-gray-400 hover:text-red-500 shrink-0">
+                <div key={addon.id || index} className="flex items-center gap-2 bg-dark-800 p-2 border border-white/10 rounded-lg">
+                  <input type="text" value={addon.name} onChange={(e) => updateAddon(index, 'name', e.target.value)} className="w-full bg-transparent border-0 outline-none text-sm text-white placeholder-white/30 px-1" placeholder="Add Name" />
+                  <input type="number" value={addon.price} onChange={(e) => updateAddon(index, 'price', e.target.value)} className="w-20 shrink-0 bg-dark-700 border border-white/10 rounded px-2 py-1 text-sm outline-none font-medium text-coral-400 placeholder-white/30" placeholder="₹ Price" />
+                  <button type="button" onClick={() => removeAddon(index)} className="p-1 text-white/40 hover:text-red-400 shrink-0 transition-colors">
                     <X size={16} />
                   </button>
                 </div>
               ))}
             </div>
             
-            <button type="button" onClick={addAddon} className="w-full py-2 border border-dashed border-gray-300 text-gray-500 text-sm font-medium rounded-lg hover:bg-gray-50 flex items-center justify-center gap-2 transition-colors">
+            <button type="button" onClick={addAddon} className="w-full py-2 border border-dashed border-white/20 text-white/50 text-sm font-medium rounded-lg hover:bg-white/5 hover:text-white/70 flex items-center justify-center gap-2 transition-colors">
               <Plus size={16} /> Add Add-on
             </button>
           </div>
 
           {/* Meta & Tags */}
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-            <h2 className="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wider">Metadata</h2>
+          <div className="bg-dark-700 p-6 rounded-2xl border border-white/5">
+            <h2 className="text-sm font-bold text-white mb-3 uppercase tracking-wider">Metadata</h2>
             
             <div className="space-y-4">
               <div>
                 <label className="flex items-center justify-between cursor-pointer">
-                  <span className="text-sm font-medium text-gray-700">Featured Design</span>
-                  <div className={`w-10 h-5 rounded-full relative transition-colors ${formData.featured ? 'bg-coral-500' : 'bg-gray-200'}`} onClick={() => setFormData({...formData, featured: !formData.featured})}>
+                  <span className="text-sm font-medium text-white/70">Featured Design</span>
+                  <div className={`w-10 h-5 rounded-full relative transition-colors cursor-pointer ${formData.featured ? 'bg-coral-500' : 'bg-dark-600'}`} onClick={() => setFormData({...formData, featured: !formData.featured})}>
                     <div className={`w-3 h-3 bg-white rounded-full absolute top-1 transition-transform ${formData.featured ? 'translate-x-6' : 'translate-x-1'}`}></div>
                   </div>
                 </label>
-                <p className="text-xs text-gray-400 mt-1">Shows on the home page.</p>
+                <p className="text-xs text-white/40 mt-1">Shows on the home page.</p>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Rating</label>
-                  <input type="number" step="0.1" max="5" value={formData.rating} onChange={(e) => setFormData({...formData, rating: e.target.value})} className="input-admin" />
+                  <label className="block text-sm font-medium text-white/70 mb-1">Rating</label>
+                  <input type="number" step="0.1" max="5" value={formData.rating} onChange={(e) => setFormData({...formData, rating: e.target.value})} className="w-full px-4 py-2 rounded-xl bg-dark-800 border border-white/10 text-white outline-none focus:border-coral-500 transition-colors" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Reviews</label>
-                  <input type="number" value={formData.reviews} onChange={(e) => setFormData({...formData, reviews: e.target.value})} className="input-admin" />
+                  <label className="block text-sm font-medium text-white/70 mb-1">Reviews</label>
+                  <input type="number" value={formData.reviews} onChange={(e) => setFormData({...formData, reviews: e.target.value})} className="w-full px-4 py-2 rounded-xl bg-dark-800 border border-white/10 text-white outline-none focus:border-coral-500 transition-colors" />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Search Tags</label>
-                <input type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={handleTagKeydown} className="input-admin mb-2" placeholder="Press Enter to add tag..." />
+                <label className="block text-sm font-medium text-white/70 mb-1">Search Tags</label>
+                <input type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={handleTagKeydown} className="w-full px-4 py-2 rounded-xl bg-dark-800 border border-white/10 text-white text-sm placeholder-white/30 outline-none focus:border-coral-500 transition-colors mb-2" placeholder="Press Enter to add tag..." />
                 <div className="flex flex-wrap gap-2">
                   {formData.tags.map((tag, i) => (
-                    <span key={i} className="inline-flex items-center gap-1 bg-gray-100 text-gray-600 text-xs px-2.5 py-1 rounded-md border border-gray-200">
+                    <span key={i} className="inline-flex items-center gap-1 bg-dark-600 text-white/70 text-xs px-2.5 py-1 rounded-md border border-white/10">
                       #{tag}
-                      <button type="button" onClick={() => removeTag(i)} className="text-gray-400 hover:text-red-500 ml-1"><X size={10} /></button>
+                      <button type="button" onClick={() => removeTag(i)} className="text-white/40 hover:text-red-400 ml-1 transition-colors"><X size={10} /></button>
                     </span>
                   ))}
                 </div>
@@ -476,23 +476,6 @@ export default function DesignForm({ initialData = null, categories = [], subcat
 
         </div>
       </div>
-{/* Added style globally for inputs if absent  */}
-<style jsx global>{`
-  .input-admin {
-    width: 100%;
-    padding: 0.5rem 0.75rem;
-    border-radius: 0.5rem;
-    border: 1px solid #e5e7eb;
-    background-color: #fff;
-    font-size: 0.875rem;
-    outline: none;
-    transition: all 0.2s;
-  }
-  .input-admin:focus {
-    border-color: #f95738;
-    box-shadow: 0 0 0 1px #f95738;
-  }
-`}</style>
     </form>
   );
 }
