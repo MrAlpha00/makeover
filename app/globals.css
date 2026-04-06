@@ -142,85 +142,155 @@
   z-index: 50;
 }
 
-/* Admin Panel Overrides */
-.admin-panel {
-  --admin-bg: #f3f4f6;
-  --admin-card: #ffffff;
-  --admin-card-border: #e5e7eb;
-  --admin-text: #111827;
-  --admin-text-secondary: #6b7280;
-  --admin-text-muted: #9ca3af;
-  --admin-input-bg: #ffffff;
-  --admin-input-border: #d1d5db;
-  --admin-input-border-focus: #f95738;
-  --admin-accent: #f95738;
-  --admin-accent-light: #fff4f2;
-}
-
+/* Admin Panel Overrides - Dark theme matching sidebar */
 .admin-panel body,
 .admin-panel {
-  background-color: var(--admin-bg);
-  color: var(--admin-text);
+  background-color: #1a1a1a;
+  color: #ffffff;
 }
 
 .admin-panel h1,
 .admin-panel h2,
 .admin-panel h3,
 .admin-panel h4 {
-  color: var(--admin-text);
-  font-family: 'DM Sans', system-ui, sans-serif;
-}
-
-.admin-panel .card-admin,
-.admin-panel .bg-white {
-  background-color: var(--admin-card);
-  border-color: var(--admin-card-border);
-}
-
-.admin-panel .text-gray-900 {
-  color: var(--admin-text);
-}
-
-.admin-panel .text-gray-500,
-.admin-panel .text-gray-400 {
-  color: var(--admin-text-secondary);
-}
-
-.admin-panel .text-gray-600 {
-  color: #4b5563;
-}
-
-.admin-panel .input-admin {
-  background-color: var(--admin-input-bg);
-  border-color: var(--admin-input-border);
-  color: var(--admin-text);
-}
-
-.admin-panel .input-admin:focus {
-  border-color: var(--admin-input-border-focus);
-  box-shadow: 0 0 0 2px rgba(249, 87, 56, 0.2);
-}
-
-.admin-panel .input-admin::placeholder {
-  color: var(--admin-text-muted);
-}
-
-.admin-panel .btn-admin {
-  background-color: var(--admin-accent);
   color: #ffffff;
 }
 
-.admin-panel .btn-admin:hover {
-  background-color: #e03e20;
+.admin-panel p,
+.admin-panel label {
+  color: rgba(255, 255, 255, 0.7);
 }
 
-.admin-panel select {
-  background-color: var(--admin-input-bg);
-  border-color: var(--admin-input-border);
-  color: var(--admin-text);
+/* Cards in admin */
+.admin-panel .bg-white {
+  background-color: #242424 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.admin-panel .text-gray-900 {
+  color: #ffffff !important;
+}
+
+.admin-panel .text-gray-700 {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.admin-panel .text-gray-600 {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.admin-panel .text-gray-500 {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.admin-panel .text-gray-400 {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.admin-panel .text-gray-300 {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.admin-panel .text-gray-200 {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.admin-panel .border-gray-100 {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.admin-panel .border-gray-200 {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Inputs in admin */
+.admin-panel .input-admin {
+  background-color: #1a1a1a !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+}
+
+.admin-panel .input-admin::placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.admin-panel .input-admin:focus {
+  border-color: #f95738 !important;
+  box-shadow: 0 0 0 2px rgba(249, 87, 56, 0.3) !important;
+}
+
+/* Select inputs */
+.admin-panel select,
+.admin-panel .admin-select {
+  background-color: #1a1a1a !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
 }
 
 .admin-panel select:focus {
-  border-color: var(--admin-input-border-focus);
-  outline: none;
+  border-color: #f95738 !important;
+  outline: none !important;
+}
+
+/* Textarea */
+.admin-panel textarea {
+  background-color: #1a1a1a !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+}
+
+.admin-panel textarea:focus {
+  border-color: #f95738 !important;
+  outline: none !important;
+}
+
+/* Table styles */
+.admin-panel table {
+  color: #ffffff;
+}
+
+.admin-panel thead tr {
+  background-color: #1a1a1a !important;
+}
+
+.admin-panel tbody tr {
+  background-color: #242424 !important;
+}
+
+.admin-panel tbody tr:hover {
+  background-color: #2e2e2e !important;
+}
+
+.admin-panel th {
+  color: rgba(255, 255, 255, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.admin-panel td {
+  border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Buttons */
+.admin-panel .btn,
+.admin-panel button {
+  transition: all 0.2s;
+}
+
+.admin-panel .border-dashed {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Filter bar */
+.admin-panel .bg-gray-50 {
+  background-color: #242424 !important;
+}
+
+/* Image preview area */
+.admin-panel .bg-gray-100 {
+  background-color: #1a1a1a !important;
+}
+
+/* Placeholder icons */
+.admin-panel .text-gray-400 {
+  color: rgba(255, 255, 255, 0.4) !important;
 }
