@@ -18,7 +18,7 @@ async function loadWatermark() {
     await new Promise((resolve, reject) => {
       img.onload = resolve;
       img.onerror = reject;
-      img.src = '/assests/watermark/watermark.png';
+      img.src = '/assets/watermark/watermark.png';
     });
     watermarkImageCache = img;
     return img;
