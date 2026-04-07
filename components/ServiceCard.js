@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import WatermarkedImage from '@/components/WatermarkedImage';
 import { Star, ArrowRight } from 'lucide-react';
 
 export default function ServiceCard({ service, index = 0 }) {
@@ -15,7 +15,7 @@ export default function ServiceCard({ service, index = 0 }) {
       {/* Image */}
       <div className="relative h-52 overflow-hidden">
         {hasImage ? (
-          <Image
+          <WatermarkedImage
             src={service.images?.[0] || service.image}
             alt={service.title}
             fill
