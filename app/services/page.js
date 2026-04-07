@@ -6,7 +6,7 @@ import ServicesClient from './ServicesClient';
 import { Suspense } from 'react';
 
 export const metadata = {
-  title: 'All Services | SLV Events Bangalore',
+  title: 'All Services | Party Hub Bangalore',
   description: 'Browse our complete catalog of event decorations in Bangalore.',
 };
 

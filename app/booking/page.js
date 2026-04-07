@@ -6,7 +6,7 @@ import { Suspense } from 'react';
 import { createClient as createServerSupabaseClient } from '@/lib/supabaseServer';
 
 export const metadata = {
-  title: 'Book a Decoration | SLV Events Bangalore',
+  title: 'Book a Decoration | Party Hub Bangalore',
   description: 'Book your event decoration in Bangalore in under 2 minutes.',
 };
 
