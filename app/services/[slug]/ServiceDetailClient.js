@@ -101,8 +101,7 @@ export default function ServiceDetailClient({ service, related, alsoBooked }) {
     );
   }
 
-  // Handle image formats properly
-  const gallery = service.images?.length ? service.images : (service.image ? [service.image] : []);
+  const toggleAddOn = (id) => {
 
   const toggleAddOn = (id) => {
     setSelectedAddOns((prev) => ({ ...prev, [id]: !prev[id] }));
