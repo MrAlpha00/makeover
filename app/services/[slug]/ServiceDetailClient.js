@@ -1,13 +1,95 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import WatermarkedImage from '@/components/WatermarkedImage';
 import Link from 'next/link';
-import { ArrowLeft, Star, Check, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Star, Check, ArrowRight, Play, Pause } from 'lucide-react';
 import ServiceCard from '../../../components/ServiceCard';
 
 export default function ServiceDetailClient({ service, related, alsoBooked }) {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedAddOns, setSelectedAddOns] = useState({});
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [fadingImage, setFadingImage] = useState(null);
+  const slideshowRef = useRef(null);
+  const timerRef = useRef(null);
+  const hasStartedSlideshow = useRef(false);
+
+  const COVER_DELAY = 5000;
+  const SLIDESHOW_INTERVAL = 2000;
+  const TRANSITION_DURATION = 500;
+
+  const gallery = service.images?.length ? service.images : (service.image ? [service.image] : []);
+  const displayImages = gallery.length > 0 ? gallery : [];
+
+  const goToImage = useCallback((index) => {
+    if (index === activeImage) return;
+    
+    setIsTransitioning(true);
+    setFadingImage(activeImage);
+    
+    setTimeout(() => {
+      setActiveImage(index);
+      setFadingImage(null);
+      setIsTransitioning(false);
+    }, TRANSITION_DURATION);
+  }, [activeImage]);
+
+  const nextImage = useCallback(() => {
+    if (displayImages.length <= 1) return;
+    goToImage((activeImage + 1) % displayImages.length);
+  }, [activeImage, displayImages.length, goToImage]);
+
+  const startSlideshow = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(nextImage, SLIDESHOW_INTERVAL);
+    setIsAutoPlaying(true);
+  }, [nextImage]);
+
+  useEffect(() => {
+    if (displayImages.length <= 1 || hasStartedSlideshow.current) return;
+
+    const coverTimer = setTimeout(() => {
+      hasStartedSlideshow.current = true;
+      startSlideshow();
+    }, COVER_DELAY);
+
+    return () => {
+      clearTimeout(coverTimer);
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [displayImages.length, startSlideshow]);
+
+  const handleMouseEnter = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+    setIsAutoPlaying(false);
+  };
+
+  const handleMouseLeave = () => {
+    if (hasStartedSlideshow.current && displayImages.length > 1) {
+      startSlideshow();
+    }
+  };
+
+  const handleManualSelect = (index) => {
+    goToImage(index);
+    if (hasStartedSlideshow.current) {
+      setTimeout(() => {
+        if (timerRef.current) clearInterval(timerRef.current);
+        timerRef.current = setInterval(nextImage, SLIDESHOW_INTERVAL);
+        setIsAutoPlaying(true);
+      }, SLIDESHOW_INTERVAL);
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
 
   if (!service) {
     return (
