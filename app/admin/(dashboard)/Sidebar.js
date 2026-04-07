@@ -81,7 +81,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
         </div>
 
         {/* Desktop Logo */}
-        <div className="hidden lg:block p-6 border-b border-white/10">
+        <div className="hidden lg:block px-6 pt-6 pb-5 border-b border-white/10">
           <h1 className="font-display text-2xl font-bold tracking-wide">
             SLV <span className="italic text-coral-400">Events</span>
           </h1>
