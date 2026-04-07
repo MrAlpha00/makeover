@@ -81,11 +81,11 @@ export default function Sidebar({ isOpen, setIsOpen }) {
         </div>
 
         {/* Desktop Logo */}
-        <div className="hidden lg:block px-6 pt-6 pb-5 border-b border-white/10">
+        <div className="hidden lg:block px-6 pt-5 pb-4 border-b border-white/10">
           <h1 className="font-display text-2xl font-bold tracking-wide">
             SLV <span className="italic text-coral-400">Events</span>
           </h1>
-          <p className="text-white/40 text-xs mt-1 uppercase tracking-widest font-semibold">Admin Panel</p>
+          <p className="text-white/40 text-xs mt-0.5 uppercase tracking-widest font-semibold">Admin Panel</p>
         </div>
 
         {/* Navigation */}
