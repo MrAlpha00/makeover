@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { ArrowRight, Award, Heart, Users, Zap } from 'lucide-react';
 
 export const metadata = {
-  title: 'About SLV Events — Party Decorators in Bangalore',
-  description: 'Learn about SLV Events — Bangalore\'s most-loved party and event decoration company. 5,000+ events, 4.9★ rated, serving all of Bangalore.',
+  title: 'About Party Hub — Party Decorators in Bangalore',
+  description: 'Learn about Party Hub — Bangalore\'s most-loved party and event decoration company. 5,000+ events, 4.9★ rated, serving all of Bangalore.',
 };
 
 const values = [
@@ -30,7 +30,7 @@ export default function AboutPage() {
               Turning moments into <span className="italic text-coral-400">lifelong memories</span>
             </h1>
             <p className="text-white/50 leading-relaxed mb-4">
-              SLV Events was born from a simple belief — every celebration deserves to look extraordinary, regardless of budget. Founded in Bangalore, we've grown from a small balloon decoration venture to one of the city's most trusted event decoration companies.
+              Party Hub was born from a simple belief — every celebration deserves to look extraordinary, regardless of budget. Founded in Bangalore, we've grown from a small balloon decoration venture to one of the city's most trusted event decoration companies.
             </p>
             <p className="text-white/50 leading-relaxed mb-8">
               Today, our team of passionate decorators has set up over 5,000 events across Bangalore — from intimate birthday surprises to large-scale corporate functions. Every event gets our full attention, creativity, and heart.
