@@ -74,9 +74,9 @@ export default function Sidebar({ isOpen, setIsOpen }) {
           </div>
           <button
             onClick={() => setIsOpen(false)}
-            className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+            className="w-10 h-10 rounded-xl bg-dark-800 flex items-center justify-center hover:bg-white/10 transition-colors"
           >
-            <X size={20} />
+            <X size={20} className="text-white" />
           </button>
         </div>
 
