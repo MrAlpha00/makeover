@@ -5,6 +5,6 @@ export default function robots() {
       allow: '/',
       disallow: '/api/',
     },
-    sitemap: 'https://slvevents.in/sitemap.xml',
+    sitemap: 'https://partyhubs.in/sitemap.xml',
   };
 }

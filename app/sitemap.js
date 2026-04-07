@@ -1,7 +1,7 @@
 import { supabaseAdmin } from '@/lib/supabase-admin';
 
 export default async function sitemap() {
-  const baseUrl = 'https://slvevents.in';
+  const baseUrl = 'https://partyhubs.in';
 
   const staticPages = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
