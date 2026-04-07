@@ -141,7 +141,7 @@ function DesignCard({ design }) {
       {/* Image */}
       <div className="relative h-56 overflow-hidden">
         {imageUrl ? (
-          <Image
+          <WatermarkedImage
             src={imageUrl}
             alt={design.title}
             fill
@@ -229,7 +229,7 @@ function DesignListCard({ design }) {
       {/* Image */}
       <div className="relative w-32 h-24 sm:w-40 sm:h-28 flex-shrink-0 overflow-hidden rounded-xl">
         {imageUrl ? (
-          <Image
+          <WatermarkedImage
             src={imageUrl}
             alt={design.title}
             fill

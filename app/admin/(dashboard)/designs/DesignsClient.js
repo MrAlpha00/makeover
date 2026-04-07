@@ -126,7 +126,7 @@ export default function DesignsClient({ initialDesigns, categories, subcategorie
                   <td className="p-4 pl-6">
                     {coverImage ? (
                       <div className="w-16 h-12 rounded-lg relative overflow-hidden bg-dark-800 border border-white/10">
-                        <Image src={coverImage} alt={design.title} fill className="object-cover" />
+                        <WatermarkedImage src={coverImage} alt={design.title} fill className="object-cover" />
                       </div>
                     ) : (
                       <div className="w-16 h-12 rounded-lg bg-dark-800 flex items-center justify-center text-white/30 border border-white/10">

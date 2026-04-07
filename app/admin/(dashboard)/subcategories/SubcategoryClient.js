@@ -255,7 +255,7 @@ export default function SubcategoryClient({ initialSubcategories, categories }) 
                 <td className="p-4">
                   {sub.image_url ? (
                     <div className="w-12 h-12 rounded-lg relative overflow-hidden bg-gray-100 border border-gray-200">
-                      <Image src={sub.image_url} alt={sub.name} fill className="object-cover" />
+                      <WatermarkedImage src={sub.image_url} alt={sub.name} fill className="object-cover" />
                     </div>
                   ) : (
                     <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center text-gray-400 border border-gray-200">

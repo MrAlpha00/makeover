@@ -235,7 +235,7 @@ export default async function HomePage() {
               />
               
               {/* Background Image */}
-              <Image 
+              <WatermarkedImage 
                 src={cat.image_url || cat.image} 
                 alt={cat.name} 
                 fill 
