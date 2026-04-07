@@ -52,7 +52,7 @@ export default function AdminLogin() {
       <div className="max-w-md w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
         <div className="p-8 text-center bg-[#1a1a1a]">
           <h1 className="text-3xl font-display font-bold text-white tracking-wide">
-            SLV <span className="italic text-coral-400">Events</span>
+            Party <span className="italic text-coral-400">Hub</span>
           </h1>
           <p className="text-white/60 text-sm mt-1">Admin Portal</p>
         </div>
@@ -67,7 +67,7 @@ export default function AdminLogin() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-coral-400 focus:ring-2 focus:ring-coral-400/20 outline-none transition-all text-gray-900"
-                placeholder="admin@slvevents.in"
+                placeholder="admin@partyhubs.in"
               />
             </div>
             
