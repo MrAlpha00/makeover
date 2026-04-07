@@ -8,7 +8,7 @@ const customerEmailHtml = (name, service, date, venue, phone) => `
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Booking Confirmed - SLV Events</title>
+  <title>Booking Confirmed - Party Hub</title>
 </head>
 <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; background-color: #f5f5f5;">
   
@@ -36,7 +36,7 @@ const customerEmailHtml = (name, service, date, venue, phone) => `
               
               <!-- Logo -->
               <div style="display: inline-block; background: rgba(255,255,255,0.2); border-radius: 12px; padding: 12px 20px; margin-bottom: 20px;">
-                <span style="color: white; font-size: 24px; font-weight: bold;">SLV Events</span>
+                <span style="color: white; font-size: 24px; font-weight: bold;">Party Hub</span>
               </div>
               
               <h1 style="color: #ffffff; margin: 0; font-size: 32px; font-weight: 700; line-height: 1.2;">
@@ -64,7 +64,7 @@ const customerEmailHtml = (name, service, date, venue, phone) => `
                 We'll Reach You Soon!
               </h2>
               <p style="color: #666666; margin: 0; font-size: 16px; line-height: 1.6;">
-                Our team at SLV Events will contact you within <strong style="color: #f95738;">2 hours</strong> to confirm your booking details and answer any questions.
+                Our team at Party Hub will contact you within <strong style="color: #f95738;">2 hours</strong> to confirm your booking details and answer any questions.
               </p>
             </td>
           </tr>
@@ -153,7 +153,7 @@ const customerEmailHtml = (name, service, date, venue, phone) => `
           <!-- CTA Button -->
           <tr>
             <td style="padding: 0 40px 30px; text-align: center;">
-              <a href="https://wa.me/9663866778?text=Hi%20SLV%20Events!%20I%20just%20submitted%20a%20booking%20for%20${encodeURIComponent(service || 'decoration')}.%20Looking%20forward%20to%20hearing%20from%20you!" 
+              <a href="https://wa.me/6366883984?text=Hi%20SLV%20Events!%20I%20just%20submitted%20a%20booking%20for%20${encodeURIComponent(service || 'decoration')}.%20Looking%20forward%20to%20hearing%20from%20you!" 
                  style="display: inline-block; background: linear-gradient(135deg, #f95738 0%, #ff6b4a 100%); color: white; text-decoration: none; font-size: 16px; font-weight: 600; padding: 16px 40px; border-radius: 50px; box-shadow: 0 8px 24px rgba(249, 87, 56, 0.4);">
                 💬 Chat with Us on WhatsApp
               </a>
@@ -170,7 +170,7 @@ const customerEmailHtml = (name, service, date, venue, phone) => `
                 <tr>
                   <td style="padding: 24px;">
                     <p style="color: #1a1a1a; margin: 0 0 16px; font-size: 15px; font-weight: 600; text-align: center;">
-                      Why Book with SLV Events? ✨
+                      Why Book with Party Hub? ✨
                     </p>
                     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
                       <tr>
@@ -205,7 +205,7 @@ const customerEmailHtml = (name, service, date, venue, phone) => `
                     <p style="color: white; margin: 0 0 16px; font-size: 16px; font-weight: 600;">
                       Need Immediate Assistance?
                     </p>
-                    <a href="tel:+919663866778" style="display: inline-block; color: #f95738; text-decoration: none; font-size: 20px; font-weight: 700;">
+                    <a href="tel:+916366883984" style="display: inline-block; color: #f95738; text-decoration: none; font-size: 20px; font-weight: 700;">
                       📞 +91 96638 66778
                     </a>
                     <p style="color: rgba(255,255,255,0.5); margin: 12px 0 0; font-size: 13px;">
@@ -221,7 +221,7 @@ const customerEmailHtml = (name, service, date, venue, phone) => `
           <tr>
             <td style="background-color: #f9f9f9; padding: 30px 40px; text-align: center; border-top: 1px solid #eeeeee;">
               <p style="color: #888888; margin: 0 0 8px; font-size: 14px;">
-                Thank you for trusting <strong style="color: #f95738;">SLV Events</strong>
+                Thank you for trusting <strong style="color: #f95738;">Party Hub</strong>
               </p>
               <p style="color: #aaaaaa; margin: 0; font-size: 12px;">
                 Bangalore's Premier Party Decorators
@@ -246,7 +246,7 @@ const customerEmailHtml = (name, service, date, venue, phone) => `
               <a href="https://facebook.com/slvevents" style="display: inline-block; margin: 0 8px; text-decoration: none;">
                 <span style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #f9f9f9; border-radius: 50%; font-size: 18px;">📘</span>
               </a>
-              <a href="https://wa.me/9663866778" style="display: inline-block; margin: 0 8px; text-decoration: none;">
+              <a href="https://wa.me/6366883984" style="display: inline-block; margin: 0 8px; text-decoration: none;">
                 <span style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #f9f9f9; border-radius: 50%; font-size: 18px;">💬</span>
               </a>
             </td>
@@ -255,7 +255,7 @@ const customerEmailHtml = (name, service, date, venue, phone) => `
         
         <!-- Copyright -->
         <p style="color: #bbbbbb; font-size: 12px; margin: 0; padding-top: 10px;">
-          © 2026 SLV Events. All rights reserved. | Bangalore, India
+          © 2026 Party Hub. All rights reserved. | Bangalore, India
         </p>
         
       </td>
@@ -270,7 +270,7 @@ const ownerEmailHtml = (name, phone, email, service, occasion, date, venue, gues
 <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background: #f9f9f9; padding: 32px; border-radius: 12px;">
   <div style="background: linear-gradient(135deg, #f95738 0%, #ff6b4a 100%); color: white; padding: 24px; border-radius: 12px; margin-bottom: 24px; text-align: center;">
     <h2 style="margin: 0; font-size: 24px; font-weight: 700;">🎉 New Booking Enquiry!</h2>
-    <p style="margin: 8px 0 0; opacity: 0.9; font-size: 14px;">Via slvevents.in</p>
+    <p style="margin: 8px 0 0; opacity: 0.9; font-size: 14px;">Via partyhubs.in</p>
   </div>
 
   <table style="width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
@@ -334,7 +334,7 @@ const ownerEmailHtml = (name, phone, email, service, occasion, date, venue, gues
   </div>
 
   <p style="color: #bbb; font-size: 12px; text-align: center; margin-top: 24px;">
-    SLV Events · slvevents.in · Bangalore
+    Party Hub · partyhubs.in · Bangalore
   </p>
 </div>
 `;
@@ -346,9 +346,9 @@ export async function POST(req) {
 
     const ownerEmail = process.env.OWNER_EMAIL || 'sm4686771@gmail.com';
 
-    // Send email to the client (SLV Events owner)
+    // Send email to the client (Party Hub owner)
     const { error: ownerError } = await resend.emails.send({
-      from: 'SLV Events <onboarding@resend.dev>',
+      from: 'Party Hub <onboarding@resend.dev>',
       to: ownerEmail,
       subject: `🎉 New Booking — ${name} | ${service || 'Custom'} | ${date}`,
       html: ownerEmailHtml(name, phone, email, service, occasion, date, venue, guests, message),
@@ -361,7 +361,7 @@ export async function POST(req) {
     // Send confirmation email to customer (if email provided)
     if (email) {
       const { error: customerError } = await resend.emails.send({
-        from: 'SLV Events <onboarding@resend.dev>',
+        from: 'Party Hub <onboarding@resend.dev>',
         to: email,
         subject: `✅ Booking Confirmed! We'll reach you soon, ${name}!`,
         html: customerEmailHtml(name, service, date, venue, phone),
