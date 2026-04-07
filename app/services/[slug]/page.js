@@ -9,10 +9,10 @@ export async function generateMetadata({ params }) {
   const supabase = createServerSupabaseClient();
   const { data: service } = await supabase.from('designs').select('title, short_desc').eq('slug', params.slug).single();
   
-  if (!service) return { title: 'Not Found | SLV Events' };
+  if (!service) return { title: 'Not Found | Party Hub' };
   
   return {
-    title: `${service.title} | SLV Events Bangalore`,
+    title: `${service.title} | Party Hub Bangalore`,
     description: service.short_desc,
   };
 }

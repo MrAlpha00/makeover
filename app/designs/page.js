@@ -6,7 +6,7 @@ import DesignsClient from './DesignsClient';
 import { Suspense } from 'react';
 
 export const metadata = {
-  title: 'Explore Designs | SLV Events Bangalore',
+  title: 'Explore Designs | Party Hub Bangalore',
   description: 'Browse our complete gallery of event decoration designs. View photos, prices, and book your favorite setup for birthday, anniversary, and more.',
 };
 

@@ -10,10 +10,10 @@ import { notFound } from 'next/navigation';
 export async function generateMetadata({ params }) {
   const supabase = createServerSupabaseClient();
   const { data: category } = await supabase.from('categories').select('name, description').eq('slug', params.category).single();
-  if (!category) return { title: 'Not Found | SLV Events' };
+  if (!category) return { title: 'Not Found | Party Hub' };
   
   return {
-    title: `${category.name} Decorations | SLV Events Bangalore`,
+    title: `${category.name} Decorations | Party Hub Bangalore`,
     description: category.description,
   };
 }
