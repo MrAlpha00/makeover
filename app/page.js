@@ -285,7 +285,7 @@ export default async function HomePage() {
       <section className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
           <div className="order-2 md:order-1">
-            <p className="text-coral-400 text-sm font-medium tracking-wider uppercase mb-2">Why SLV Events</p>
+            <p className="text-coral-400 text-sm font-medium tracking-wider uppercase mb-2">Why Party Hub</p>
             <h2 className="section-title mb-4">We go the <span className="italic text-coral-400">extra mile</span></h2>
             <p className="section-sub mb-8 sm:mb-10">
               We've decorated over 5,000 events in Bangalore. Every booking comes with our promise of quality, punctuality, and a setup that makes you go "wow."
@@ -314,7 +314,7 @@ export default async function HomePage() {
           >
             <Image
               src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80"
-              alt="SLV Events team decorating in Bangalore"
+              alt="Party Hub team decorating in Bangalore"
               fill
               className="object-cover"
             />
