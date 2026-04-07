@@ -135,7 +135,7 @@ export default async function HomePage() {
                 <Link href="/designs" className="btn-outline text-base px-6 sm:px-7 py-3.5 text-center">
                   Explore Designs
                 </Link>
-                <a href="tel:+919663866778" className="btn-outline text-base px-6 sm:px-7 py-3.5 text-center">
+                <a href="tel:+916366883984" className="btn-outline text-base px-6 sm:px-7 py-3.5 text-center">
                   <Phone size={15} className="inline mr-1" /> Call
                 </a>
               </div>
@@ -398,7 +398,7 @@ export default async function HomePage() {
                 Book Now <ArrowRight size={16} />
               </Link>
               <a
-                href="https://wa.me/9663866778?text=Hi%20SLV%20Events!%20I%20want%20to%20book%20a%20decoration."
+                href="https://wa.me/6366883984?text=Hi%20Party%20Hub!%20I%20want%20to%20book%20a%20decoration."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium px-6 sm:px-8 py-3 sm:py-3.5 rounded-full inline-flex items-center justify-center gap-2 text-sm sm:text-base bg-white/20 text-white"
