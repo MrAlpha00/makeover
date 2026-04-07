@@ -1,5 +1,6 @@
 import Sidebar from './Sidebar';
 import AuthGuard from './AuthGuard';
+import AdminShell from './AdminShell';
 
 export const metadata = {
   title: 'Admin Dashboard | SLV Events',
@@ -8,12 +9,9 @@ export const metadata = {
 export default function AdminLayout({ children }) {
   return (
     <AuthGuard>
-      <div className="min-h-screen bg-dark-800 admin-panel">
-        <Sidebar />
-        <main className="lg:ml-64 p-6">
-          {children}
-        </main>
-      </div>
+      <AdminShell>
+        {children}
+      </AdminShell>
     </AuthGuard>
   );
 }
