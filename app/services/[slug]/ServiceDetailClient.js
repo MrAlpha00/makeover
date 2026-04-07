@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import Image from 'next/image';
+import WatermarkedImage from '@/components/WatermarkedImage';
 import Link from 'next/link';
 import { ArrowLeft, Star, Check, ArrowRight } from 'lucide-react';
 import ServiceCard from '../../../components/ServiceCard';
@@ -49,7 +49,7 @@ export default function ServiceDetailClient({ service, related, alsoBooked }) {
         <div className="lg:sticky lg:top-24">
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
             {gallery.length > 0 ? (
-              <Image
+              <WatermarkedImage
                 src={gallery[activeImage]}
                 alt={service.title}
                 fill
@@ -78,7 +78,7 @@ export default function ServiceDetailClient({ service, related, alsoBooked }) {
                     activeImage === i ? 'border-coral-500' : 'border-white/5 opacity-50 hover:opacity-100'
                   }`}
                 >
-                  <Image src={img} alt="" fill className="object-cover" />
+                  <WatermarkedImage src={img} alt="" fill className="object-cover" />
                 </button>
               ))}
             </div>

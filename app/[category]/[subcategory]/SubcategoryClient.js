@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import WatermarkedImage from '@/components/WatermarkedImage';
 import { Star, ChevronRight, ChevronDown } from 'lucide-react';
 
 export default function SubcategoryClient({ category, subcategory, designs }) {
@@ -117,7 +117,7 @@ export default function SubcategoryClient({ category, subcategory, designs }) {
                     )}
                     
                     {service.images?.[0] ? (
-                      <Image 
+                      <WatermarkedImage 
                         src={service.images[0]} 
                         alt={service.title} 
                         fill 
