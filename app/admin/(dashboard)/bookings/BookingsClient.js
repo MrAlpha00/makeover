@@ -80,7 +80,7 @@ export default function BookingsClient({ initialBookings }) {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', `slv_bookings_${new Date().toISOString().split('T')[0]}.csv`);
+    link.setAttribute('download', `partyhub_bookings_${new Date().toISOString().split('T')[0]}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
