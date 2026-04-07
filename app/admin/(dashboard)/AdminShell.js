@@ -10,7 +10,7 @@ export default function AdminShell({ children }) {
     <div className="min-h-screen bg-dark-800 flex flex-row admin-panel">
       <MobileMenuButton isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
       <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
-      <main className="flex-1 lg:ml-72 p-4 sm:p-5 lg:p-6 pt-14 sm:pt-5 lg:pt-6">
+      <main className="flex-1 lg:ml-72 p-4 sm:p-5 lg:px-6 pt-14 sm:pt-5 lg:pt-0">
         {children}
       </main>
     </div>
