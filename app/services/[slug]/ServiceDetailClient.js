@@ -102,8 +102,6 @@ export default function ServiceDetailClient({ service, related, alsoBooked }) {
   }
 
   const toggleAddOn = (id) => {
-
-  const toggleAddOn = (id) => {
     setSelectedAddOns((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
