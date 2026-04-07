@@ -68,7 +68,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
         <div className="lg:hidden flex items-center justify-between p-4 border-b border-white/10">
           <div>
             <h1 className="font-display text-xl font-bold tracking-wide">
-              SLV <span className="italic text-coral-400">Events</span>
+              Party <span className="italic text-coral-400">Hub</span>
             </h1>
             <p className="text-white/40 text-xs uppercase tracking-widest font-semibold">Admin Panel</p>
           </div>

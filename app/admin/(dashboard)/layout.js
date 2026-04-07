@@ -2,7 +2,7 @@ import AuthGuard from './AuthGuard';
 import AdminShell from './AdminShell';
 
 export const metadata = {
-  title: 'Admin Dashboard | SLV Events',
+  title: 'Admin Dashboard | Party Hub',
 };
 
 export default function AdminLayout({ children }) {
