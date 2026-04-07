@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import WatermarkedImage from '@/components/WatermarkedImage';
 import { Search, Star, ArrowRight } from 'lucide-react';
 
 export default function DesignsClient({ designs, categories }) {

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import WatermarkedImage from '../components/WatermarkedImage';
 import { ArrowRight, Star, CheckCircle, Phone, Sparkles, Clock, Shield } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';

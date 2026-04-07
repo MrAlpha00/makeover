@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { supabase } from '@/lib/supabaseClient';
 import { Plus, Edit2, Trash2, ArrowUp, ArrowDown, Image as ImageIcon, Loader2 } from 'lucide-react';
 import Image from 'next/image';
+import WatermarkedImage from '@/components/WatermarkedImage';
 import imageCompression from 'browser-image-compression';
 
 export default function SubcategoryClient({ initialSubcategories, categories }) {
