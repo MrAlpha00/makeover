@@ -110,7 +110,7 @@ export default function ServiceDetailClient({ service, related, alsoBooked }) {
     .reduce((acc, a) => acc + (a.price || 0), 0);
 
   const whatsappMsg = encodeURIComponent(
-    `Hi SLV Events! I'd like to book "${service.title}" (₹${service.price.toLocaleString('en-IN')}) for my event in Bangalore. Can you confirm availability?`
+    `Hi Party Hub! I'd like to book "${service.title}" (₹${service.price.toLocaleString('en-IN')}) for my event in Bangalore. Can you confirm availability?`
   );
 
   return (
