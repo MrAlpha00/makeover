@@ -1,4 +1,3 @@
-import Sidebar from './Sidebar';
 import AuthGuard from './AuthGuard';
 import AdminShell from './AdminShell';
 

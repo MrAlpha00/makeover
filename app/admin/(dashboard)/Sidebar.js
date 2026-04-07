@@ -111,12 +111,13 @@ export default function Sidebar({ isOpen, setIsOpen }) {
 }
 
 export function MobileMenuButton({ isOpen, setIsOpen }) {
+  if (isOpen) return null;
   return (
     <button
       onClick={() => setIsOpen(true)}
-      className="lg:hidden fixed top-4 left-4 z-30 w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+      className="lg:hidden fixed top-3 left-3 z-50 w-11 h-11 rounded-xl bg-dark-700/90 backdrop-blur-md border border-white/10 flex items-center justify-center hover:bg-dark-600 transition-colors shadow-lg"
     >
-      <Menu size={22} className="text-white" />
+      <Menu size={20} className="text-white" />
     </button>
   );
 }
