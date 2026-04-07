@@ -200,27 +200,27 @@ export default function SubcategoryClient({ initialSubcategories, categories }) 
 
   return (
     <div>
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Subcategories</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage themes within categories</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-white">Subcategories</h1>
+          <p className="text-white/50 text-sm mt-1">Manage themes within categories</p>
         </div>
-        <div className="flex items-center gap-3 w-full sm:w-auto">
+        <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
           <select 
             value={filterCategory}
             onChange={(e) => setFilterCategory(e.target.value)}
-            className="px-3 py-2 border border-gray-200 rounded-xl text-sm focus:border-coral-400 focus:ring-1 focus:ring-coral-400 outline-none w-full sm:w-auto"
+            className="px-3 py-2 bg-dark-800 border border-white/10 rounded-xl text-sm text-white outline-none focus:border-coral-500 transition-colors w-1/2 sm:w-auto"
           >
-            <option value="All">All Categories</option>
+            <option value="All" className="bg-dark-800">All</option>
             {categories.map(c => (
-              <option key={c.id} value={c.id}>{c.name}</option>
+              <option key={c.id} value={c.id} className="bg-dark-800">{c.name}</option>
             ))}
           </select>
           <button 
             onClick={() => openModal()}
-            className="btn bg-coral-500 hover:bg-coral-600 text-white font-medium py-2 px-4 rounded-xl shadow-sm transition-all flex items-center gap-2 whitespace-nowrap"
+            className="btn bg-coral-500 hover:bg-coral-600 text-white font-medium py-2 px-3 sm:px-4 rounded-xl shadow-sm transition-all flex items-center gap-2 whitespace-nowrap"
           >
-            <Plus size={16} /> Add Subcategory
+            <Plus size={16} /> <span className="hidden sm:inline">Add</span>
           </button>
         </div>
       </div>
