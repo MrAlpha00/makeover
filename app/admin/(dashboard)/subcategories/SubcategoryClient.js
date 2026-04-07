@@ -231,66 +231,68 @@ export default function SubcategoryClient({ initialSubcategories, categories }) 
         </div>
       )}
 
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-        <table className="w-full text-left border-collapse">
-          <thead>
-            <tr className="bg-gray-50 text-gray-500 text-sm font-medium border-b border-gray-100">
-              <th className="p-4 pl-6 w-20">Order</th>
-              <th className="p-4 w-24">Image</th>
-              <th className="p-4">Name & Slug</th>
-              <th className="p-4">Parent Category</th>
-              <th className="p-4 pr-6 text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {displayedSubs.map((sub, index) => (
-              <tr key={sub.id} className="border-b border-gray-50 hover:bg-gray-50 transition-colors text-sm">
-                <td className="p-4 pl-6">
-                  <div className="flex flex-col gap-1 items-center justify-center">
-                    <button disabled={index === 0} onClick={() => handleReorder(sub.id, 'up')} className="text-gray-400 hover:text-gray-700 disabled:opacity-30"><ArrowUp size={14}/></button>
-                    <span className="font-mono text-xs">{sub.sort_order}</span>
-                    <button disabled={index === displayedSubs.length - 1} onClick={() => handleReorder(sub.id, 'down')} className="text-gray-400 hover:text-gray-700 disabled:opacity-30"><ArrowDown size={14}/></button>
-                  </div>
-                </td>
-                <td className="p-4">
-                  {sub.image_url ? (
-                    <div className="w-12 h-12 rounded-lg relative overflow-hidden bg-gray-100 border border-gray-200">
-                      <WatermarkedImage src={sub.image_url} alt={sub.name} fill className="object-cover" />
-                    </div>
-                  ) : (
-                    <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center text-gray-400 border border-gray-200">
-                      <ImageIcon size={20} />
-                    </div>
-                  )}
-                </td>
-                <td className="p-4">
-                  <div className="font-bold text-gray-900">{sub.name}</div>
-                  <div className="text-gray-400 text-xs font-mono mt-0.5">/{sub.slug}</div>
-                </td>
-                <td className="p-4 text-gray-600">
-                  <span className="bg-gray-100 px-2.5 py-1 rounded-md text-xs font-medium">
-                    {sub.categories?.name || 'Unknown'}
-                  </span>
-                </td>
-                <td className="p-4 pr-6">
-                  <div className="flex items-center justify-end gap-2">
-                    <button onClick={() => openModal(sub)} className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-200 hover:text-gray-900 transition-colors">
-                      <Edit2 size={15} />
-                    </button>
-                    <button onClick={() => handleDelete(sub.id)} className="w-8 h-8 rounded-lg flex items-center justify-center text-red-400 hover:bg-red-50 hover:text-red-600 transition-colors">
-                      <Trash2 size={15} />
-                    </button>
-                  </div>
-                </td>
+      <div className="bg-dark-700 rounded-xl border border-white/5 overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-white/5 text-white/50 text-xs sm:text-sm font-medium border-b border-white/5">
+                <th className="p-3 sm:p-4 pl-4 sm:pl-6 w-16 sm:w-20">Order</th>
+                <th className="p-3 sm:p-4 w-14 sm:w-16">Img</th>
+                <th className="p-3 sm:p-4">Name & Slug</th>
+                <th className="p-3 sm:p-4 hidden md:table-cell">Category</th>
+                <th className="p-3 sm:p-4 pr-4 sm:pr-6 text-right">Actions</th>
               </tr>
-            ))}
-            {displayedSubs.length === 0 && (
-              <tr>
-                <td colSpan="5" className="p-8 text-center text-gray-400">No subcategories found.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {displayedSubs.map((sub, index) => (
+                <tr key={sub.id} className="border-b border-white/5 hover:bg-white/5 transition-colors text-sm">
+                  <td className="p-3 sm:p-4 pl-4 sm:pl-6">
+                    <div className="flex flex-col gap-0.5 items-center justify-center">
+                      <button disabled={index === 0} onClick={() => handleReorder(sub.id, 'up')} className="text-white/40 hover:text-white disabled:opacity-30"><ArrowUp size={14}/></button>
+                      <span className="font-mono text-xs text-white/50">{sub.sort_order}</span>
+                      <button disabled={index === displayedSubs.length - 1} onClick={() => handleReorder(sub.id, 'down')} className="text-white/40 hover:text-white disabled:opacity-30"><ArrowDown size={14}/></button>
+                    </div>
+                  </td>
+                  <td className="p-3 sm:p-4">
+                    {sub.image_url ? (
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg relative overflow-hidden">
+                        <WatermarkedImage src={sub.image_url} alt={sub.name} fill className="object-cover" />
+                      </div>
+                    ) : (
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-white/5 flex items-center justify-center text-white/30">
+                        <ImageIcon size={18} className="sm:w-5 sm:h-5" />
+                      </div>
+                    )}
+                  </td>
+                  <td className="p-3 sm:p-4">
+                    <div className="font-bold text-white truncate max-w-[80px] sm:max-w-[150px]">{sub.name}</div>
+                    <div className="text-white/40 text-xs font-mono mt-0.5 truncate max-w-[80px] sm:max-w-[150px]">/{sub.slug}</div>
+                  </td>
+                  <td className="p-3 sm:p-4 text-white/60 hidden md:table-cell">
+                    <span className="bg-white/5 px-2.5 py-1 rounded-md text-xs font-medium border border-white/10">
+                      {sub.categories?.name || 'Unknown'}
+                    </span>
+                  </td>
+                  <td className="p-3 sm:p-4 pr-4 sm:pr-6">
+                    <div className="flex items-center justify-end gap-1 sm:gap-2">
+                      <button onClick={() => openModal(sub)} className="w-8 h-8 rounded-lg flex items-center justify-center text-white/40 hover:bg-white/10 hover:text-white transition-colors">
+                        <Edit2 size={15} />
+                      </button>
+                      <button onClick={() => handleDelete(sub.id)} className="w-8 h-8 rounded-lg flex items-center justify-center text-red-400/60 hover:bg-red-500/10 hover:text-red-400 transition-colors">
+                        <Trash2 size={15} />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+              {displayedSubs.length === 0 && (
+                <tr>
+                  <td colSpan="5" className="p-8 text-center text-white/30">No subcategories found.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {isModalOpen && (
