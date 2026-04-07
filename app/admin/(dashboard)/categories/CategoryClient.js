@@ -198,14 +198,14 @@ export default function CategoryClient({ initialCategories }) {
     <div>
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Categories</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage main event categories</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-white">Categories</h1>
+          <p className="text-white/50 text-sm mt-1">Manage main event categories</p>
         </div>
         <button 
           onClick={() => openModal()}
           className="btn bg-coral-500 hover:bg-coral-600 text-white font-medium py-2 px-4 rounded-xl shadow-sm transition-all flex items-center gap-2"
         >
-          <Plus size={16} /> Add Category
+          <Plus size={16} /> <span className="hidden sm:inline">Add Category</span>
         </button>
       </div>
 
