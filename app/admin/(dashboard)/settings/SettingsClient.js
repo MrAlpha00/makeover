@@ -59,17 +59,17 @@ export default function SettingsClient({ initialSettings }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Platform Settings</h1>
-          <p className="text-gray-500 text-sm mt-1">Manage global business contact information.</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-white">Platform Settings</h1>
+          <p className="text-white/50 text-sm mt-1">Manage global business contact information.</p>
         </div>
         <button 
           type="submit" 
           disabled={isSubmitting}
-          className="btn bg-coral-500 hover:bg-coral-600 text-white font-medium py-2 px-6 rounded-xl shadow-sm transition-all flex items-center gap-2 disabled:opacity-70"
+          className="btn bg-coral-500 hover:bg-coral-600 text-white font-medium py-2 px-6 rounded-xl shadow-sm transition-all flex items-center gap-2 disabled:opacity-70 w-full sm:w-auto"
         >
-          {isSubmitting ? <><Loader2 size={16} className="animate-spin" /> Saving...</> : <><Save size={16} /> Save Changes</>}
+          {isSubmitting ? <><Loader2 size={16} className="animate-spin" /> Saving...</> : <><Save size={16} /> Save</>}
         </button>
       </div>
 
@@ -79,55 +79,55 @@ export default function SettingsClient({ initialSettings }) {
         </div>
       )}
 
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-8">
+      <div className="bg-dark-700 p-4 sm:p-6 rounded-xl border border-white/5 space-y-6 sm:space-y-8">
         
         {/* Contact Info */}
         <section>
-          <div className="flex items-center gap-2 text-gray-900 font-bold mb-4 border-b border-gray-100 pb-2">
-            <Phone size={18} className="text-coral-500" /> WhatsApp & Calling
+          <div className="flex items-center gap-2 text-white font-bold mb-4 border-b border-white/10 pb-2">
+            <Phone size={18} className="text-coral-400" /> WhatsApp & Calling
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">WhatsApp Number</label>
-              <input type="text" required value={formData.whatsapp_number} onChange={(e) => setFormData({...formData, whatsapp_number: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-coral-400 focus:ring-1 focus:ring-coral-400 outline-none" placeholder="+919876543210" />
+              <label className="block text-sm font-medium text-white/80 mb-1">WhatsApp Number</label>
+              <input type="text" required value={formData.whatsapp_number} onChange={(e) => setFormData({...formData, whatsapp_number: e.target.value})} className="w-full px-3 py-2 rounded-lg bg-dark-800 border border-white/10 text-white focus:border-coral-500 outline-none transition-colors" placeholder="+919876543210" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Primary Contact Phone</label>
-              <input type="text" required value={formData.contact_phone} onChange={(e) => setFormData({...formData, contact_phone: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-coral-400 focus:ring-1 focus:ring-coral-400 outline-none" placeholder="+919876543210" />
+              <label className="block text-sm font-medium text-white/80 mb-1">Primary Contact Phone</label>
+              <input type="text" required value={formData.contact_phone} onChange={(e) => setFormData({...formData, contact_phone: e.target.value})} className="w-full px-3 py-2 rounded-lg bg-dark-800 border border-white/10 text-white focus:border-coral-500 outline-none transition-colors" placeholder="+919876543210" />
             </div>
           </div>
         </section>
 
         {/* Location & Time */}
         <section>
-          <div className="flex items-center gap-2 text-gray-900 font-bold mb-4 border-b border-gray-100 pb-2">
-            <MapPin size={18} className="text-coral-500" /> Location Details
+          <div className="flex items-center gap-2 text-white font-bold mb-4 border-b border-white/10 pb-2">
+            <MapPin size={18} className="text-coral-400" /> Location Details
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-1">Address</label>
-              <input type="text" required value={formData.address} onChange={(e) => setFormData({...formData, address: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-coral-400 focus:ring-1 focus:ring-coral-400 outline-none" placeholder="123 Main St, Bengaluru" />
+              <label className="block text-sm font-medium text-white/80 mb-1 flex items-center gap-1">Address</label>
+              <input type="text" required value={formData.address} onChange={(e) => setFormData({...formData, address: e.target.value})} className="w-full px-3 py-2 rounded-lg bg-dark-800 border border-white/10 text-white focus:border-coral-500 outline-none transition-colors" placeholder="123 Main St, Bengaluru" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-1"><Clock size={14}/> Working Hours</label>
-              <input type="text" required value={formData.working_hours} onChange={(e) => setFormData({...formData, working_hours: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-coral-400 focus:ring-1 focus:ring-coral-400 outline-none" placeholder="Mon-Sun 9AM - 9PM" />
+              <label className="block text-sm font-medium text-white/80 mb-1 flex items-center gap-1"><Clock size={14}/> Working Hours</label>
+              <input type="text" required value={formData.working_hours} onChange={(e) => setFormData({...formData, working_hours: e.target.value})} className="w-full px-3 py-2 rounded-lg bg-dark-800 border border-white/10 text-white focus:border-coral-500 outline-none transition-colors" placeholder="Mon-Sun 9AM - 9PM" />
             </div>
           </div>
         </section>
 
         {/* Social */}
         <section>
-          <div className="flex items-center gap-2 text-gray-900 font-bold mb-4 border-b border-gray-100 pb-2">
-            <Share2 size={18} className="text-coral-500" /> Social Links
+          <div className="flex items-center gap-2 text-white font-bold mb-4 border-b border-white/10 pb-2">
+            <Share2 size={18} className="text-coral-400" /> Social Links
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Instagram URL</label>
-              <input type="url" value={formData.instagram_url} onChange={(e) => setFormData({...formData, instagram_url: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-coral-400 focus:ring-1 focus:ring-coral-400 outline-none" placeholder="https://instagram.com/..." />
+              <label className="block text-sm font-medium text-white/80 mb-1">Instagram URL</label>
+              <input type="url" value={formData.instagram_url} onChange={(e) => setFormData({...formData, instagram_url: e.target.value})} className="w-full px-3 py-2 rounded-lg bg-dark-800 border border-white/10 text-white focus:border-coral-500 outline-none transition-colors" placeholder="https://instagram.com/..." />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Facebook URL</label>
-              <input type="url" value={formData.facebook_url} onChange={(e) => setFormData({...formData, facebook_url: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-coral-400 focus:ring-1 focus:ring-coral-400 outline-none" placeholder="https://facebook.com/..." />
+              <label className="block text-sm font-medium text-white/80 mb-1">Facebook URL</label>
+              <input type="url" value={formData.facebook_url} onChange={(e) => setFormData({...formData, facebook_url: e.target.value})} className="w-full px-3 py-2 rounded-lg bg-dark-800 border border-white/10 text-white focus:border-coral-500 outline-none transition-colors" placeholder="https://facebook.com/..." />
             </div>
           </div>
         </section>
