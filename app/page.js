@@ -19,7 +19,7 @@ const testimonials = [
   {
     name: 'Priya S.',
     occasion: 'Birthday Decoration',
-    text: "SLV Events transformed our living room overnight. The balloon setup was breathtaking and my daughter was in tears of joy. 10/10 would book again!",
+    text: "Party Hub transformed our living room overnight. The balloon setup was breathtaking and my daughter was in tears of joy. 10/10 would book again!",
     rating: 5,
     avatar: 'P',
   },
@@ -125,7 +125,7 @@ export default async function HomePage() {
               </h1>
 
               <p className="text-base sm:text-lg leading-relaxed mb-8 max-w-lg animate-fade-up stagger-3 text-white/70">
-                From intimate balloon surprises to grand themed setups — SLV Events turns every occasion into a memory worth keeping.
+                From intimate balloon surprises to grand themed setups — Party Hub turns every occasion into a memory worth keeping.
               </p>
 
               <div className="flex flex-col xs:flex-row flex-wrap gap-3 animate-fade-up stagger-4">
