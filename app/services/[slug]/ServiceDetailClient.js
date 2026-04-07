@@ -125,33 +125,91 @@ export default function ServiceDetailClient({ service, related, alsoBooked }) {
       <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
         {/* ── LEFT: Gallery ── */}
         <div className="lg:sticky lg:top-24">
-          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/5">
-            {gallery.length > 0 ? (
-              <WatermarkedImage
-                src={gallery[activeImage]}
-                alt={service.title}
-                fill
-                className="object-cover"
-                priority
-              />
+          <div 
+            ref={slideshowRef}
+            className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/5"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            {displayImages.length > 0 ? (
+              <>
+                {/* Current Image with fade */}
+                <div className={`absolute inset-0 transition-opacity duration-500 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
+                  <WatermarkedImage
+                    src={displayImages[activeImage]}
+                    alt={service.title}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+                {/* Fading out image */}
+                {fadingImage !== null && (
+                  <div className="absolute inset-0 opacity-0 transition-opacity duration-500">
+                    <WatermarkedImage
+                      src={displayImages[fadingImage]}
+                      alt={service.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+              </>
             ) : (
               <div className="absolute inset-0 flex items-center justify-center bg-dark-800">
                 <span className="text-white/20 text-5xl sm:text-6xl">🎨</span>
               </div>
             )}
+            
+            {/* Discount Badge */}
             {service.discount > 0 && (
-              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-coral-500 text-white text-xs sm:text-sm font-semibold px-2.5 sm:px-3 py-1 sm:py-1 rounded-full">
+              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-coral-500 text-white text-xs sm:text-sm font-semibold px-2.5 sm:px-3 py-1 sm:py-1 rounded-full z-10">
                 {service.discount}% OFF
               </div>
             )}
+
+            {/* Slideshow Controls & Indicators */}
+            {displayImages.length > 1 && (
+              <>
+                {/* Play/Pause Button */}
+                <button
+                  onClick={() => isAutoPlaying ? handleMouseEnter() : handleMouseLeave()}
+                  className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center hover:bg-black/70 transition-colors z-10"
+                  title={isAutoPlaying ? 'Pause slideshow' : 'Resume slideshow'}
+                >
+                  {isAutoPlaying ? (
+                    <Pause size={14} className="text-white sm:w-4 sm:h-4" />
+                  ) : (
+                    <Play size={14} className="text-white sm:w-4 sm:h-4" />
+                  )}
+                </button>
+
+                {/* Dots Indicator */}
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 sm:bottom-4 flex gap-1.5 z-10">
+                  {displayImages.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => handleManualSelect(i)}
+                      className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all ${
+                        activeImage === i 
+                          ? 'bg-white w-6 sm:w-8' 
+                          : 'bg-white/40 hover:bg-white/60'
+                      }`}
+                      title={`View image ${i + 1}`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
           </div>
+
           {/* Thumbnails */}
-          {gallery.length > 1 && (
+          {displayImages.length > 1 && (
             <div className="flex gap-2 sm:gap-3 mt-2 sm:mt-3 overflow-x-auto pb-2 scrollbar-hide">
-              {gallery.map((img, i) => (
+              {displayImages.map((img, i) => (
                 <button
                   key={i}
-                  onClick={() => setActiveImage(i)}
+                  onClick={() => handleManualSelect(i)}
                   className={`relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-lg sm:rounded-xl overflow-hidden border-2 transition-all ${
                     activeImage === i ? 'border-coral-500' : 'border-white/5 opacity-50 hover:opacity-100'
                   }`}
