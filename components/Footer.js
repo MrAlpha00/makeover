@@ -19,10 +19,10 @@ export default function Footer() {
                 className="w-8 h-8 rounded-lg flex items-center justify-center"
                 style={{ background: 'var(--coral)' }}
               >
-                <span className="text-white font-display font-bold text-sm">S</span>
+                <span className="text-white font-display font-bold text-sm">P</span>
               </div>
               <span className="font-display font-semibold text-lg" style={{ color: 'var(--text-primary)' }}>
-                SLV <span style={{ color: 'var(--coral)' }}>Events</span>
+                Party <span style={{ color: 'var(--coral)' }}>Hub</span>
               </span>
             </div>
             <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>
@@ -119,22 +119,42 @@ export default function Footer() {
               </li>
               <li>
                 <a 
-                  href="tel:+919663866778" 
+                  href="tel:+916366883984" 
                   className="flex items-center gap-2.5 text-sm transition-colors hover:text-coral-400"
                   style={{ color: 'var(--text-muted)' }}
                 >
                   <Phone size={14} className="flex-shrink-0" style={{ color: 'var(--coral)' }} />
-                  +91-96638 66778
+                  +91-63668 83984
                 </a>
               </li>
               <li>
                 <a 
-                  href="mailto:hello@slvevents.in" 
+                  href="tel:+919986314095" 
+                  className="flex items-center gap-2.5 text-sm transition-colors hover:text-coral-400"
+                  style={{ color: 'var(--text-muted)' }}
+                >
+                  <Phone size={14} className="flex-shrink-0" style={{ color: 'var(--coral)' }} />
+                  +91-99863 14095
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="tel:+917204937616" 
+                  className="flex items-center gap-2.5 text-sm transition-colors hover:text-coral-400"
+                  style={{ color: 'var(--text-muted)' }}
+                >
+                  <Phone size={14} className="flex-shrink-0" style={{ color: 'var(--coral)' }} />
+                  +91-72049 37616
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="mailto:hello@partyhubs.in" 
                   className="flex items-center gap-2.5 text-sm transition-colors hover:text-coral-400"
                   style={{ color: 'var(--text-muted)' }}
                 >
                   <Mail size={14} className="flex-shrink-0" style={{ color: 'var(--coral)' }} />
-                  hello@slvevents.in
+                  hello@partyhubs.in
                 </a>
               </li>
             </ul>
@@ -157,7 +177,7 @@ export default function Footer() {
           className="border-t pt-6 flex flex-col sm:flex-row justify-between items-center gap-3"
           style={{ borderColor: 'var(--border-secondary)' }}
         >
-          <p className="text-xs" style={{ color: 'var(--text-muted)', opacity: 0.5 }}>© 2025 SLV Events. All rights reserved.</p>
+          <p className="text-xs" style={{ color: 'var(--text-muted)', opacity: 0.5 }}>© 2025 Party Hub. All rights reserved.</p>
           <p className="text-xs" style={{ color: 'var(--text-muted)', opacity: 0.5 }}>Made with ♥ in Bangalore</p>
         </div>
       </div>
