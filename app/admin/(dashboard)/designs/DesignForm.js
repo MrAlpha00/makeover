@@ -5,54 +5,9 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 import { Trash2, Plus, Image as ImageIcon, X, Loader2, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
+import WatermarkedImage from '@/components/WatermarkedImage';
 import imageCompression from 'browser-image-compression';
 
-let watermarkImageCache = null;
-
-async function loadWatermark() {
-  if (watermarkImageCache) return watermarkImageCache;
-  try {
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    await new Promise((resolve, reject) => {
-      img.onload = resolve;
-      img.onerror = reject;
-      img.src = '/assets/watermark/watermark.png';
-    });
-    watermarkImageCache = img;
-    return img;
-  } catch (err) {
-    console.error('Failed to load watermark:', err);
-    return null;
-  }
-}
-
-async function applyWatermarkToImage(file) {
-  const watermark = await loadWatermark();
-  if (!watermark) return file;
-
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      canvas.width = img.width;
-      canvas.height = img.height;
-      ctx.drawImage(img, 0, 0);
-      const wmWidth = Math.round(img.width * 0.15);
-      const wmHeight = Math.round(watermark.height * (wmWidth / watermark.width));
-      const padding = 20;
-      ctx.drawImage(watermark, padding, canvas.height - wmHeight - padding, wmWidth, wmHeight);
-      canvas.toBlob((blob) => {
-        if (blob) resolve(blob);
-        else reject(new Error('Failed to create watermarked image'));
-      }, file.type || 'image/jpeg', 0.92);
-    };
-    img.onerror = () => reject(new Error('Failed to load image'));
-    img.src = URL.createObjectURL(file);
-  });
-}
 
 export default function DesignForm({ initialData = null, categories = [], subcategories = [] }) {
   const router = useRouter();
@@ -183,11 +138,7 @@ export default function DesignForm({ initialData = null, categories = [], subcat
           console.error("Image compression error:", compressionError);
         }
 
-        try {
-          fileToUpload = await applyWatermarkToImage(fileToUpload);
-        } catch (watermarkError) {
-          console.error("Watermark error:", watermarkError);
-        }
+
 
         const fileExt = fileToUpload.name.split('.').pop() || 'jpg';
         const fileName = `${formData.slug}/${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
@@ -361,7 +312,7 @@ export default function DesignForm({ initialData = null, categories = [], subcat
               {/* Existing Images */}
               {formData.images.map((url, i) => (
                 <div key={i} className="relative aspect-[4/3] rounded-lg overflow-hidden border border-white/10 group">
-                  <Image src={url} alt={`img-${i}`} fill className="object-cover" />
+                  <WatermarkedImage src={url} alt={`img-${i}`} fill className="object-cover" />
                   <button type="button" onClick={() => removeExistingImage(i)} className="absolute top-2 right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
                     <X size={12} />
                   </button>
@@ -374,7 +325,7 @@ export default function DesignForm({ initialData = null, categories = [], subcat
                 const objectUrl = URL.createObjectURL(f);
                 return (
                   <div key={`new-${i}`} className="relative aspect-[4/3] rounded-lg overflow-hidden border border-coral-500/30 group">
-                    <Image src={objectUrl} alt={`new-img-${i}`} fill className="object-cover" />
+                    <WatermarkedImage src={objectUrl} alt={`new-img-${i}`} fill className="object-cover" />
                     <button type="button" onClick={() => removeNewFile(i)} className="absolute top-2 right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
                       <X size={12} />
                     </button>
