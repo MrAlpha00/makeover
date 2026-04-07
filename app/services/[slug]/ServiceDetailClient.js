@@ -19,8 +19,7 @@ export default function ServiceDetailClient({ service, related, alsoBooked }) {
   const SLIDESHOW_INTERVAL = 2000;
   const TRANSITION_DURATION = 500;
 
-  const gallery = service.images?.length ? service.images : (service.image ? [service.image] : []);
-  const displayImages = gallery.length > 0 ? gallery : [];
+  const displayImages = service.images?.length ? service.images : (service.image ? [service.image] : []);
 
   const goToImage = useCallback((index) => {
     if (index === activeImage) return;
