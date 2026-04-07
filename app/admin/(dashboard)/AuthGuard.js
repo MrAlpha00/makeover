@@ -24,7 +24,11 @@ export default function AuthGuard({ children }) {
   }, [router, pathname]);
 
   if (isChecking) {
-    return <div className="min-h-screen bg-gray-50 text-gray-900" />;
+    return (
+      <div className="min-h-screen bg-dark-800 flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-coral-500/30 border-t-coral-500 rounded-full animate-spin" />
+      </div>
+    );
   }
 
   return children;
