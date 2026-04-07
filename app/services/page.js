@@ -32,7 +32,7 @@ export default async function ServicesPage() {
       
       {/* Header */}
       <section className="pt-28 pb-12 max-w-7xl mx-auto px-4 sm:px-6">
-        <p className="text-coral-400 text-sm font-medium tracking-wider uppercase mb-2">SLV Events, Bangalore</p>
+        <p className="text-coral-400 text-sm font-medium tracking-wider uppercase mb-2">Party Hub, Bangalore</p>
         <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-3">
           Our <span className="italic text-coral-400">Services</span>
         </h1>
