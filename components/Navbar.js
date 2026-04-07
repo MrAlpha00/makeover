@@ -37,10 +37,10 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-coral-500">
-            <span className="text-white font-display font-bold text-sm">S</span>
+            <span className="text-white font-display font-bold text-sm">P</span>
           </div>
           <span className="font-display font-semibold text-lg tracking-tight text-white">
-            SLV <span className="text-coral-400">Events</span>
+            Party <span className="text-coral-400">Hub</span>
           </span>
         </Link>
 
@@ -60,7 +60,7 @@ export default function Navbar() {
         {/* CTA */}
         <div className="hidden lg:flex items-center gap-4">
           <a
-            href="tel:+919663866778"
+            href="tel:+916366883984"
             className="text-sm font-medium transition-colors hover:text-coral-400 flex items-center gap-1.5 text-white/70"
           >
             <Phone size={14} />
@@ -102,7 +102,7 @@ export default function Navbar() {
           ))}
           <div className="flex flex-col gap-3 mt-4">
             <a
-              href="tel:+919663866778"
+              href="tel:+916366883984"
               className="btn-outline w-full justify-center py-3 border-white/10 text-white"
             >
               <Phone size={15} /> Call Now
