@@ -296,54 +296,54 @@ export default function SubcategoryClient({ initialSubcategories, categories }) 
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/50 backdrop-blur-sm">
-          <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg overflow-hidden border border-gray-100">
-            <div className="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50">
-              <h2 className="text-lg font-bold text-gray-900">{editingSub ? 'Edit Subcategory' : 'New Subcategory'}</h2>
-              <button onClick={() => setIsModalOpen(false)} className="text-gray-400 hover:text-gray-700">&times;</button>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="bg-dark-700 rounded-xl shadow-xl w-full max-w-lg overflow-hidden border border-white/10">
+            <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-white/10 flex justify-between items-center">
+              <h2 className="text-base sm:text-lg font-bold text-white">{editingSub ? 'Edit Subcategory' : 'New Subcategory'}</h2>
+              <button onClick={() => setIsModalOpen(false)} className="w-8 h-8 rounded-lg flex items-center justify-center text-white/50 hover:bg-white/10 hover:text-white transition-colors">&times;</button>
             </div>
-            <form onSubmit={handleSubmit} className="p-6 space-y-4">
+            <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4">
               
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                  <input type="text" required value={formData.name} onChange={handleNameChange} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-coral-400 focus:ring-1 focus:ring-coral-400 outline-none" />
+                  <label className="block text-sm font-medium text-white/80 mb-1">Name</label>
+                  <input type="text" required value={formData.name} onChange={handleNameChange} className="w-full px-3 py-2 rounded-lg bg-dark-800 border border-white/10 text-white focus:border-coral-500 outline-none transition-colors" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Parent Category</label>
-                  <select required value={formData.category_id} onChange={(e) => setFormData({...formData, category_id: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-coral-400 focus:ring-1 focus:ring-coral-400 outline-none">
-                    <option value="" disabled>Select Category</option>
+                  <label className="block text-sm font-medium text-white/80 mb-1">Parent Category</label>
+                  <select required value={formData.category_id} onChange={(e) => setFormData({...formData, category_id: e.target.value})} className="w-full px-3 py-2 rounded-lg bg-dark-800 border border-white/10 text-white focus:border-coral-500 outline-none transition-colors">
+                    <option value="" disabled className="bg-dark-800">Select Category</option>
                     {categories.map(c => (
-                      <option key={c.id} value={c.id}>{c.name}</option>
+                      <option key={c.id} value={c.id} className="bg-dark-800">{c.name}</option>
                     ))}
                   </select>
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Slug</label>
-                <input type="text" required value={formData.slug} onChange={(e) => setFormData({...formData, slug: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-coral-400 focus:ring-1 focus:ring-coral-400 outline-none font-mono text-sm bg-gray-50" />
+                <label className="block text-sm font-medium text-white/80 mb-1">Slug</label>
+                <input type="text" required value={formData.slug} onChange={(e) => setFormData({...formData, slug: e.target.value})} className="w-full px-3 py-2 rounded-lg bg-dark-800 border border-white/10 text-white font-mono text-sm focus:border-coral-500 outline-none transition-colors" />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                <textarea rows="3" value={formData.description} onChange={(e) => setFormData({...formData, description: e.target.value})} className="w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-coral-400 focus:ring-1 focus:ring-coral-400 outline-none resize-none"></textarea>
+                <label className="block text-sm font-medium text-white/80 mb-1">Description</label>
+                <textarea rows="3" value={formData.description} onChange={(e) => setFormData({...formData, description: e.target.value})} className="w-full px-3 py-2 rounded-lg bg-dark-800 border border-white/10 text-white focus:border-coral-500 outline-none transition-colors resize-none"></textarea>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Thumbnail</label>
-                <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files[0])} className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-coral-50 file:text-coral-600 hover:file:bg-coral-100" />
+                <label className="block text-sm font-medium text-white/80 mb-1">Thumbnail</label>
+                <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files[0])} className="w-full text-sm text-white/50 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-coral-500 file:text-white hover:file:bg-coral-600" />
                 {formData.image_url && !file && (
-                  <div className="mt-2 text-xs text-green-600 flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span> Image already explicitly set
+                  <div className="mt-2 text-xs text-green-400 flex items-center gap-1">
+                    <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span> Image already set
                   </div>
                 )}
               </div>
 
-              <div className="pt-4 flex justify-end gap-3 border-t border-gray-100">
-                <button type="button" onClick={() => setIsModalOpen(false)} className="px-5 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-xl transition-colors">Cancel</button>
-                <button type="submit" disabled={isSubmitting} className="px-5 py-2 text-sm font-medium text-white bg-coral-500 hover:bg-coral-600 rounded-xl transition-colors flex items-center gap-2 disabled:opacity-70">
-                  {isSubmitting ? <><Loader2 size={16} className="animate-spin" /> Saving...</> : 'Save Subcategory'}
+              <div className="pt-4 flex justify-end gap-3 border-t border-white/10">
+                <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 text-sm font-medium text-white/70 hover:bg-white/5 rounded-lg transition-colors">Cancel</button>
+                <button type="submit" disabled={isSubmitting} className="px-5 py-2 text-sm font-medium text-white bg-coral-500 hover:bg-coral-600 rounded-lg transition-colors flex items-center gap-2 disabled:opacity-70">
+                  {isSubmitting ? <><Loader2 size={16} className="animate-spin" /> Saving...</> : 'Save'}
                 </button>
               </div>
             </form>
