@@ -131,7 +131,7 @@ export default function BookingForm({ designs }) {
           </div>
 
           <a
-            href={`https://wa.me/9663866778?text=Hi%20SLV%20Events!%20I%20just%20booked%20${encodeURIComponent(form.service || 'decoration')}.%20Looking%20forward%20to%20hearing%20from%20you!`}
+            href={`https://wa.me/6366883984?text=Hi%20Party%20Hub!%20I%20just%20booked%20${encodeURIComponent(form.service || 'decoration')}.%20Looking%20forward%20to%20hearing%20from%20you!`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/30 text-green-400 hover:bg-green-500/20 transition-colors px-5 py-2.5 rounded-full text-sm font-medium"
