@@ -48,16 +48,16 @@ export default function DesignsClient({ initialDesigns, categories, subcategorie
 
   return (
     <div>
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white">Designs</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-white">Designs</h1>
           <p className="text-white/50 text-sm mt-1">Manage all available Event services</p>
         </div>
         <Link 
           href="/admin/designs/new"
           className="bg-coral-500 hover:bg-coral-600 text-white font-medium py-2 px-4 rounded-xl transition-all flex items-center gap-2"
         >
-          <Plus size={16} /> Add New Design
+          <Plus size={16} /> <span className="hidden sm:inline">Add New Design</span>
         </Link>
       </div>
 
