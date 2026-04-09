@@ -15,17 +15,16 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
+            <Link href="/" className="flex items-center gap-2 mb-4">
               <div 
-                className="w-8 h-8 rounded-lg flex items-center justify-center"
-                style={{ background: 'var(--coral)' }}
+                className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center bg-white"
               >
-                <span className="text-white font-display font-bold text-sm">P</span>
+                <Image src="/logo.png" alt="Party Hub" width={40} height={40} className="object-contain" />
               </div>
               <span className="font-display font-semibold text-lg" style={{ color: 'var(--text-primary)' }}>
                 Party <span style={{ color: 'var(--coral)' }}>Hub</span>
               </span>
-            </div>
+            </Link>
             <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-muted)' }}>
               Bangalore's most-loved party & event decorators. We turn moments into memories.
             </p>
