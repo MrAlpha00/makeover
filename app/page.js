@@ -153,16 +153,34 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* Right — Party Hub Logo */}
-            <div className="relative h-[400px] lg:h-[500px] hidden sm:flex items-center justify-center animate-fade-in stagger-2">
-              <div className="relative w-72 h-72 lg:w-96 lg:h-96">
+            {/* Right — hero image collage */}
+            <div className="relative h-[400px] lg:h-[500px] hidden sm:block animate-fade-in stagger-2">
+              <div className="absolute top-0 right-0 w-64 lg:w-72 h-[280px] lg:h-80 rounded-2xl overflow-hidden shadow-2xl border border-white/10">
                 <Image
-                  src="/logo.png"
-                  alt="Party Hub - Best Party Decorators in Bangalore"
+                  src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80"
+                  alt="Birthday balloon decoration in Bangalore - Party Hub"
                   fill
-                  className="object-contain"
+                  className="object-cover"
                   priority
                 />
+              </div>
+              <div className="absolute bottom-0 left-0 w-52 lg:w-60 h-[220px] lg:h-64 rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                <Image
+                  src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=600&q=80"
+                  alt="Anniversary rose decoration in Bangalore - Party Hub"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl p-4 w-40 lg:w-44 animate-float shadow-2xl bg-dark-800 border border-white/10 backdrop-blur-xl">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center bg-green-500/20">
+                    <CheckCircle size={12} className="text-green-400" />
+                  </div>
+                  <span className="text-xs font-medium text-white">Just Booked!</span>
+                </div>
+                <p className="text-xs text-white/40">Balloon Surprise · Bangalore</p>
+                <p className="text-sm font-semibold mt-1 text-coral-400">₹1,499</p>
               </div>
             </div>
           </div>
