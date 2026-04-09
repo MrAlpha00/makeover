@@ -6,6 +6,10 @@ export const metadata = {
     default: 'Party Hub — Best Party & Event Decorators in Bangalore',
     template: '%s | Party Hub Bangalore',
   },
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/logo.png',
+  },
   description: 'Party Hub is Bangalore\'s top-rated party decorator. Birthday decorations, balloon surprises, theme setups, anniversary & corporate events. Book now — same-day setup available!',
   keywords: [
     'party decorators Bangalore',
