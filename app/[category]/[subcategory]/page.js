@@ -22,20 +22,67 @@ export default async function SubcategoryPage({ params }) {
   
   const { category: catSlug, subcategory: subSlug } = params;
 
-  // Fetch Category
-  const { data: category } = await supabase.from('categories').select('*').eq('slug', catSlug).single();
-  // Fetch Subcategory
-  const { data: subcategory } = await supabase.from('subcategories').select('*').eq('slug', subSlug).single();
+  // Fetch current category
+  const { data: currentCategory } = await supabase.from('categories').select('*').eq('slug', catSlug).single();
+  // Fetch current subcategory
+  const { data: currentSubcategory } = await supabase.from('subcategories').select('*').eq('slug', subSlug).single();
 
-  if (!category || !subcategory) {
+  if (!currentCategory || !currentSubcategory) {
     notFound();
   }
 
-  // Fetch Designs
-  const { data: designs } = await supabase
+  // Fetch ALL subcategories with their category info
+  const { data: allSubcategories } = await supabase
+    .from('subcategories')
+    .select('*, categories(id, name, slug, icon)')
+    .order('sort_order', { ascending: true });
+
+  // Fetch ALL designs from ALL subcategories
+  const { data: allDesigns } = await supabase
     .from('designs')
     .select('*')
-    .eq('subcategory_id', subcategory.id);
+    .order('created_at', { ascending: false });
+
+  // Group designs by subcategory_id
+  const designsBySubcategory = {};
+  if (allDesigns) {
+    allDesigns.forEach(design => {
+      if (!designsBySubcategory[design.subcategory_id]) {
+        designsBySubcategory[design.subcategory_id] = [];
+      }
+      designsBySubcategory[design.subcategory_id].push(design);
+    });
+  }
+
+  // Group subcategories by category and create ordered list starting from current
+  const categoriesMap = {};
+  allSubcategories.forEach(sub => {
+    const catId = sub.categories.id;
+    if (!categoriesMap[catId]) {
+      categoriesMap[catId] = {
+        id: catId,
+        name: sub.categories.name,
+        slug: sub.categories.slug,
+        icon: sub.categories.icon,
+        subcategories: []
+      };
+    }
+    categoriesMap[catId].subcategories.push({
+      id: sub.id,
+      name: sub.name,
+      slug: sub.slug,
+      image_url: sub.image_url,
+      description: sub.description,
+      designs: designsBySubcategory[sub.id] || []
+    });
+  });
+
+  const orderedCategories = Object.values(categoriesMap);
+  const currentCatIndex = orderedCategories.findIndex(c => c.id === currentCategory.id);
+  const reorderedCategories = [
+    ...orderedCategories.slice(currentCatIndex),
+    ...orderedCategories.slice(0, currentCatIndex)
+  ];
 
   return (
     <div className="min-h-screen bg-dark-900 relative">
@@ -43,9 +90,9 @@ export default async function SubcategoryPage({ params }) {
       <WhatsAppButton />
       
       <SubcategoryClient 
-        category={category} 
-        subcategory={subcategory} 
-        designs={designs || []} 
+        categories={reorderedCategories} 
+        currentCategory={currentCategory}
+        currentSubcategory={currentSubcategory}
       />
 
       <Footer />
