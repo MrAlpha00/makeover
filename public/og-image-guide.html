@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Party Hub - OG Image Generator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #1a1a1a;
+      color: white;
+      padding: 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .og-preview {
+      width: 1200px;
+      height: 630px;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d1f3d 100%);
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px;
+      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
+    }
+    .og-preview::before {
+      content: '🎉';
+      position: absolute;
+      font-size: 200px;
+      opacity: 0.1;
+      top: -30px;
+      right: -30px;
+    }
+    .og-preview::after {
+      content: '🎈';
+      position: absolute;
+      font-size: 150px;
+      opacity: 0.1;
+      bottom: -20px;
+      left: -20px;
+    }
+    .logo {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    .brand {
+      font-size: 72px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #f95738, #ff6b4a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .tagline {
+      font-size: 32px;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 30px;
+    }
+    .location {
+      font-size: 24px;
+      color: rgba(255,255,255,0.6);
+      border: 2px solid rgba(255,255,255,0.2);
+      padding: 12px 30px;
+      border-radius: 50px;
+    }
+    .rating {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background: #f95738;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .services {
+      position: absolute;
+      bottom: 30px;
+      display: flex;
+      gap: 15px;
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+    }
+    .services span {
+      background: rgba(255,255,255,0.1);
+      padding: 8px 16px;
+      border-radius: 20px;
+    }
+    .instructions {
+      background: #2a2a2a;
+      padding: 30px;
+      border-radius: 15px;
+      margin-top: 40px;
+    }
+    h1 { color: #f95738; }
+    h2 { color: #ff6b4a; }
+    code {
+      background: #1a1a1a;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .warning {
+      background: #fff3cd;
+      color: #856404;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Party Hub - OG Image Generator</h1>
+  
+  <div class="og-preview">
+    <div class="rating">⭐ 4.9 Rating</div>
+    <div class="logo">🎊</div>
+    <div class="brand">Party Hub</div>
+    <div class="tagline">Best Party Decorators in Bangalore</div>
+    <div class="location">📍 Bangalore, Karnataka</div>
+    <div class="services">
+      <span>🎈 Birthday</span>
+      <span>🎉 Balloons</span>
+      <span>✨ Themes</span>
+      <span>💐 Anniversary</span>
+    </div>
+  </div>
+
+  <div class="instructions">
+    <h2>How to Create the OG Image</h2>
+    <p>This is a preview of how your Open Graph image should look. To create the actual image:</p>
+    
+    <h3>Option 1: Use Canva (Recommended)</h3>
+    <ol>
+      <li>Go to <strong>canva.com</strong> and create a free account</li>
+      <li>Search for "Social Media Post" template</li>
+      <li>Select size <strong>1200 x 630 pixels</strong></li>
+      <li>Create a design matching the preview above</li>
+      <li>Download as JPG and save as <code>public/og-image.jpg</code></li>
+    </ol>
+    
+    <h3>Option 2: Use Figma</h3>
+    <ol>
+      <li>Create a new frame at <strong>1200 x 630px</strong></li>
+      <li>Design your OG image</li>
+      <li>Export as JPG at 2x resolution</li>
+      <li>Save as <code>public/og-image.jpg</code></li>
+    </ol>
+    
+    <h3>Option 3: Use Vercel OG Image</h3>
+    <p>You can also use Vercel's built-in OG image generation by creating an API route.</p>
+    
+    <div class="warning">
+      <strong>Important:</strong> Your current <code>public/og-image.jpg</code> file may not exist. 
+      You need to create it manually using one of the methods above. The image should be exactly 
+      <strong>1200x630 pixels</strong> for best results.
+    </div>
+  </div>
+</body>
+</html>
