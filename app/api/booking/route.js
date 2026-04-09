@@ -345,17 +345,35 @@ export async function POST(req) {
     const { name, phone, email, service, occasion, date, venue, guests, message } = body;
 
     const ownerEmail = process.env.OWNER_EMAIL || 'sm4686771@gmail.com';
+    const bookingEmail = process.env.BOOKING_EMAIL || 'booking@partyhubs.in';
+    const fromAddress = `Party Hub <${bookingEmail}>`;
+    
+    const recipients = [bookingEmail, ownerEmail].filter((v, i, a) => a.indexOf(v) === i);
 
-    // Send email to the client (Party Hub owner)
+    // Send email to booking team and owner
     const { error: ownerError } = await resend.emails.send({
-      from: 'Party Hub <onboarding@resend.dev>',
-      to: ownerEmail,
+      from: fromAddress,
+      to: recipients,
       subject: `🎉 New Booking — ${name} | ${service || 'Custom'} | ${date}`,
       html: ownerEmailHtml(name, phone, email, service, occasion, date, venue, guests, message),
     });
 
     if (ownerError) {
       console.error('Owner email error:', ownerError);
+    }
+
+    // Send confirmation email to customer (if email provided)
+    if (email) {
+      const { error: customerError } = await resend.emails.send({
+        from: fromAddress,
+        to: email,
+        subject: `✅ Booking Confirmed! We'll reach you soon, ${name}!`,
+        html: customerEmailHtml(name, service, date, venue, phone),
+      });
+
+      if (customerError) {
+        console.error('Customer email error:', customerError);
+      }
     }
 
     // Send confirmation email to customer (if email provided)
