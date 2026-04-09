@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X, Phone } from 'lucide-react';
 
 const navLinks = [
@@ -36,8 +37,8 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-coral-500">
-            <span className="text-white font-display font-bold text-sm">P</span>
+          <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center bg-white">
+            <Image src="/logo.png" alt="Party Hub" width={40} height={40} className="object-contain" />
           </div>
           <span className="font-display font-semibold text-lg tracking-tight text-white">
             Party <span className="text-coral-400">Hub</span>
