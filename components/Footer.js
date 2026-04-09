@@ -149,12 +149,12 @@ export default function Footer() {
               </li>
               <li>
                 <a 
-                  href="mailto:hello@partyhubs.in" 
+                  href="mailto:booking@partyhubs.in" 
                   className="flex items-center gap-2.5 text-sm transition-colors hover:text-coral-400"
                   style={{ color: 'var(--text-muted)' }}
                 >
                   <Mail size={14} className="flex-shrink-0" style={{ color: 'var(--coral)' }} />
-                  hello@partyhubs.in
+                  booking@partyhubs.in
                 </a>
               </li>
             </ul>
