@@ -4,21 +4,39 @@ export default async function sitemap() {
   const baseUrl = 'https://partyhubs.in';
 
   const staticPages = [
-    { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
-    { url: `${baseUrl}/services`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: baseUrl, lastModified: new Date(), changeFrequency: 'daily', priority: 1.0 },
+    { url: `${baseUrl}/services`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.9 },
+    { url: `${baseUrl}/designs`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.9 },
     { url: `${baseUrl}/booking`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
   ];
 
-  const { data: designs } = await supabaseAdmin.from('designs').select('slug');
+  const { data: categories } = await supabaseAdmin.from('categories').select('slug, updated_at');
+  const categoryPages = (categories || []).map((cat) => ({
+    url: `${baseUrl}/${cat.slug}`,
+    lastModified: new Date(cat.updated_at) || new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.85,
+  }));
 
-  const servicePages = (designs || []).map((s) => ({
-    url: `${baseUrl}/services/${s.slug}`,
-    lastModified: new Date(),
+  const { data: subcategories } = await supabaseAdmin.from('subcategories').select('slug, category_slug, updated_at');
+  const subcategoryPages = (subcategories || []).map((sub) => ({
+    url: `${baseUrl}/${sub.category_slug}/${sub.slug}`,
+    lastModified: new Date(sub.updated_at) || new Date(),
     changeFrequency: 'weekly',
     priority: 0.8,
   }));
 
-  return [...staticPages, ...servicePages];
+  const { data: designs } = await supabaseAdmin.from('designs').select('slug, category_slug, subcategory_slug, updated_at');
+
+  const designPages = (designs || []).map((design) => ({
+    url: `${baseUrl}/services/${design.slug}`,
+    lastModified: new Date(design.updated_at) || new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.75,
+    images: design.images?.[0] ? [{ url: design.images[0], caption: design.title }] : [],
+  }));
+
+  return [...staticPages, ...categoryPages, ...subcategoryPages, ...designPages];
 }
