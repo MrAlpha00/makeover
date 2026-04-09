@@ -96,7 +96,8 @@ export default function Footer() {
               {[
                 ['About Us', '/about'],
                 ['Book Now', '/booking'],
-                ['Contact', '/contact'],
+                ['Contact Us', '/contact'],
+                ['Blog & Tips', '/blog'],
                 ['Privacy Policy', '/privacy'],
                 ['Terms of Service', '/terms'],
               ].map(([label, href]) => (
