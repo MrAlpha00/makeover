@@ -4,8 +4,24 @@ import WhatsAppButton from '../../components/WhatsAppButton';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 
 export const metadata = {
-  title: 'Contact Party Hub — Party Decorators Bangalore',
-  description: 'Contact Party Hub for party decoration bookings in Bangalore. Call, WhatsApp, or fill in the form. We respond within 2 hours.',
+  title: 'Contact Party Hub | Party Decorators Bangalore | Call Now',
+  description: 'Contact Party Hub for party decoration in Bangalore. Call +91-63668 83984, WhatsApp or email. Fast response within 2 hours. Book your decoration today!',
+  keywords: [
+    'contact party hub',
+    'party decorators bangalore',
+    'party decoration booking bangalore',
+    'event decorators contact',
+    'book party decoration bangalore',
+  ],
+  openGraph: {
+    title: 'Contact Party Hub | Party Decorators Bangalore',
+    description: 'Get in touch with Party Hub for party decoration services in Bangalore. Call, WhatsApp or email. Fast response guaranteed!',
+    type: 'website',
+    locale: 'en_IN',
+  },
+  alternates: {
+    canonical: 'https://partyhubs.in/contact',
+  },
 };
 
 export default function ContactPage() {
@@ -16,8 +32,12 @@ export default function ContactPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-28 pb-20">
         <div className="text-center mb-12">
           <span className="badge mb-4">Get in touch</span>
-          <h1 className="font-display text-4xl font-bold text-white mb-3">We'd love to <span className="italic text-coral-400">hear from you</span></h1>
-          <p className="text-white/40">Questions? Custom requests? Just want to say hi? We're here.</p>
+          <h1 className="font-display text-4xl font-bold text-white mb-3">
+            Contact Party Hub — <span className="italic text-coral-400">Bangalore's #1 Party Decorators</span>
+          </h1>
+          <p className="text-white/40 max-w-xl mx-auto">
+            Ready to book your party decoration in Bangalore? We're here to help! Get in touch and we'll respond within 2 hours.
+          </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
@@ -47,23 +67,20 @@ export default function ContactPage() {
             ))}
           </div>
 
-          {/* Hours + CTA */}
+          {/* Areas + CTA */}
           <div className="space-y-5">
             <div className="card-dark p-6">
               <div className="flex items-center gap-2 mb-4">
-                <Clock size={16} className="text-coral-400" />
-                <h3 className="text-white font-semibold">Business hours</h3>
+                <MapPin size={16} className="text-coral-400" />
+                <h3 className="text-white font-semibold">Areas We Serve in Bangalore</h3>
               </div>
-              {[
-                ['Monday – Friday', '9:00 AM – 9:00 PM'],
-                ['Saturday', '9:00 AM – 9:00 PM'],
-                ['Sunday', '10:00 AM – 8:00 PM'],
-              ].map(([day, time]) => (
-                <div key={day} className="flex justify-between py-2.5 border-b border-white/5 last:border-0">
-                  <span className="text-white/50 text-sm">{day}</span>
-                  <span className="text-white text-sm font-medium">{time}</span>
-                </div>
-              ))}
+              <div className="flex flex-wrap gap-2">
+                {['Whitefield', 'Koramangala', 'HSR Layout', 'Marathahalli', 'Indiranagar', 'JP Nagar', 'BTM Layout', 'Electronic City', 'Sarjapur', 'Bellandur', 'Hebbal', 'Yelahanka', ' Bannerghatta', 'MG Road'].map((area) => (
+                  <span key={area} className="text-xs px-3 py-1.5 rounded-full bg-dark-700 text-white/60 border border-white/5">
+                    {area}
+                  </span>
+                ))}
+              </div>
             </div>
 
             <div className="card-dark p-6 bg-coral-500/5 border-coral-500/20">

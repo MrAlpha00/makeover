@@ -7,13 +7,35 @@ import { notFound } from 'next/navigation';
 
 export async function generateMetadata({ params }) {
   const supabase = createServerSupabaseClient();
-  const { data: subcategory } = await supabase.from('subcategories').select('name, description').eq('slug', params.subcategory).single();
   
-  if (!subcategory) return { title: 'Not Found | Party Hub' };
+  const { data: category } = await supabase.from('categories').select('name, slug').eq('slug', params.category).single();
+  const { data: subcategory } = await supabase.from('subcategories').select('name, description, slug').eq('slug', params.subcategory).single();
+  
+  if (!subcategory || !category) return { title: 'Not Found | Party Hub' };
+  
+  const title = `${subcategory.name} in Bangalore | Party Hub | Book Now`;
+  const description = `${subcategory.description} Book now with Party Hub in Bangalore. Same-day decoration service available. Call +91-63668 83984!`;
   
   return {
-    title: `${subcategory.name} | Party Hub Bangalore`,
-    description: subcategory.description,
+    title,
+    description,
+    keywords: [
+      `${subcategory.name.toLowerCase()} bangalore`,
+      `${subcategory.name.toLowerCase()} decoration`,
+      `${category.name.toLowerCase()} ${subcategory.name.toLowerCase()}`,
+      'party decoration bangalore',
+      'event decorators bangalore',
+    ],
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      locale: 'en_IN',
+      images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
+    },
+    alternates: {
+      canonical: `https://partyhubs.in/${params.category}/${params.subcategory}`,
+    },
   };
 }
 
@@ -22,28 +44,23 @@ export default async function SubcategoryPage({ params }) {
   
   const { category: catSlug, subcategory: subSlug } = params;
 
-  // Fetch current category
   const { data: currentCategory } = await supabase.from('categories').select('*').eq('slug', catSlug).single();
-  // Fetch current subcategory
   const { data: currentSubcategory } = await supabase.from('subcategories').select('*').eq('slug', subSlug).single();
 
   if (!currentCategory || !currentSubcategory) {
     notFound();
   }
 
-  // Fetch ALL subcategories with their category info
   const { data: allSubcategories } = await supabase
     .from('subcategories')
     .select('*, categories(id, name, slug, icon)')
     .order('sort_order', { ascending: true });
 
-  // Fetch ALL designs from ALL subcategories
   const { data: allDesigns } = await supabase
     .from('designs')
     .select('*')
     .order('created_at', { ascending: false });
 
-  // Group designs by subcategory_id
   const designsBySubcategory = {};
   if (allDesigns) {
     allDesigns.forEach(design => {
@@ -54,7 +71,6 @@ export default async function SubcategoryPage({ params }) {
     });
   }
 
-  // Group subcategories by category and create ordered list starting from current
   const categoriesMap = {};
   allSubcategories.forEach(sub => {
     const catId = sub.categories.id;
