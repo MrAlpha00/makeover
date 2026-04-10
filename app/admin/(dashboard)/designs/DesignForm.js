@@ -6,7 +6,7 @@ import { supabase } from '@/lib/supabaseClient';
 import { Trash2, Plus, Image as ImageIcon, X, Loader2, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import WatermarkedImage from '@/components/WatermarkedImage';
-import imageCompression from 'browser-image-compression';
+import { validateImage, compressImageForUpload, uploadImage, IMAGE_LIMITS } from '@/lib/imageValidation';
 
 
 export default function DesignForm({ initialData = null, categories = [], subcategories = [] }) {
