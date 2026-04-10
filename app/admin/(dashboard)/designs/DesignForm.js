@@ -123,29 +123,12 @@ export default function DesignForm({ initialData = null, categories = [], subcat
     setErrorText(null);
 
     try {
-      // 1. Upload new files if any
       const uploadedUrls = [];
       for (const file of newFiles) {
-        let fileToUpload = file;
-        try {
-          const options = {
-            maxSizeMB: 1,
-            maxWidthOrHeight: 1500,
-            useWebWorker: true,
-          };
-          fileToUpload = await imageCompression(file, options);
-        } catch (compressionError) {
-          console.error("Image compression error:", compressionError);
-        }
-
-
-
-        const fileExt = fileToUpload.name.split('.').pop() || 'jpg';
-        const fileName = `${formData.slug}/${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
-        const { error: uploadError } = await supabase.storage.from('designs').upload(fileName, fileToUpload);
-        if (uploadError) throw uploadError;
-
-        const { data: { publicUrl } } = supabase.storage.from('designs').getPublicUrl(fileName);
+        validateImage(file, IMAGE_LIMITS.DESIGN);
+        
+        const compressedFile = await compressImageForUpload(file, IMAGE_LIMITS.DESIGN);
+        const publicUrl = await uploadImage(compressedFile, formData.slug);
         uploadedUrls.push(publicUrl);
       }
 
