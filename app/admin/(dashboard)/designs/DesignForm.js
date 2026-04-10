@@ -287,7 +287,7 @@ export default function DesignForm({ initialData = null, categories = [], subcat
                 <ImageIcon size={24} />
               </div>
               <p className="font-medium text-white">Click or drag images to upload</p>
-              <p className="text-sm text-white/40 mt-1">JPEG, PNG, WEBP up to 5MB</p>
+              <p className="text-sm text-white/40 mt-1">JPEG, PNG, WEBP up to 200KB per image</p>
             </div>
 
             {/* Gallery Grid */}
