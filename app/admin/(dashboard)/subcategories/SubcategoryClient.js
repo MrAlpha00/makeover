@@ -72,42 +72,14 @@ export default function SubcategoryClient({ initialSubcategories, categories }) 
       let finalImageUrl = formData.image_url;
 
       if (file) {
-        const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-        if (!validTypes.includes(file.type)) {
-          throw new Error('Please upload a valid image file (JPEG, PNG, GIF, or WebP)');
-        }
-        if (file.size > 5 * 1024 * 1024) {
-          throw new Error('Image size must be less than 5MB');
-        }
+        validateImage(file, IMAGE_LIMITS.CATEGORY);
 
-        let fileToUpload = file;
-        try {
-          const options = {
-            maxSizeMB: 1,
-            maxWidthOrHeight: 1200,
-            useWebWorker: true,
-          };
-          fileToUpload = await imageCompression(file, options);
-        } catch (compressionError) {
-          console.error("Image compression error:", compressionError);
-        }
-
-        const fileExt = fileToUpload.name.split('.').pop() || 'jpg';
-        const fileName = `subcategories/${formData.slug}-${Date.now()}.${fileExt}`;
-        const { error: uploadError } = await supabase.storage
-          .from('designs')
-          .upload(fileName, fileToUpload, { upsert: true });
-
-        if (uploadError) throw uploadError;
-
-        const { data: { publicUrl } } = supabase.storage.from('designs').getPublicUrl(fileName);
-        finalImageUrl = publicUrl;
+        const compressedFile = await compressImageForUpload(file, IMAGE_LIMITS.CATEGORY);
+        const fileName = `${formData.slug}-${Date.now()}.${compressedFile.name.split('.').pop()}`;
+        finalImageUrl = await uploadImage(compressedFile, 'subcategories', fileName);
 
         if (editingSub?.image_url && editingSub.image_url !== finalImageUrl) {
-          const oldFileName = editingSub.image_url.split('/storage/v1/object/public/designs/')[1];
-          if (oldFileName) {
-            await supabase.storage.from('designs').remove([oldFileName]);
-          }
+          await deleteImage(editingSub.image_url);
         }
       }
 
