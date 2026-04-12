@@ -376,20 +376,6 @@ export async function POST(req) {
       }
     }
 
-    // Send confirmation email to customer (if email provided)
-    if (email) {
-      const { error: customerError } = await resend.emails.send({
-        from: 'Party Hub <onboarding@resend.dev>',
-        to: email,
-        subject: `✅ Booking Confirmed! We'll reach you soon, ${name}!`,
-        html: customerEmailHtml(name, service, date, venue, phone),
-      });
-
-      if (customerError) {
-        console.error('Customer email error:', customerError);
-        // Don't fail the whole request if customer email fails
-      }
-    }
 
     // Insert into Supabase bookings table
     const { supabaseAdmin } = await import('@/lib/supabase-admin');
