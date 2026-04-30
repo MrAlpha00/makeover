@@ -5,7 +5,7 @@ import { ArrowRight, Star, CheckCircle, Phone, Sparkles, Clock, Shield, MapPin }
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import WhatsAppButton from '../components/WhatsAppButton';
-import ServiceCard from '../components/ServiceCard';
+import ScrollRow from '../components/ScrollRow';
 import { createClient as createServerSupabaseClient } from '@/lib/supabaseServer';
 
 const stats = [
@@ -271,50 +271,7 @@ export default async function HomePage() {
           {/* 3 Scrollable Rows */}
           <div className="space-y-6">
             {[0, 1, 2].map((rowIndex) => (
-              <div key={rowIndex} className="relative group">
-                {/* Scroll Left Button */}
-                <button 
-                  className="scroll-btn scroll-left hidden md:flex"
-                  onClick={(e) => {
-                    const container = e.currentTarget.parentElement.querySelector('.scroll-container');
-                    container.scrollBy({ left: -400, behavior: 'smooth' });
-                  }}
-                >
-                  ‹
-                </button>
-                
-                {/* Scroll Right Button */}
-                <button 
-                  className="scroll-btn scroll-right hidden md:flex"
-                  onClick={(e) => {
-                    const container = e.currentTarget.parentElement.querySelector('.scroll-container');
-                    container.scrollBy({ left: 400, behavior: 'smooth' });
-                  }}
-                >
-                  ›
-                </button>
-
-                {/* Scrollable Container */}
-                <div 
-                  className="scroll-container flex gap-4 sm:gap-5 overflow-x-auto scroll-smooth pb-2 px-1"
-                  style={{ 
-                    scrollbarWidth: 'thin',
-                    scrollbarColor: 'rgba(249, 87, 56, 0.3) transparent',
-                  }}
-                >
-                  {featured?.slice(rowIndex * 4, rowIndex * 4 + 4).map((service, i) => (
-                    <div key={service.id} className="flex-shrink-0 w-[280px] sm:w-[300px]">
-                      <ServiceCard service={service} index={rowIndex * 4 + i} />
-                    </div>
-                  ))}
-                  {/* Duplicate cards for continuous scroll effect */}
-                  {featured?.slice(0, 4).map((service, i) => (
-                    <div key={`dup-${rowIndex}-${i}`} className="flex-shrink-0 w-[280px] sm:w-[300px]">
-                      <ServiceCard service={service} index={i} />
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <ScrollRow key={rowIndex} services={featured} rowIndex={rowIndex} />
             ))}
           </div>
 
