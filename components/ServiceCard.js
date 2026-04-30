@@ -73,18 +73,28 @@ export default function ServiceCard({ service, index = 0 }) {
         </p>
 
         {/* Rating */}
+        {service.rating && (
         <div className="flex items-center gap-1.5 mb-3">
           <Star size={12} fill="#f95738" stroke="none" />
           <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>{service.rating}</span>
+          {service.reviews && (
           <span className="text-sm" style={{ color: 'var(--text-muted)' }}>({service.reviews} reviews)</span>
+          )}
         </div>
+        )}
 
         {/* Price + CTA */}
         <div className="flex items-center justify-between">
           <div>
-            <span className="text-lg font-semibold" style={{ color: 'var(--coral)' }}>₹{service.price.toLocaleString('en-IN')}</span>
-            {(service.original_price || service.originalPrice) && (
-              <span className="text-sm line-through ml-2" style={{ color: 'var(--text-muted)', opacity: 0.5 }}>₹{(service.original_price || service.originalPrice).toLocaleString('en-IN')}</span>
+            {service.price ? (
+              <>
+                <span className="text-lg font-semibold" style={{ color: 'var(--coral)' }}>₹{Number(service.price).toLocaleString('en-IN')}</span>
+                {(service.original_price || service.originalPrice) && (
+                  <span className="text-sm line-through ml-2" style={{ color: 'var(--text-muted)', opacity: 0.5 }}>₹{Number(service.original_price || service.originalPrice).toLocaleString('en-IN')}</span>
+                )}
+              </>
+            ) : (
+              <span className="text-sm" style={{ color: 'var(--text-muted)' }}>Contact for price</span>
             )}
           </div>
           <span 
