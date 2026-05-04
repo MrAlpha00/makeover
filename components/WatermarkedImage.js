@@ -46,6 +46,7 @@ export default function WatermarkedImage({
         className={className}
         sizes={sizes}
         priority={priority}
+        unoptimized
         onError={() => {
           // If we fail loading the stripped clean variant, fallback to the verbatim DB URL so it doesn't 404
           if (!hasError && currentSrc !== originalSrc) {
@@ -63,6 +64,7 @@ export default function WatermarkedImage({
           width={150}
           height={50}
           className="w-full h-auto object-contain drop-shadow-md"
+          unoptimized
         />
       </div>
     </>
