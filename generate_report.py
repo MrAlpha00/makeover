@@ -181,37 +181,12 @@ def create_report():
             footer.is_linked_to_previous = False
             for fp in footer.paragraphs:
                 fp.clear()
-            footer_table = footer.add_table(1, 3, Inches(6.5))
-            footer_table.columns[0].width = Inches(2.5)
-            footer_table.columns[1].width = Inches(2.5)
-            footer_table.columns[2].width = Inches(1.5)
-            for cell in footer_table.rows[0].cells:
-                cell.vertical_alignment = 1
-                for p in cell.paragraphs:
-                    p.paragraph_format.space_before = Pt(0)
-                    p.paragraph_format.space_after = Pt(0)
-
-            c0 = footer_table.cell(0, 0)
-            c0.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.LEFT
-            r0 = c0.paragraphs[0].add_run('Department of Computer Science Engineering')
-            r0.font.size = Pt(8)
-            r0.font.name = 'Times New Roman'
-
-            c1 = footer_table.cell(0, 1)
-            c1.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
-            r1 = c1.paragraphs[0].add_run('Sri Shakthi Institute of Engineering and Technology\nCoimbatore - 641 062')
-            r1.font.size = Pt(8)
-            r1.font.name = 'Times New Roman'
-
-            c2 = footer_table.cell(0, 2)
-            c2.paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.RIGHT
-            c2.paragraphs[0].add_run('Page ')
-            fldChar1 = parse_xml('<w:fldChar {} w:fldCharType="begin"/>'.format(nsdecls('w')))
-            c2.paragraphs[0]._element.append(fldChar1)
-            instrText = parse_xml('<w:instrText {} xml:space="preserve"> PAGE </w:instrText>'.format(nsdecls('w')))
-            c2.paragraphs[0]._element.append(instrText)
-            fldChar2 = parse_xml('<w:fldChar {} w:fldCharType="end"/>'.format(nsdecls('w')))
-            c2.paragraphs[0]._element.append(fldChar2)
+            fp = footer.paragraphs[0]
+            fp.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            run = fp.add_run('Department of Computer Science Engineering  |  Sri Shakthi Institute of Engineering and Technology, Coimbatore - 641 062  |  Page #')
+            run.font.size = Pt(8)
+            run.font.name = 'Times New Roman'
+            run.font.color.rgb = RGBColor(128, 128, 128)
 
     # ========================
     # TITLE PAGE
