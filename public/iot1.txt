@@ -1,0 +1,319 @@
+1b 
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(2, INPUT);
+  pinMode(10, OUTPUT);
+}
+
+void loop() {
+  int sensor_state = digitalRead(2);
+
+  if (sensor_state == 0) {
+    Serial.println("Motion Detected");
+    digitalWrite(10, HIGH);
+  }
+  else {
+    Serial.println("Motion Not Detected");
+    digitalWrite(10, LOW);
+  }
+}
+
+
+2A//////////////////////////////////////////////////////////////
+
+#define dht_dpin 2 
+#include<dht.h> dht DHT;
+void setup()
+{
+Serial.begin(9600);
+Serial.println("Humidity and temperature\n\n");
+}
+void loop()
+{
+DHT.read11(dht_dpin); 
+Serial.print("Current humidity = ");
+Serial.print(DHT.humidity);
+Serial.print("%
+Serial.print("temperature = ");
+Serial.print(DHT.temperature);
+Serial.println("C "); 
+delay(1000);
+}
+
+
+2B/////////////////////////////////////////////////////////////////
+
+
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C
+lcd(0x27,16,2); 
+#define dht_dpin 7 
+#include<dht.h>
+dht DHT;
+void setup()
+{
+Serial.begin(9600);
+lcd.begin();
+}
+void loop()
+{
+DHT.read11(dht_dpin); 
+lcd.setCursor(0, 0);//(Col,ROW) lcd.print("Temp=");
+lcd.print(DHT.temperature); //print the temperature
+lcd.print("Celsius"); 
+lcd.setCursor(0, 1);//(Col,ROW)
+lcd.print("Humidity=");
+lcd.print(DHT.humidity);
+//print the humidity lcd.print("%"); 
+delay(2000);
+}
+
+
+3///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+void setup()
+{pinMode(2,INPUT);
+pinMode(10,OUTPUT); }
+void loop()
+{
+int sensor_state=digitalRead(2);
+if(sensor_state==1)
+{
+ digitalWrite(10,LOW);
+}
+else
+{
+ digitalWrite(10,HIGH);
+}
+}
+
+
+4A///////////////////////////////////////////////////////////////////////
+
+
+int sensorpin = A0;
+int sensorvalue = 0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  sensorvalue = analogRead(sensorpin);
+
+  Serial.print("Soil Moisture level:");
+  Serial.println(sensorvalue);
+
+  if (sensorvalue < 300) {
+    Serial.println("status:soil is wet");
+  }
+  else if (sensorvalue < 700) {
+    Serial.println("status:Soil is mosit");
+  }
+  else {
+    Serial.println("Status:Soil is Dry");
+  }
+
+  delay(1000);
+}
+
+
+
+4B///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+int ldrpin = 2;
+int ledpin = 13;
+
+void setup() {
+  pinMode(ldrpin, INPUT);
+  pinMode(ledpin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int ldrvalue = digitalRead(ldrpin);
+
+  Serial.print("ldrValue:");
+  Serial.println(ldrvalue);
+
+  if (ldrvalue == 1) {
+    digitalWrite(ledpin, HIGH);
+  } else {
+    digitalWrite(ledpin, LOW);
+  }
+
+  delay(200);
+}
+
+
+
+5//////////////////////////////////////////////////////////////////////////
+
+
+const int trigPin = 9;
+const int echoPin = 10;
+long duration;
+float distance;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+}
+
+void loop() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  
+  digitalWrite(trigPin, LOW);
+
+  duration = pulseIn(echoPin, HIGH);
+  distance = duration * 0.034 / 2;
+
+  Serial.print("Distance:");
+  Serial.print(distance);
+  Serial.println("cm");
+
+  delay(500);
+}
+
+
+
+6/////////////////////////////////////////////////////////////////////
+
+#include <DHT.h>
+#include<WiFi.h>
+#include<WiFiClient.h>
+#include <ThingSpeak.h>
+#include <Adafruit_Sensor.h>
+#define DHTPIN 2
+#define DHTTYPE DHT22
+DHT dht(DHTPIN, DHTTYPE);
+const char* ssid = "Wokwi-GUEST";
+const char* password = ""; 
+WiFiClient client;
+unsigned long myChannelNumber = 3365299; 
+const char * myWriteAPIKey = "3Y3ZNIA9Z0PEJQAH"; 
+float temperature, humidity;
+void setup()
+{
+Serial.begin(9600);
+dht.begin(); 
+delay(10);
+// Connect to WiFi network 
+Serial.println(); 
+Serial.println(); 
+Serial.print("Connecting to "); 
+Serial.println(ssid); 
+WiFi.begin(ssid, password);
+while (WiFi.status() != WL_CONNECTED)
+{
+delay(500); 
+Serial.print(".");
+}
+Serial.println("");
+Serial.println("WiFi connected");
+// Print the IP address 
+Serial.println(WiFi.localIP()); 
+ThingSpeak.begin(client);
+}
+void loop() 
+{ 
+temperature = dht.readTemperature(); 
+humidity = dht.readHumidity(); 
+Serial.print("Temperature Value is :"); 
+Serial.print(temperature); 
+Serial.println("C"); 
+Serial.print("Humidity Value is :"); 
+Serial.print(humidity);
+Serial.println("%"); 
+// Write to Things peak. There are up to 8 fields in a channel, allowing you to store up to 8 different
+ThingSpeak.writeField(myChannelNumber, 1, temperature, myWriteAPIKey); 
+ThingSpeak.writeField(myChannelNumber, 2, humidity, myWriteAPIKey); 
+delay(3000); 
+}
+
+
+
+
+7/////////////////////////////////////////////////////////////////////
+
+
+#include <WiFi.h>
+#include <ThingSpeak.h>
+WiFiClient client;
+void setup()
+{
+  Serial.begin(9600);
+ThingSpeak.begin(client);
+WiFi.disconnect();
+delay(3000);
+Serial.println("START");
+WiFi.begin("Wokwi-GUEST","");
+while ((!(WiFi.status() == WL_CONNECTED)))
+{
+ delay(300);
+ Serial.print("..");
+}
+Serial.println("Your IP is");
+Serial.println((WiFi.localIP().toString()));
+Serial.println("Connected");
+}
+void loop()
+ {
+  Serial.print("Temperature=");
+  Serial.println((ThingSpeak.readIntField(3365299,1,"TAJA1MRIRCBS5AM2")));
+  Serial.print("Humidity=");
+  Serial.println((ThingSpeak.readIntField(3365299,2,"TAJA1MRIRCBS5AM2")));
+  delay(3000);
+ }
+
+
+
+8///////////////////////////////////////////////////////////////////////////////////////////////
+
+#define LED_PIN 2
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(LED_PIN, OUTPUT);
+  Serial.println("Type ON or OFF");
+}
+
+void loop() {
+  if (Serial.available()) {
+    String cmd = Serial.readStringUntil('\n');
+    cmd.trim();
+
+    if (cmd == "ON") {
+      digitalWrite(LED_PIN, HIGH);
+      Serial.println("LED ON");
+    } 
+    else if (cmd == "OFF") {
+      digitalWrite(LED_PIN, LOW);
+      Serial.println("LED OFF");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+iot
