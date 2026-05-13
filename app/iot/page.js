@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 export default async function IotPage() {
-  const filePath = join(process.cwd(), 'iot1.md');
+  const filePath = join(process.cwd(), 'public', 'iot1.md');
   const fileContent = await readFile(filePath, 'utf-8');
 
   const files = [
