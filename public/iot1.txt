@@ -306,7 +306,65 @@ void loop() {
 
 
 
+//////////////////////////////////////////////////////////////////////////////////
+6th and 7th same working one 
+////////////////////////////////////////////////////////////////////////
 
+#include <WiFi.h>
+#include <DHT.h>
+#include <ThingSpeak.h>
+
+#define DHTPIN 4
+#define DHTTYPE DHT22
+
+DHT dht(DHTPIN, DHTTYPE);
+
+const char* ssid = "Wokwi-GUEST";
+const char* password = "";
+
+unsigned long channelID = 3410543;
+const char* writeAPIKey = "TU5RPD5NJH1ZCXX2";
+
+WiFiClient client;
+
+void setup()
+{
+  Serial.begin(9600);
+  dht.begin();
+
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED)
+  {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println("\nWiFi Connected");
+
+  ThingSpeak.begin(client);
+}
+
+void loop()
+{
+  float temperature = dht.readTemperature();
+  float humidity = dht.readHumidity();
+
+  Serial.print("Temperature = ");
+  Serial.print(temperature);
+  Serial.println(" C");
+
+  Serial.print("Humidity = ");
+  Serial.print(humidity);
+  Serial.println(" %");
+
+  ThingSpeak.setField(1, temperature);
+  ThingSpeak.setField(2, humidity);
+
+  ThingSpeak.writeFields(channelID, writeAPIKey);
+
+  delay(30000);
+}
 
 
 
